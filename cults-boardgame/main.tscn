@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://xg852gnosvsa"]
+
+[ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://cultistVisual.tscn" id="1_ig7tw"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07908535, 1.1920929e-07, -0.14476514)
+
+[node name="Node3D2" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7066948, 1.1920929e-07, -0.14476514)
+
+[node name="Node3D3" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7066948, 1.1920929e-07, 1.6472635)
+
+[node name="Node3D4" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34026456, 1.1920929e-07, 1.6472635)
