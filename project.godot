@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Cults boardgame"
-run/main_scene="uid://ye8g8yl3b3ki"
+run/main_scene="uid://xg852gnosvsa"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+References="*res://references.gd"
 
 [editor_plugins]
 

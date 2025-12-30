@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=4 format=3 uid="uid://xg852gnosvsa"]
 
-[ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://BoardHandler.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cwiegprgnyl53" path="res://cameraMovement.gd" id="2_h2yge"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("1_ig7tw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.76998097, 0.32765356, -0.5475148, 0, 0.8580838, 0.5135098, 0.6380668, 0.39539278, -0.6607082, -8.325111, 3.2379994, -10.128132)
+script = ExtResource("2_h2yge")
+
+[node name="Node3D" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.058166027, 0, -0.11798477)

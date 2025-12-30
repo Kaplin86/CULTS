@@ -7,6 +7,8 @@ func _process(_delta):
 		currentCamera = EditorInterface.get_editor_viewport_3d(0).get_camera_3d()
 	else:
 		currentCamera = get_viewport().get_camera_3d()
+	if !currentCamera:
+		return
 	var dir = global_position - currentCamera.global_position
 	dir.y = 0
 	dir = dir.normalized()
@@ -31,6 +33,5 @@ func _process(_delta):
 	elif newangle <= -74.0:
 		heightAngle = "T"
 	
-	print(newangle)
 	
 	$Sprite3D.texture = load("res://followerSprites/"+angleAngle+"_"+heightAngle+".svg")
