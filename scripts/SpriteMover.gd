@@ -16,6 +16,8 @@ func _process(_delta):
 	var angle = atan2(dir.z, dir.x)
 	var deg = rad_to_deg(angle) + 90.0
 	
+	deg += global_rotation_degrees.y
+	
 	if deg < 0:
 		deg += 360.0
 	var sector := int(round(deg / 45.0)) % 8

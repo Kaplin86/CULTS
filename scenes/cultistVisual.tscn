@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ye8g8yl3b3ki"]
 
 [ext_resource type="Script" uid="uid://b81kcf4dlvovb" path="res://scripts/SpriteMover.gd" id="1_5aqct"]
-[ext_resource type="Texture2D" uid="uid://c6u1x2t4k6y1b" path="res://followerSprites/SW_L.svg" id="2_b1c7b"]
+[ext_resource type="Texture2D" uid="uid://bkma8n3xcg3w2" path="res://followerSprites/S_L.svg" id="2_b1c7b"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_5aqct")

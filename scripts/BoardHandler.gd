@@ -1,4 +1,5 @@
 extends Node
+class_name boardHandlerNode
 
 var boardFigures := {
 	"crimson":43, 
@@ -37,10 +38,12 @@ func renderNewBoard():
 			var positionAngle = randf() * PI * 2
 			var distance = randf() * 10
 			newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance)
+			newCultist.global_rotation.y = randf() * PI * 2
 			newCultist.get_child(0).modulate = typeToColor[type]
 			placedFigures.append(newCultist)
 
 
 func _ready() -> void:
+	References.boardHandler = self
 	print(getTotalBoardCount())
 	renderNewBoard()

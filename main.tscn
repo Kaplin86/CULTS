@@ -1,17 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=6 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://cwiegprgnyl53" path="res://cameraMovement.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://b4e8ykqn623af" path="res://ui_handler.gd" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://chlqrt03o4igh" path="res://assets/cards/snatch.svg" id="5_lquwl"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Node" type="Node" parent="."]
+[node name="BoardHandler" type="Node" parent="."]
 script = ExtResource("1_ig7tw")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.76998097, 0.32765356, -0.5475148, 0, 0.8580838, 0.5135098, 0.6380668, 0.39539278, -0.6607082, -8.325111, 3.2379994, -10.128132)
 script = ExtResource("2_h2yge")
+dist = 12.845
 
 [node name="Node3D" parent="." instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.058166027, 0, -0.11798477)
+
+[node name="UIHandler" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_1bvp3")
+
+[node name="ViewCards" type="Control" parent="UIHandler"]
+anchors_preset = 0
+offset_left = 192.0
+offset_top = 532.0
+offset_right = 970.0
+offset_bottom = 744.0
+
+[node name="Snatch" type="Sprite2D" parent="."]
+position = Vector2(282, 605)
+texture = ExtResource("5_lquwl")
+
+[connection signal="mouse_entered" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_entered"]
+[connection signal="mouse_exited" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_exited"]

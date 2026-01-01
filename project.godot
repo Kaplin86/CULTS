@@ -22,3 +22,9 @@ References="*res://references.gd"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
+[importer_defaults]
+
+texture={
+&"svg/scale": 10.0
+}
