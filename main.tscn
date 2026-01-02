@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://cwiegprgnyl53" path="res://cameraMovement.gd" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://b4e8ykqn623af" path="res://ui_handler.gd" id="4_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://chlqrt03o4igh" path="res://assets/cards/snatch.svg" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://blyecf3me8n0x" path="res://scenes/cardVisual.tscn" id="5_7mycd"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -33,11 +33,45 @@ anchors_preset = 0
 offset_left = 192.0
 offset_top = 532.0
 offset_right = 970.0
-offset_bottom = 744.0
+offset_bottom = 984.0
+mouse_filter = 1
 
-[node name="Snatch" type="Sprite2D" parent="."]
-position = Vector2(282, 605)
-texture = ExtResource("5_lquwl")
+[node name="CenterContainer" type="CenterContainer" parent="UIHandler/ViewCards"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04956945
+anchor_right = 1.0495694
+anchor_bottom = 0.50442475
+offset_left = 19.282501
+offset_right = -19.28247
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FlowContainer" type="HFlowContainer" parent="UIHandler/ViewCards/CenterContainer"]
+custom_minimum_size = Vector2(816.565, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Card" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
+custom_minimum_size = Vector2(166.97, 169.4)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Card2" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Card3" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Card4" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Card5" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+mouse_filter = 1
 
 [connection signal="mouse_entered" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_entered"]
 [connection signal="mouse_exited" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_exited"]

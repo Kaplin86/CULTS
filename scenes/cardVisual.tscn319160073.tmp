@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://blyecf3me8n0x"]
+
+[ext_resource type="Script" uid="uid://cg1f5s5g1vbev" path="res://scripts/card_visual.gd" id="1_8y46e"]
+[ext_resource type="Texture2D" uid="uid://chlqrt03o4igh" path="res://assets/cards/snatch.svg" id="1_llwmd"]
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(112, 169.4)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8y46e")
+
+[node name="Vis" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(112, 169.4)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_llwmd")
+expand_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
