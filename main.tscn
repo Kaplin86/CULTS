@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=9 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://cwiegprgnyl53" path="res://cameraMovement.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://cwiegprgnyl53" path="res://scripts/cameraMovement.gd" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://b4e8ykqn623af" path="res://ui_handler.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://blyecf3me8n0x" path="res://scenes/cardVisual.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://bggu23sc4k87m" path="res://scripts/cardContainer.gd" id="6_7mycd"]
+[ext_resource type="Resource" uid="uid://d7fqll8kf2pn" path="res://assets/cardData/snatch.tres" id="7_272bh"]
+[ext_resource type="Script" uid="uid://bf0yg8p24j4kw" path="res://scripts/CardHandler.gd" id="8_5vw27"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -66,27 +68,34 @@ Exponent = 1.725
 
 [node name="Card" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
+cardData = ExtResource("7_272bh")
 
 [node name="Card2" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
+cardData = ExtResource("7_272bh")
 
 [node name="Card3" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
+cardData = ExtResource("7_272bh")
 
 [node name="Card4" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
+cardData = ExtResource("7_272bh")
 
 [node name="Card5" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
+cardData = ExtResource("7_272bh")
 
 [node name="Card6" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
+cardData = ExtResource("7_272bh")
 
 [node name="Card7" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
+cardData = ExtResource("7_272bh")
 
-[node name="Card8" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
-layout_mode = 2
+[node name="Node" type="Node" parent="."]
+script = ExtResource("8_5vw27")
 
 [connection signal="gui_input" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_gui_input"]
 [connection signal="mouse_entered" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_entered"]
