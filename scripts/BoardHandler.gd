@@ -1,6 +1,7 @@
 extends Node
 class_name boardHandlerNode
 
+
 var boardFigures := {
 	"crimson":43, 
 	"azure":43,

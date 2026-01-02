@@ -1,6 +1,6 @@
 extends Control
 @export var hoversize = 1.25
-
+@export var cardData : CardData = null
 
 func _process(delta):
 	if References.uiHandler.hoverCard == self:

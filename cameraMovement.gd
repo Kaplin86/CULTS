@@ -12,10 +12,17 @@ func _process(delta: float) -> void:
 	global_position.z = cos(rotationProgress) * processingDist
 	look_at(Vector3.ZERO)
 	
-	if Input.is_action_pressed("ui_left"):
-		rotationProgress -= delta * cameraMoveSpeed
-	if Input.is_action_pressed("ui_right"):
-		rotationProgress += delta * cameraMoveSpeed
+	var canrotate = true
+	
+	if References.uiHandler:
+		if References.uiHandler.viewCards:
+			canrotate = false
+	
+	if canrotate:
+		if Input.is_action_pressed("ui_left"):
+			rotationProgress -= delta * cameraMoveSpeed
+		if Input.is_action_pressed("ui_right"):
+			rotationProgress += delta * cameraMoveSpeed
 	
 	if References.uiHandler:
 		if References.uiHandler.viewCards:

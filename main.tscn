@@ -52,18 +52,17 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 308.0
-offset_top = 28.0
+offset_top = 6.0
 offset_right = -397.0
-offset_bottom = -351.0
+offset_bottom = -373.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_7mycd")
-FocusedNode = NodePath("Card5")
-YSpacing = 24.115
+FocusedNode = NodePath("Card2")
+YSpacing = 33.96
 XSpacing = 120.995
-Wrap = true
-SelectedYOffset = -14.625
-Exponent = 1.03
+SelectedYOffset = 24.43
+Exponent = 1.725
 
 [node name="Card" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
@@ -89,8 +88,6 @@ layout_mode = 2
 [node name="Card8" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
 
-[node name="Card9" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
-layout_mode = 2
-
+[connection signal="gui_input" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_gui_input"]
 [connection signal="mouse_entered" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_entered"]
 [connection signal="mouse_exited" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_exited"]

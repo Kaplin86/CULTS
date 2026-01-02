@@ -30,16 +30,17 @@ func _notification(what):
 		var focusedID = get_children().find(FocusedNode)
 		for c in get_children():
 			if c is Control:
-				var target_pos = Vector2(
-					(get_children().find(c) - focusedID) * XSpacing + (size.x / 2),
-					abs(get_children().find(c) - focusedID)**Exponent * YSpacing
-				)
-				if c == FocusedNode:
-					target_pos.y = SelectedYOffset
-				var tween = create_tween()
-				tween.tween_property(c, "position", target_pos, MoveDuration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-				
-				c.size = c.get_minimum_size()
+				if c.visible:
+					var target_pos = Vector2(
+						(get_children().find(c) - focusedID) * XSpacing + (size.x / 2),
+						abs(get_children().find(c) - focusedID)**Exponent * YSpacing
+					)
+					if c == FocusedNode:
+						target_pos.y = SelectedYOffset
+					var tween = create_tween()
+					tween.tween_property(c, "position", target_pos, MoveDuration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+					
+					c.size = c.get_minimum_size()
 		
 
 func getCurrentIndex() -> int:
