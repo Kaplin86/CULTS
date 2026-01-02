@@ -1,14 +1,15 @@
 extends Control
-@export var defaultCardSize = Vector2(112.0,169.4)
-@export var defaultHoverSize = Vector2(148.0,169.85)
+@export var hoversize = 1.25
 
 
 func _process(delta):
 	if References.uiHandler.hoverCard == self:
-		custom_minimum_size = lerp(size,defaultHoverSize,0.1)
+		scale = lerp(scale,Vector2.ONE * hoversize,0.1)
 	else:
-		custom_minimum_size = lerp(size,defaultCardSize,0.1)
-		
+		scale = lerp(scale,Vector2.ONE,0.1)
+	
+	return
+
 
 func _on_mouse_entered():
 	References.uiHandler.hoverCard = self

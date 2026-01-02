@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=7 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://cwiegprgnyl53" path="res://cameraMovement.gd" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://b4e8ykqn623af" path="res://ui_handler.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://blyecf3me8n0x" path="res://scenes/cardVisual.tscn" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://bggu23sc4k87m" path="res://scripts/cardContainer.gd" id="6_7mycd"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -34,44 +35,62 @@ offset_left = 192.0
 offset_top = 532.0
 offset_right = 970.0
 offset_bottom = 984.0
-mouse_filter = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="UIHandler/ViewCards"]
+[node name="ColorRect" type="ColorRect" parent="UIHandler/ViewCards"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.04956945
-anchor_right = 1.0495694
-anchor_bottom = 0.50442475
-offset_left = 19.282501
-offset_right = -19.28247
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="FlowContainer" type="HFlowContainer" parent="UIHandler/ViewCards/CenterContainer"]
-custom_minimum_size = Vector2(816.565, 0)
-layout_mode = 2
-alignment = 1
-
-[node name="Card" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
-custom_minimum_size = Vector2(166.97, 169.4)
-layout_mode = 2
 mouse_filter = 1
+color = Color(0, 0, 0, 0.08627451)
 
-[node name="Card2" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
-layout_mode = 2
-mouse_filter = 1
+[node name="Container" type="Container" parent="UIHandler/ViewCards" node_paths=PackedStringArray("FocusedNode")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 308.0
+offset_top = 28.0
+offset_right = -397.0
+offset_bottom = -351.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_7mycd")
+FocusedNode = NodePath("Card5")
+YSpacing = 24.115
+XSpacing = 120.995
+Wrap = true
+SelectedYOffset = -14.625
+Exponent = 1.03
 
-[node name="Card3" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
+[node name="Card" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
-mouse_filter = 1
 
-[node name="Card4" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
+[node name="Card2" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
-mouse_filter = 1
 
-[node name="Card5" parent="UIHandler/ViewCards/CenterContainer/FlowContainer" instance=ExtResource("5_7mycd")]
+[node name="Card3" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
-mouse_filter = 1
+
+[node name="Card4" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+
+[node name="Card5" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+
+[node name="Card6" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+
+[node name="Card7" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+
+[node name="Card8" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+
+[node name="Card9" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
 
 [connection signal="mouse_entered" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_entered"]
 [connection signal="mouse_exited" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_exited"]

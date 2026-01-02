@@ -35,7 +35,7 @@ func _notification(what):
 					abs(get_children().find(c) - focusedID)**Exponent * YSpacing
 				)
 				if c == FocusedNode:
-					target_pos.x = SelectedYOffset
+					target_pos.y = SelectedYOffset
 				var tween = create_tween()
 				tween.tween_property(c, "position", target_pos, MoveDuration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 				
