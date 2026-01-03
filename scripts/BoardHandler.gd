@@ -1,6 +1,7 @@
 extends Node
 class_name boardHandlerNode
 
+var playerObjects = [PlayerResource.new(true)]
 
 var boardFigures := {
 	"crimson":43, 
@@ -48,3 +49,4 @@ func _ready() -> void:
 	References.boardHandler = self
 	print(getTotalBoardCount())
 	renderNewBoard()
+	print(playerObjects[0].isUser)
