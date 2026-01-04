@@ -6,6 +6,13 @@ func _ready():
 	runCard(ResourceLoader.load("res://assets/cardData/snatch.tres"),References.boardHandler.playerObjects[0])
 
 func runCard(data : CardData,player : PlayerResource):
+	
+	var selected_target : PlayerResource = null
+	
+	for effectChunk : EffectData in data.effects:
+		if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY and selected_target == null:
+			selected_target = player.getSelectedTarget()
+	
 	for effectChunk : EffectData in data.effects:
 		var cultistType = References.figureTypes.find_key(effectChunk.targetType)
 		
@@ -17,14 +24,12 @@ func runCard(data : CardData,player : PlayerResource):
 				References.boardHandler.changePoolCount(cultistType,effectChunk.count)
 			
 			if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY:
-				var target = player.getSelectedTarget()
-				target.changePoolCount(cultistType,effectChunk.count)
+				selected_target.changePoolCount(cultistType,effectChunk.count)
 		
 		if effectChunk.type == effectChunk.types.STEAL:
 			if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY:
-				var target = player.getSelectedTarget()
-				var newCount = clamp( target.pool.get(cultistType,0) ,0,effectChunk.count)
-				target.changePoolCount(cultistType,newCount * -1)
+				var newCount = clamp( selected_target.pool.get(cultistType,0) ,0,effectChunk.count)
+				selected_target.changePoolCount(cultistType,newCount * -1)
 				player.changePoolCount(cultistType,newCount)
 			
 			if effectChunk.targetGroup == effectChunk.targetFactions.CIVILIANS:
