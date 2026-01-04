@@ -7,3 +7,5 @@ var cultistVisual : Node3D = preload("res://scenes/cultistVisual.tscn").instanti
 var boardHandler : boardHandlerNode  
 var uiHandler : uiHandlerNode
 var CardHandler : CardHandlerNode
+
+var takenNames = []

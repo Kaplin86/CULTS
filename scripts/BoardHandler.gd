@@ -1,7 +1,7 @@
 extends Node
 class_name boardHandlerNode
 
-var playerObjects = [PlayerResource.new(true)]
+var playerObjects : Array[PlayerResource] = [PlayerResource.new(false),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames)]
 
 var boardFigures := {
 	"crimson":43, 
@@ -12,6 +12,8 @@ var boardFigures := {
 	"chartreuse":43,
 	"amber":43
 }
+
+var graveyardFigures := {}
 
 var typeToColor := {
 	"crimson":Color(0.385, 0.03, 0.117, 1.0), 
@@ -44,9 +46,25 @@ func renderNewBoard():
 			newCultist.get_child(0).modulate = typeToColor[type]
 			placedFigures.append(newCultist)
 
+func changePoolCount(type,number):
+	if boardFigures.has(type):
+		boardFigures[type] += number
+	else:
+		boardFigures[type] = number
+	if boardFigures[type] < 0: 
+		boardFigures[type] = 0
+
+func changeGraveyardPoolCount(type,number):
+	if graveyardFigures.has(type):
+		graveyardFigures[type] += number
+	else:
+		graveyardFigures[type] = number
+	if graveyardFigures[type] < 0: 
+		graveyardFigures[type] = 0
 
 func _ready() -> void:
 	References.boardHandler = self
 	print(getTotalBoardCount())
 	renderNewBoard()
-	print(playerObjects[0].isUser)
+	for E in playerObjects:
+		print(E, " is ",E.displayName)
