@@ -11,7 +11,8 @@ func runCard(data : CardData,player : PlayerResource):
 	
 	for effectChunk : EffectData in data.effects:
 		if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY and selected_target == null:
-			selected_target = player.getSelectedTarget()
+			selected_target = player.getSelectedTarget(player,data)
+			print("selecting ",selected_target.displayName)
 	
 	for effectChunk : EffectData in data.effects:
 		var cultistType = References.figureTypes.find_key(effectChunk.targetType)
@@ -49,7 +50,6 @@ func runCard(data : CardData,player : PlayerResource):
 				References.boardHandler.changeGraveyardPoolCount(cultistType,newCount)
 			
 			if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY:
-				var target = player.getSelectedTarget()
-				var newCount = clamp( target.pool.get(cultistType,0) ,0,effectChunk.count) 
-				target.changePoolCount(cultistType,newCount * -1)
+				var newCount = clamp( selected_target.pool.get(cultistType,0) ,0,effectChunk.count) 
+				selected_target.changePoolCount(cultistType,newCount * -1)
 				References.boardHandler.changeGraveyardPoolCount(cultistType,newCount)

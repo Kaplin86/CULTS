@@ -33,10 +33,29 @@ func getPoolCount(): ## Gets the pool number / score of the player
 		total += E
 	return total
 
-func getSelectedTarget() -> PlayerResource: ## Allows a choosing of an enemy. Random for CPUs.
-	if isUser:
+func getSelectedTarget(running : PlayerResource,card : CardData = null) -> PlayerResource: ## Allows a choosing of an enemy. Random for CPUs.
+	if running.isUser:
 		return References.boardHandler.playerObjects[1]
 	else:
-		var newPicker = References.boardHandler.playerObjects.duplicate()
-		newPicker.erase(self)
-		return newPicker.pick_random()
+		var playersArray = References.boardHandler.playerObjects.duplicate()
+		playersArray.erase(self)
+		var score = {}
+		for plyr in playersArray:
+			score[plyr] = 0
+		
+		for effect in card.effects:
+			
+			if effect.type == effect.types.STEAL or effect.type == effect.types.KILL:
+				for plyr : PlayerResource in playersArray:
+					score[plyr] += clamp(plyr.pool.get(effect.targetType,0),0,effect.count)
+		
+		var highestScore = 0
+		var highestPlayer = score.keys()[0]
+		for player in score.keys():
+			if score[player] >= highestScore:
+				highestScore = score[player]
+				highestPlayer = player
+		
+		print("choosing score is ",score)
+		
+		return highestPlayer
