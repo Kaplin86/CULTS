@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://s3v34h2byimt"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_y1be3"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_ybqr4"]
+
+[sub_resource type="Resource" id="Resource_y1be3"]
+script = ExtResource("1_y1be3")
+type = 1
+targetType = 1
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_ybqr4"]
+script = ExtResource("1_y1be3")
+type = 1
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_ybqr4")
+card_name = "covet"
+text_description = "GAIN 1 AZURE AND IVORY FOLLOWER"
+effects = Array[ExtResource("1_y1be3")]([SubResource("Resource_y1be3"), SubResource("Resource_ybqr4")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

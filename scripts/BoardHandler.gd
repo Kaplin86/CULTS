@@ -1,7 +1,7 @@
 extends Node
 class_name boardHandlerNode
 
-var playerObjects : Array[PlayerResource] = [PlayerResource.new(false),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames)]
+var playerObjects : Array[PlayerResource] = [PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames)]
 
 var boardFigures := {
 	"crimson":43, 
@@ -62,9 +62,33 @@ func changeGraveyardPoolCount(type,number):
 	if graveyardFigures[type] < 0: 
 		graveyardFigures[type] = 0
 
+func getBoardCount():
+	var total = 0
+	for E in boardFigures.values():
+		total += E
+	return total
+
+var placeholderCards : Array[CardData] = [load("res://assets/cardData/boast.tres"),load("res://assets/cardData/covet.tres"),load("res://assets/cardData/hoard.tres"),load("res://assets/cardData/idle.tres"),load("res://assets/cardData/snatch.tres")]
+
 func _ready() -> void:
 	References.boardHandler = self
 	print(getTotalBoardCount())
 	renderNewBoard()
 	for E in playerObjects:
 		print(E, " is ",E.displayName)
+		
+	await get_tree().create_timer(1).timeout
+	var turn = 0
+	while getBoardCount() != 0:
+		for plyr in playerObjects:
+			var selectedCard = placeholderCards.pick_random()
+			print(plyr.displayName, " used ", selectedCard.card_name, "     (",selectedCard.text_description,")")
+			References.CardHandler.runCard(selectedCard,plyr) 
+			await get_tree().create_timer(0.1).timeout
+		print(boardFigures)
+		await get_tree().create_timer(0.5).timeout
+		turn += 1
+		print("TURN ", turn)
+	for E in playerObjects:
+		print(E.displayName, " had a final score of ", E.getPoolCount())
+	

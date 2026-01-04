@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://baktpdchuaqld"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_0hfhx"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_06ut2"]
+
+[sub_resource type="Resource" id="Resource_0hfhx"]
+script = ExtResource("1_0hfhx")
+type = 1
+targetType = 3
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_06ut2"]
+script = ExtResource("1_0hfhx")
+type = 1
+targetType = 4
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_06ut2")
+card_name = "hoard"
+text_description = "GAIN 1 AMETHYST AND 1 GOLD FOLLOWER"
+effects = Array[ExtResource("1_0hfhx")]([SubResource("Resource_0hfhx"), SubResource("Resource_06ut2")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://bhjjploynn2xq"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_8pou2"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_uqg27"]
+
+[sub_resource type="Resource" id="Resource_8pou2"]
+script = ExtResource("1_8pou2")
+type = 1
+targetType = 0
+count = 2
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_uqg27")
+card_name = "boast"
+text_description = "GAIN 2 CRIMSON FOLLOWERS"
+effects = Array[ExtResource("1_8pou2")]([SubResource("Resource_8pou2")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

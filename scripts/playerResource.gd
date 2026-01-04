@@ -27,8 +27,13 @@ func changePoolCount(type,number): ## Changes the pool of a specific cultist typ
 	if pool[type] < 0: 
 		pool.erase(type)
 
+func getPoolCount(): ## Gets the pool number / score of the player
+	var total = 0
+	for E in pool.values():
+		total += E
+	return total
+
 func getSelectedTarget() -> PlayerResource: ## Allows a choosing of an enemy. Random for CPUs.
-	print("Choosing an enemy")
 	if isUser:
 		return References.boardHandler.playerObjects[1]
 	else:

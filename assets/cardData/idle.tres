@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://1jbip0dcrdsa"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_6yppf"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_v2pcu"]
+
+[sub_resource type="Resource" id="Resource_6yppf"]
+script = ExtResource("1_6yppf")
+type = 1
+targetType = 5
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_v2pcu"]
+script = ExtResource("1_6yppf")
+type = 1
+targetType = 6
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_v2pcu")
+card_name = "idle"
+text_description = "GAIN 1 CHARTREUSE AND 1 AMBER FOLLOWER"
+effects = Array[ExtResource("1_6yppf")]([SubResource("Resource_6yppf"), SubResource("Resource_v2pcu")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"
