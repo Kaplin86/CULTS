@@ -1,7 +1,7 @@
 extends Node
 class_name boardHandlerNode
 
-var playerObjects : Array[PlayerResource] = [PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames)]
+var playerObjects : Array[PlayerResource] = [PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames)]
 
 var boardFigures := {
 	"crimson":43, 
@@ -12,6 +12,8 @@ var boardFigures := {
 	"chartreuse":43,
 	"amber":43
 }
+
+
 
 var graveyardFigures := {}
 
@@ -68,27 +70,82 @@ func getBoardCount():
 		total += E
 	return total
 
-var placeholderCards : Array[CardData] = [load("res://assets/cardData/boast.tres"),load("res://assets/cardData/covet.tres"),load("res://assets/cardData/hoard.tres"),load("res://assets/cardData/idle.tres"),load("res://assets/cardData/snatch.tres")]
+func resetBoard():
+	boardFigures = {
+	"crimson":43, 
+	"azure":43,
+	"ivory":43, 
+	"amethyst":43,
+	"gold":43,
+	"chartreuse":43,
+	"amber":43
+	}
+	graveyardFigures.clear()
+	for E in playerObjects:
+		E.pool.clear()
+		E.cards.clear()
 
 func _ready() -> void:
 	References.boardHandler = self
-	print(getTotalBoardCount())
+	
 	renderNewBoard()
-	for E in playerObjects:
-		print(E, " is ",E.displayName)
+	
 		
 	await get_tree().create_timer(1).timeout
-	var turn = 0
-	while getBoardCount() != 0:
-		for plyr in playerObjects:
-			var selectedCard = placeholderCards.pick_random()
-			print(plyr.displayName, " used ", selectedCard.card_name, "     (",selectedCard.text_description,")")
-			References.CardHandler.runCard(selectedCard,plyr) 
-			await get_tree().create_timer(0.1).timeout
-		print(boardFigures)
-		await get_tree().create_timer(0.5).timeout
-		turn += 1
-		print("TURN ", turn)
-	for E in playerObjects:
-		print(E.displayName, " had a final score of ", E.getPoolCount())
 	
+	var winningCards = {}
+	
+	for I in 300:
+		
+		resetBoard()
+		
+		for E in playerObjects:
+			var availablecards = References.CardHandler.loadedPull.values().duplicate()
+			for i in 3:
+				var selectedCard = availablecards.pick_random()
+				E.cards.append(selectedCard)
+				availablecards.erase(selectedCard)
+		
+		var boardFiguresLastTurn = boardFigures
+		while getBoardCount() != 0:
+			boardFiguresLastTurn = boardFigures.duplicate()
+			
+			for plyr in playerObjects:
+				runTurn(plyr)
+			
+			if boardFigures == boardFiguresLastTurn:
+				boardFigures = {"h":0}
+		
+		var largestPool = 0
+		var largestPlayer : PlayerResource = null
+		for e : PlayerResource in playerObjects:
+			if e.getPoolCount() >= largestPool:
+				largestPool = e.getPoolCount()
+				largestPlayer = e
+		for E in largestPlayer.cards:
+			winningCards[E.card_name] = winningCards.get(E.card_name,0) + 1
+	
+	print(winningCards)
+
+func runTurn(player :PlayerResource):
+	var pips = randi_range(1,6)
+	
+	if player.isUser:
+		print("bye.")
+	else:
+		var lowestCost = 6
+		for CARD in player.cards:
+			if CARD.pipCost <= lowestCost:
+				lowestCost = CARD.pipCost
+		
+		while pips >= lowestCost:
+			var availableCards : Array[CardData] = []
+			for CARD in player.cards:
+				if CARD.pipCost <= pips:
+					availableCards.append(CARD)
+			
+			var usingCard : CardData = availableCards.pick_random()
+			pips -= usingCard.pipCost
+			References.CardHandler.runCard(usingCard,player)
+			#print("using card ", usingCard.card_name, " for ", usingCard.pipCost)
+		

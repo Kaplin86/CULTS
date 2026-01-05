@@ -1,9 +1,12 @@
 extends Node
 class_name CardHandlerNode
 
+var loadedPull = {}
+
 func _ready():
 	References.CardHandler = self
-	runCard(ResourceLoader.load("res://assets/cardData/snatch.tres"),References.boardHandler.playerObjects[0])
+	for pullName in References.pullCards:
+		loadedPull[pullName] = ResourceLoader.load("res://assets/cardData/"+pullName+".tres")
 
 func runCard(data : CardData,player : PlayerResource):
 	
@@ -12,7 +15,7 @@ func runCard(data : CardData,player : PlayerResource):
 	for effectChunk : EffectData in data.effects:
 		if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY and selected_target == null:
 			selected_target = player.getSelectedTarget(player,data)
-			print("selecting ",selected_target.displayName)
+			
 	
 	for effectChunk : EffectData in data.effects:
 		var cultistType = References.figureTypes.find_key(effectChunk.targetType)
