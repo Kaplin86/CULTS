@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://7ekrr30owbuk"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_qgta0"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_jfgqk"]
+
+[sub_resource type="Resource" id="Resource_qgta0"]
+script = ExtResource("1_qgta0")
+type = 1
+targetGroup = 3
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_jfgqk"]
+script = ExtResource("1_qgta0")
+type = 1
+targetGroup = 3
+targetType = 1
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_jfgqk")
+card_name = "replace"
+text_description = "STEAL 1 IVORY AND 1 AZURE FOLLOWER"
+pipCost = 3
+effects = Array[ExtResource("1_qgta0")]([SubResource("Resource_qgta0"), SubResource("Resource_jfgqk")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

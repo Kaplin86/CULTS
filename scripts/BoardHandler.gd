@@ -95,7 +95,7 @@ func _ready() -> void:
 	
 	var winningCards = {}
 	
-	for I in 300:
+	for I in 900:
 		
 		resetBoard()
 		
@@ -145,7 +145,9 @@ func runTurn(player :PlayerResource):
 					availableCards.append(CARD)
 			
 			var usingCard : CardData = availableCards.pick_random()
+			
+			References.CardHandler.runCard(usingCard,player,pips)
 			pips -= usingCard.pipCost
-			References.CardHandler.runCard(usingCard,player)
+			pips = max(pips,0)
 			#print("using card ", usingCard.card_name, " for ", usingCard.pipCost)
 		

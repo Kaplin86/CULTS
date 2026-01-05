@@ -31,4 +31,5 @@ enum targetFactions {
 @export var targetType : References.figureTypes = References.figureTypes.ivory
 ## Determines the count
 @export var count : int = 1
- 
+## Allows a requirement object to be attached
+@export var requirement : EffectReq

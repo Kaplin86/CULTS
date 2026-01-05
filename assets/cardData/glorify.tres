@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://7hbi72riqsam"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_jfmt3"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_kuoon"]
+[ext_resource type="Script" uid="uid://db0def6h2ura5" path="res://assets/cardData/effectReq.gd" id="2_ok5tk"]
+
+[sub_resource type="Resource" id="Resource_1exck"]
+script = ExtResource("1_jfmt3")
+type = 1
+targetType = 1
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_4vo3m"]
+script = ExtResource("1_jfmt3")
+type = 1
+targetType = 0
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_g2qxp"]
+script = ExtResource("2_ok5tk")
+haveMore = 1
+haveMoreThan = 0
+metadata/_custom_type_script = "uid://db0def6h2ura5"
+
+[sub_resource type="Resource" id="Resource_dickx"]
+script = ExtResource("1_jfmt3")
+type = 1
+targetType = 1
+count = 2
+requirement = SubResource("Resource_g2qxp")
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_4kkgb"]
+script = ExtResource("2_ok5tk")
+haveMore = 0
+haveMoreThan = 1
+metadata/_custom_type_script = "uid://db0def6h2ura5"
+
+[sub_resource type="Resource" id="Resource_6tm75"]
+script = ExtResource("1_jfmt3")
+type = 1
+targetType = 0
+count = 2
+requirement = SubResource("Resource_4kkgb")
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_kuoon")
+card_name = "glorify"
+text_description = "GAIN 1 AND 3 AZURE AND CRIMSON FOLLOWERS, THE ONE YOU HAVE THE MOST OF GAINS 3"
+pipCost = 3
+effects = Array[ExtResource("1_jfmt3")]([SubResource("Resource_1exck"), SubResource("Resource_4vo3m"), SubResource("Resource_dickx"), SubResource("Resource_6tm75")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

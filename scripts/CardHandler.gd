@@ -8,7 +8,7 @@ func _ready():
 	for pullName in References.pullCards:
 		loadedPull[pullName] = ResourceLoader.load("res://assets/cardData/"+pullName+".tres")
 
-func runCard(data : CardData,player : PlayerResource):
+func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 	
 	var selected_target : PlayerResource = null
 	
@@ -19,6 +19,12 @@ func runCard(data : CardData,player : PlayerResource):
 	
 	for effectChunk : EffectData in data.effects:
 		var cultistType = References.figureTypes.find_key(effectChunk.targetType)
+		
+		if effectChunk.requirement != null:
+			if effectChunk.requirement.pipCountReq != -1:
+				if effectChunk.requirement.pipCountReq != currentPips:
+					continue
+			
 		
 		if effectChunk.type == effectChunk.types.GAIN:
 			if effectChunk.targetGroup == effectChunk.targetFactions.USER:
