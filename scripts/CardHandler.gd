@@ -10,6 +10,9 @@ func _ready():
 
 func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 	
+	if data == null:
+		return
+	
 	var selected_target : PlayerResource = null
 	
 	for effectChunk : EffectData in data.effects:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=10 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
@@ -9,20 +9,11 @@
 [ext_resource type="Resource" uid="uid://d7fqll8kf2pn" path="res://assets/cardData/snatch.tres" id="7_272bh"]
 [ext_resource type="Script" uid="uid://bf0yg8p24j4kw" path="res://scripts/CardHandler.gd" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b3c7v5rq1wmc6" path="res://assets/dice/1.svg" id="8_kek77"]
-[ext_resource type="Texture2D" uid="uid://02bwcn7mc1jq" path="res://assets/board/board.svg" id="10_4c57u"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_4c57u"]
-radius = 2.4423828
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_efxa6"]
-radius = 1.559082
 
 [node name="Node3D" type="Node3D"]
 
-[node name="BoardHandler" type="Node" parent="." node_paths=PackedStringArray("MainArea", "PlayerplayingAreas")]
+[node name="BoardHandler" type="Node" parent="."]
 script = ExtResource("1_ig7tw")
-MainArea = NodePath("../Board/Area3D")
-PlayerplayingAreas = [NodePath("../Board/plyr1"), NodePath("../Board/plyr2"), NodePath("../Board/plyr3"), NodePath("../Board/plyr4"), NodePath("../Board/plyr5")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.76998097, 0.32765356, -0.5475148, 0, 0.8580838, 0.5135098, 0.6380668, 0.39539278, -0.6607082, -8.325111, 3.2379994, -10.128132)
@@ -118,52 +109,14 @@ position = Vector2(25, -30.99997)
 scale = Vector2(0.16174603, 0.16174603)
 texture = ExtResource("8_kek77")
 
+[node name="Card" parent="UIHandler/ViewCards" instance=ExtResource("5_7mycd")]
+layout_mode = 0
+offset_top = -708.0
+offset_bottom = -538.6
+cardData = ExtResource("7_272bh")
+
 [node name="Node" type="Node" parent="."]
 script = ExtResource("8_5vw27")
-
-[node name="Board" type="Sprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.39514115, 0)
-axis = 1
-transparent = false
-texture = ExtResource("10_4c57u")
-
-[node name="Area3D" type="Area3D" parent="Board"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42981428)
-shape = SubResource("CylinderShape3D_4c57u")
-
-[node name="plyr1" type="Area3D" parent="Board"]
-transform = Transform3D(0.9742561, 0, -0.2254442, 0, 1, 0, 0.2254442, 0, 0.9742561, 2.7444336, 0, 0.49121833)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr1"]
-shape = SubResource("CylinderShape3D_efxa6")
-
-[node name="plyr2" type="Area3D" parent="Board"]
-transform = Transform3D(0.644871, 0, 0.76429147, 0, 1, 0, -0.76429147, 0, 0.644871, 1.7164224, 0, -2.8409576)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr2"]
-shape = SubResource("CylinderShape3D_efxa6")
-
-[node name="plyr3" type="Area3D" parent="Board"]
-transform = Transform3D(-0.6156202, 0, 0.7880431, 0, 1, 0, -0.7880431, 0, -0.6156202, -1.7486855, 0, -2.752336)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr3"]
-shape = SubResource("CylinderShape3D_efxa6")
-
-[node name="plyr4" type="Area3D" parent="Board"]
-transform = Transform3D(-0.91913533, 0, -0.39394197, 0, 1, 0, 0.39394197, 0, -0.91913533, -2.6756272, 0, 0.57553685)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr4"]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
-shape = SubResource("CylinderShape3D_efxa6")
-
-[node name="plyr5" type="Area3D" parent="Board"]
-transform = Transform3D(0.012217055, 0, -0.9999254, 0, 1, 0, 0.9999254, 0, 0.012217055, 0.0016150475, 0, 2.6036005)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr5"]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
-shape = SubResource("CylinderShape3D_efxa6")
 
 [connection signal="gui_input" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_gui_input"]
 [connection signal="mouse_entered" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_entered"]

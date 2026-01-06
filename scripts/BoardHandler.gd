@@ -1,7 +1,10 @@
 extends Node
 class_name boardHandlerNode
 
-var playerObjects : Array[PlayerResource] = [PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames)]
+var playerObjects : Array[PlayerResource] = [PlayerResource.new(true,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames)]
+
+@export var MainArea : Area3D
+@export var PlayerplayingAreas : Array[Area3D] = []
 
 var boardFigures := {
 	"crimson":43, 
@@ -36,17 +39,40 @@ func getTotalBoardCount():
 	return count
 
 func renderNewBoard():
+	for e in placedFigures:
+		e.queue_free()
+	
 	for type in boardFigures:
 		var count = boardFigures[type]
 		for I in count:
 			var newCultist = References.cultistVisual.duplicate()
 			add_child(newCultist)
 			var positionAngle = randf() * PI * 2
-			var distance = randf() * 10
-			newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance)
+			var distance = MainArea.get_child(0).shape.radius * randf()*2
+			MainArea.get_child(0).global_position.y = 0
+			newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + MainArea.get_child(0).global_position
 			newCultist.global_rotation.y = randf() * PI * 2
 			newCultist.get_child(0).modulate = typeToColor[type]
 			placedFigures.append(newCultist)
+	
+	var num = -1
+	for plyr in playerObjects:
+		num += 1
+		var area = PlayerplayingAreas[num]
+		var shape = area.get_child(0)
+		for type in plyr.pool:
+			var count = plyr.pool[type]
+			for I in count:
+				var newCultist = References.cultistVisual.duplicate()
+				add_child(newCultist)
+				var positionAngle = randf() * PI * 1
+				positionAngle += area.global_rotation.y
+				var distance = shape.shape.radius * randf()*2
+				shape.global_position.y = 0
+				newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + shape.global_position
+				newCultist.global_rotation.y = randf() * PI * 2
+				newCultist.get_child(0).modulate = typeToColor[type]
+				placedFigures.append(newCultist)
 
 func changePoolCount(type,number):
 	if boardFigures.has(type):
@@ -91,10 +117,14 @@ func _ready() -> void:
 	renderNewBoard()
 	
 	
-	
-		
 	await get_tree().create_timer(1).timeout
 	
+	while getBoardCount() != 0:
+		for plyr in playerObjects:
+			await runTurn(plyr)
+
+
+func simGames():
 	var overallwinning = {}
 	
 	for plyrCount in [2,3,4,5,6]:
@@ -133,30 +163,45 @@ func _ready() -> void:
 				for E in largestPlayer.cards:
 					winningCards[E.card_name] = winningCards.get(E.card_name,0) + 1
 			overallwinning[Vector2(count + 1,plyrCount)] = winningCards
-	
 	print(overallwinning)
 
+
+var currentPlayerPips = 0
 func runTurn(player :PlayerResource):
-	var pips = randi_range(1,6)
+	currentPlayerPips = randi_range(1,6)
 	
 	if player.isUser:
-		print("bye.")
+		References.uiHandler.displayPips(currentPlayerPips)
+		await References.uiHandler.turnEnded
+		print("ok done")
 	else:
-		var lowestCost = 6
+		var lowestCost = 7
 		for CARD in player.cards:
 			if CARD.pipCost <= lowestCost:
 				lowestCost = CARD.pipCost
 		
-		while pips >= lowestCost:
+		
+		
+		while currentPlayerPips >= lowestCost:
 			var availableCards : Array[CardData] = []
 			for CARD in player.cards:
-				if CARD.pipCost <= pips:
+				if CARD.pipCost <= currentPlayerPips:
 					availableCards.append(CARD)
 			
 			var usingCard : CardData = availableCards.pick_random()
 			
-			References.CardHandler.runCard(usingCard,player,pips)
-			pips -= usingCard.pipCost + usingCard.consumeExtraPips
-			pips = max(pips,0)
+			References.CardHandler.runCard(usingCard,player,currentPlayerPips)
+			currentPlayerPips -= usingCard.pipCost + usingCard.consumeExtraPips
+			currentPlayerPips = max(currentPlayerPips,0)
 			#print("using card ", usingCard.card_name, " for ", usingCard.pipCost)
 		
+
+var usingCard = false
+
+func playerUsedCard(cardData : CardData):
+	currentPlayerPips -= cardData.pipCost + cardData.consumeExtraPips
+	currentPlayerPips = max(currentPlayerPips,0)
+	References.uiHandler.displayPips(currentPlayerPips)
+	usingCard = true
+	await get_tree().create_timer(1).timeout
+	usingCard = false

@@ -35,8 +35,19 @@ func _notification(what):
 						(get_children().find(c) - focusedID) * XSpacing + (size.x / 2),
 						abs(get_children().find(c) - focusedID)**Exponent * YSpacing
 					)
+					
+					if "parentEffected" in c:
+						if !c.parentEffected:
+							continue
+					
+					if "velocityVis" in c:
+						c.velocityVis = Vector2(0.0,0.0)
+					
 					if c == FocusedNode:
 						target_pos.y = SelectedYOffset
+					
+					
+					
 					var tween = create_tween()
 					tween.tween_property(c, "position", target_pos, MoveDuration).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 					
