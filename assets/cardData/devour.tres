@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://ja2rjwlepg3c"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_rgj4l"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_dh3ts"]
+
+[sub_resource type="Resource" id="Resource_rgj4l"]
+script = ExtResource("1_rgj4l")
+type = 1
+targetType = 5
+useAllPips = true
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_dh3ts")
+card_name = "devour"
+text_description = "THIS CARD CONSUMES ALL YOUR PIPS. FOR EVERY PIP, GAIN 1 CHARTERUSE FOLLOWER"
+pipCost = 3
+effects = Array[ExtResource("1_rgj4l")]([SubResource("Resource_rgj4l")])
+consumeExtraPips = 99
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

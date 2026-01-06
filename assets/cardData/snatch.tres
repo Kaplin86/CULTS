@@ -7,9 +7,11 @@
 script = ExtResource("1_fgl7n")
 type = 1
 targetGroup = 3
+count = 2
 metadata/_custom_type_script = "uid://qhkavreto84g"
 
 [resource]
 script = ExtResource("2_mgtx6")
+text_description = "STEAL 2 IVORY FOLLOWER"
 effects = Array[ExtResource("1_fgl7n")]([SubResource("Resource_fgl7n")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

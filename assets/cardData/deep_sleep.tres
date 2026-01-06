@@ -27,7 +27,7 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 [resource]
 script = ExtResource("3_10f85")
 card_name = "deep_sleep"
-text_description = "IF YOU HAVE EXACTLY 3 PIPS REMAINING, GET 4 AMBER FOLLOWERS, OTHERWISE 2"
+text_description = "IF YOU HAVE EXACTLY 3 PIPS REMAINING, GET 6 AMBER FOLLOWERS, OTHERWISE 2"
 pipCost = 3
 effects = Array[ExtResource("1_ce0yi")]([SubResource("Resource_5tewd"), SubResource("Resource_n3xnr")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

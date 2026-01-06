@@ -14,12 +14,13 @@ script = ExtResource("1_qgta0")
 type = 1
 targetGroup = 3
 targetType = 1
+count = 2
 metadata/_custom_type_script = "uid://qhkavreto84g"
 
 [resource]
 script = ExtResource("2_jfgqk")
 card_name = "replace"
-text_description = "STEAL 1 IVORY AND 1 AZURE FOLLOWER"
+text_description = "STEAL 1 IVORY AND 2 AZURE FOLLOWER"
 pipCost = 3
 effects = Array[ExtResource("1_qgta0")]([SubResource("Resource_qgta0"), SubResource("Resource_jfgqk")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

@@ -94,7 +94,7 @@ func _ready() -> void:
 	
 		
 	await get_tree().create_timer(1).timeout
-
+	
 	var overallwinning = {}
 	
 	for plyrCount in [2,3,4,5,6]:
@@ -156,7 +156,7 @@ func runTurn(player :PlayerResource):
 			var usingCard : CardData = availableCards.pick_random()
 			
 			References.CardHandler.runCard(usingCard,player,pips)
-			pips -= usingCard.pipCost
+			pips -= usingCard.pipCost + usingCard.consumeExtraPips
 			pips = max(pips,0)
 			#print("using card ", usingCard.card_name, " for ", usingCard.pipCost)
 		

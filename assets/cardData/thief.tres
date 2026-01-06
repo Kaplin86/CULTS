@@ -8,11 +8,12 @@ script = ExtResource("1_m4k74")
 type = 1
 targetGroup = 3
 targetType = 3
+count = 2
 metadata/_custom_type_script = "uid://qhkavreto84g"
 
 [resource]
 script = ExtResource("2_j06yq")
 card_name = "thief"
-text_description = "STEAL 1 AMETHYST FOLLOWER"
+text_description = "STEAL 2 AMETHYST FOLLOWER"
 effects = Array[ExtResource("1_m4k74")]([SubResource("Resource_m4k74")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

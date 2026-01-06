@@ -7,3 +7,4 @@ class_name CardData
 @export var text_description : String = "STEAL 1 IVORY FOLLOWER" ## The display description for hover texts
 @export var pipCost : int = 2 ## A integer referring to the pips required
 @export var effects : Array[EffectData] = [] ## An array of [EffectData] objects
+@export var consumeExtraPips : int = 0 ## Extra pips consumed after the card is played
