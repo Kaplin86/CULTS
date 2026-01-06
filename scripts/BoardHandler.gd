@@ -85,7 +85,21 @@ func moveCivToPlayer(type : References.figureTypes,player : PlayerResource, coun
 	var shape = area.get_child(0)
 	for I in count:
 		var selectedCultist = placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).pick_random()
-		selectedCultist.global_position.y += 10
+		var newTween = create_tween()
+		
+		
+		var newpos = Vector2(0,0)
+		var positionAngle = randf() * PI * 1
+		positionAngle += area.global_rotation.y
+		var distance = shape.shape.radius * randf()*2
+		shape.global_position.y = 0
+		newpos = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + shape.global_position
+		
+		newTween.tween_property(selectedCultist.get_child(0),"offset",Vector2(0,120),0.25)
+		newTween.tween_property(selectedCultist,"global_position",newpos,0.5)
+		newTween.tween_property(selectedCultist.get_child(0),"offset",Vector2(0,0),0.25)
+		
+		placedFigures.get_or_add(player,{}).get_or_add(References.figureTypes.find_key(type),[]).append(selectedCultist)
 
 func movePlayerToPlayer():
 	pass
@@ -133,9 +147,9 @@ func _ready() -> void:
 	renderNewBoard()
 	
 	
-	await get_tree().create_timer(0).timeout
+	await get_tree().create_timer(1).timeout
 	
-	moveCivToPlayer(References.figureTypes.crimson,playerObjects[0])
+	moveCivToPlayer(References.figureTypes.crimson,playerObjects[0],5)
 	
 	while getBoardCount() != 0:
 		for plyr in playerObjects:
