@@ -33,3 +33,4 @@ enum targetFactions {
 @export var count : int = 1
 ## Allows a requirement object to be attached
 @export var requirement : EffectReq
+@export var useAllPips : bool = false ## If true, uses currentPips instead of count

@@ -90,42 +90,51 @@ func _ready() -> void:
 	
 	renderNewBoard()
 	
+	
+	
 		
 	await get_tree().create_timer(1).timeout
+
+	var overallwinning = {}
 	
-	var winningCards = {}
+	for plyrCount in [2,3,4,5,6]:
+		playerObjects= []
+		for i in plyrCount:
+			playerObjects.append(PlayerResource.new(false,[]))
+		
+		for count in 5:
+			var winningCards = {}
+			for I in 300:
+				resetBoard()
+				
+				for E in playerObjects:
+					var availablecards = References.CardHandler.loadedPull.values().duplicate()
+					for i in count + 1:
+						var selectedCard = availablecards.pick_random()
+						E.cards.append(selectedCard)
+						availablecards.erase(selectedCard)
+				
+				var boardFiguresLastTurn = boardFigures
+				while getBoardCount() != 0:
+					boardFiguresLastTurn = boardFigures.duplicate()
+					
+					for plyr in playerObjects:
+						runTurn(plyr)
+					
+					if boardFigures == boardFiguresLastTurn:
+						boardFigures = {"h":0}
+				
+				var largestPool = 0
+				var largestPlayer : PlayerResource = null
+				for e : PlayerResource in playerObjects:
+					if e.getPoolCount() >= largestPool:
+						largestPool = e.getPoolCount()
+						largestPlayer = e
+				for E in largestPlayer.cards:
+					winningCards[E.card_name] = winningCards.get(E.card_name,0) + 1
+			overallwinning[Vector2(count + 1,plyrCount)] = winningCards
 	
-	for I in 900:
-		
-		resetBoard()
-		
-		for E in playerObjects:
-			var availablecards = References.CardHandler.loadedPull.values().duplicate()
-			for i in 3:
-				var selectedCard = availablecards.pick_random()
-				E.cards.append(selectedCard)
-				availablecards.erase(selectedCard)
-		
-		var boardFiguresLastTurn = boardFigures
-		while getBoardCount() != 0:
-			boardFiguresLastTurn = boardFigures.duplicate()
-			
-			for plyr in playerObjects:
-				runTurn(plyr)
-			
-			if boardFigures == boardFiguresLastTurn:
-				boardFigures = {"h":0}
-		
-		var largestPool = 0
-		var largestPlayer : PlayerResource = null
-		for e : PlayerResource in playerObjects:
-			if e.getPoolCount() >= largestPool:
-				largestPool = e.getPoolCount()
-				largestPlayer = e
-		for E in largestPlayer.cards:
-			winningCards[E.card_name] = winningCards.get(E.card_name,0) + 1
-	
-	print(winningCards)
+	print(overallwinning)
 
 func runTurn(player :PlayerResource):
 	var pips = randi_range(1,6)

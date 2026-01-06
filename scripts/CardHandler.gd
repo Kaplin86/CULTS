@@ -24,6 +24,11 @@ func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 			if effectChunk.requirement.pipCountReq != -1:
 				if effectChunk.requirement.pipCountReq != currentPips:
 					continue
+			if effectChunk.requirement.haveMore != -1 and effectChunk.requirement.haveMoreThan != -1:
+				var count1 = player.pool[References.figureTypes.find_key(effectChunk.requirement.haveMore)]
+				var count2 = player.pool[References.figureTypes.find_key(effectChunk.requirement.haveMoreThan)]
+				if count1 < count2:
+					continue
 			
 		
 		if effectChunk.type == effectChunk.types.GAIN:

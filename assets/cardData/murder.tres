@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://de62ylhgx0hdd"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_85cxg"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_eklwq"]
+
+[sub_resource type="Resource" id="Resource_85cxg"]
+script = ExtResource("1_85cxg")
+type = 2
+targetType = 0
+count = 2
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_eklwq"]
+script = ExtResource("1_85cxg")
+type = 1
+targetType = 6
+count = 4
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_eklwq")
+card_name = "murder"
+text_description = "KILL 2 CRIMSON CIVILLIANS TO GAIN 4 AMBER FOLLOWERS"
+pipCost = 3
+effects = Array[ExtResource("1_85cxg")]([SubResource("Resource_85cxg"), SubResource("Resource_eklwq")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

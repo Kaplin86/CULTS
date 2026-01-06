@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=10 format=3 uid="uid://djq4d1wbjmjcd"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_tuo34"]
+[ext_resource type="Script" uid="uid://db0def6h2ura5" path="res://assets/cardData/effectReq.gd" id="2_pgj7r"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_tpqu3"]
+
+[sub_resource type="Resource" id="Resource_knbkw"]
+script = ExtResource("1_tuo34")
+type = 1
+targetType = 4
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_pyyad"]
+script = ExtResource("1_tuo34")
+type = 1
+targetType = 3
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_1ghga"]
+script = ExtResource("2_pgj7r")
+haveMore = 3
+haveMoreThan = 4
+metadata/_custom_type_script = "uid://db0def6h2ura5"
+
+[sub_resource type="Resource" id="Resource_uelvp"]
+script = ExtResource("1_tuo34")
+type = 1
+targetType = 4
+count = 2
+requirement = SubResource("Resource_1ghga")
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_t6epg"]
+script = ExtResource("2_pgj7r")
+haveMore = 4
+haveMoreThan = 3
+metadata/_custom_type_script = "uid://db0def6h2ura5"
+
+[sub_resource type="Resource" id="Resource_toioo"]
+script = ExtResource("1_tuo34")
+type = 1
+targetType = 3
+count = 2
+requirement = SubResource("Resource_t6epg")
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_tpqu3")
+card_name = "stockpile"
+text_description = "GAIN 1 AND 3 GOLD AND AMETHYST FOLLOWERS, THE ONE YOU HAVE THE LEAST OF GAINS 3"
+pipCost = 3
+effects = Array[ExtResource("1_tuo34")]([SubResource("Resource_knbkw"), SubResource("Resource_pyyad"), SubResource("Resource_uelvp"), SubResource("Resource_toioo")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

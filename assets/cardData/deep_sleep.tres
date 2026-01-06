@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://o76eapedtn1b"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_ce0yi"]
+[ext_resource type="Script" uid="uid://db0def6h2ura5" path="res://assets/cardData/effectReq.gd" id="2_qcu5f"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="3_10f85"]
+
+[sub_resource type="Resource" id="Resource_5tewd"]
+script = ExtResource("1_ce0yi")
+type = 1
+targetType = 6
+count = 2
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_ljn3m"]
+script = ExtResource("2_qcu5f")
+pipCountReq = 6
+metadata/_custom_type_script = "uid://db0def6h2ura5"
+
+[sub_resource type="Resource" id="Resource_n3xnr"]
+script = ExtResource("1_ce0yi")
+type = 1
+targetType = 6
+count = 4
+requirement = SubResource("Resource_ljn3m")
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("3_10f85")
+card_name = "deep_sleep"
+text_description = "IF YOU HAVE EXACTLY 3 PIPS REMAINING, GET 4 AMBER FOLLOWERS, OTHERWISE 2"
+pipCost = 3
+effects = Array[ExtResource("1_ce0yi")]([SubResource("Resource_5tewd"), SubResource("Resource_n3xnr")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

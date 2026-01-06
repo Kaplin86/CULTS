@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://cq228ngcxdvtb"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_qhfc6"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_15blk"]
+[ext_resource type="Script" uid="uid://db0def6h2ura5" path="res://assets/cardData/effectReq.gd" id="2_leahb"]
+
+[sub_resource type="Resource" id="Resource_mgd01"]
+script = ExtResource("1_qhfc6")
+type = 1
+targetType = 5
+count = 2
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_f2k82"]
+script = ExtResource("2_leahb")
+pipCountReq = 4
+metadata/_custom_type_script = "uid://db0def6h2ura5"
+
+[sub_resource type="Resource" id="Resource_oy58d"]
+script = ExtResource("1_qhfc6")
+type = 1
+targetType = 5
+requirement = SubResource("Resource_f2k82")
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_15blk")
+card_name = "laze"
+text_description = "IF YOU HAVE EXACTLY 2 PIPS REMAINING, GAIN 4 CHARTERUSE FOLLOWERS, OTHERWISE 2"
+effects = Array[ExtResource("1_qhfc6")]([SubResource("Resource_mgd01"), SubResource("Resource_oy58d")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"
