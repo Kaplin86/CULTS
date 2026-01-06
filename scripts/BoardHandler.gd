@@ -30,7 +30,7 @@ var typeToColor := {
 	"amber":Color(0.641, 0.25, 0.0, 1.0)
 }
 
-var placedFigures = []
+
 
 func getTotalBoardCount():
 	var count = 0
@@ -38,13 +38,13 @@ func getTotalBoardCount():
 		count += boardFigures[type]
 	return count
 
+var placedFigures = {"civ":{}}
+
 func renderNewBoard():
-	for e in placedFigures:
-		e.queue_free()
 	
-	for type in boardFigures:
+	for type in References.figureTypes:
 		var count = boardFigures[type]
-		for I in count:
+		for I in count - placedFigures.get(type,[]).size():
 			var newCultist = References.cultistVisual.duplicate()
 			add_child(newCultist)
 			var positionAngle = randf() * PI * 2
@@ -53,7 +53,10 @@ func renderNewBoard():
 			newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + MainArea.get_child(0).global_position
 			newCultist.global_rotation.y = randf() * PI * 2
 			newCultist.get_child(0).modulate = typeToColor[type]
-			placedFigures.append(newCultist)
+			if placedFigures["civ"].has(type):
+				placedFigures["civ"][type].append(newCultist)
+			else:
+				placedFigures["civ"][type] = [newCultist]
 	
 	var num = -1
 	for plyr in playerObjects:
@@ -62,7 +65,8 @@ func renderNewBoard():
 		var shape = area.get_child(0)
 		for type in plyr.pool:
 			var count = plyr.pool[type]
-			for I in count:
+			print(plyr, " has ", plyr.pool)
+			for I in count - placedFigures[plyr].get(type,[]).size() :
 				var newCultist = References.cultistVisual.duplicate()
 				add_child(newCultist)
 				var positionAngle = randf() * PI * 1
@@ -72,7 +76,19 @@ func renderNewBoard():
 				newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + shape.global_position
 				newCultist.global_rotation.y = randf() * PI * 2
 				newCultist.get_child(0).modulate = typeToColor[type]
-				placedFigures.append(newCultist)
+					
+				placedFigures.get_or_add(plyr,{}).get_or_add(type,[]).append(newCultist)
+
+func moveCivToPlayer(type : References.figureTypes,player : PlayerResource, count = 1):
+	var num = playerObjects.find(player)
+	var area = PlayerplayingAreas[num]
+	var shape = area.get_child(0)
+	for I in count:
+		var selectedCultist = placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).pick_random()
+		selectedCultist.global_position.y += 10
+
+func movePlayerToPlayer():
+	pass
 
 func changePoolCount(type,number):
 	if boardFigures.has(type):
@@ -117,7 +133,9 @@ func _ready() -> void:
 	renderNewBoard()
 	
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0).timeout
+	
+	moveCivToPlayer(References.figureTypes.crimson,playerObjects[0])
 	
 	while getBoardCount() != 0:
 		for plyr in playerObjects:
@@ -167,13 +185,14 @@ func simGames():
 
 
 var currentPlayerPips = 0
+var currentPlayer = null
 func runTurn(player :PlayerResource):
 	currentPlayerPips = randi_range(1,6)
+	currentPlayer = player
 	
 	if player.isUser:
 		References.uiHandler.displayPips(currentPlayerPips)
 		await References.uiHandler.turnEnded
-		print("ok done")
 	else:
 		var lowestCost = 7
 		for CARD in player.cards:
@@ -199,9 +218,14 @@ func runTurn(player :PlayerResource):
 var usingCard = false
 
 func playerUsedCard(cardData : CardData):
+	print("got card")
+	usingCard = true
+	
+	References.CardHandler.runCard(cardData,currentPlayer,currentPlayerPips)
+	
 	currentPlayerPips -= cardData.pipCost + cardData.consumeExtraPips
 	currentPlayerPips = max(currentPlayerPips,0)
 	References.uiHandler.displayPips(currentPlayerPips)
-	usingCard = true
+	
 	await get_tree().create_timer(1).timeout
 	usingCard = false

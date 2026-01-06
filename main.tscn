@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b4e8ykqn623af" path="res://ui_handler.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://blyecf3me8n0x" path="res://scenes/cardVisual.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://bggu23sc4k87m" path="res://scripts/cardContainer.gd" id="6_7mycd"]
-[ext_resource type="Resource" uid="uid://d7fqll8kf2pn" path="res://assets/cardData/snatch.tres" id="7_272bh"]
+[ext_resource type="Resource" uid="uid://1jbip0dcrdsa" path="res://assets/cardData/idle.tres" id="7_4c57u"]
 [ext_resource type="Script" uid="uid://bf0yg8p24j4kw" path="res://scripts/CardHandler.gd" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b3c7v5rq1wmc6" path="res://assets/dice/1.svg" id="8_kek77"]
 [ext_resource type="Texture2D" uid="uid://02bwcn7mc1jq" path="res://assets/board/board.svg" id="10_4c57u"]
@@ -70,7 +70,7 @@ offset_bottom = -373.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_7mycd")
-FocusedNode = NodePath("Card2")
+FocusedNode = NodePath("Card")
 YSpacing = 33.96
 XSpacing = 120.995
 SelectedYOffset = 24.43
@@ -78,31 +78,7 @@ Exponent = 1.725
 
 [node name="Card" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
-cardData = ExtResource("7_272bh")
-
-[node name="Card2" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
-layout_mode = 2
-cardData = ExtResource("7_272bh")
-
-[node name="Card3" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
-layout_mode = 2
-cardData = ExtResource("7_272bh")
-
-[node name="Card4" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
-layout_mode = 2
-cardData = ExtResource("7_272bh")
-
-[node name="Card5" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
-layout_mode = 2
-cardData = ExtResource("7_272bh")
-
-[node name="Card6" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
-layout_mode = 2
-cardData = ExtResource("7_272bh")
-
-[node name="Card7" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
-layout_mode = 2
-cardData = ExtResource("7_272bh")
+cardData = ExtResource("7_4c57u")
 
 [node name="EndTurn" type="Button" parent="UIHandler/ViewCards"]
 layout_mode = 0

@@ -79,7 +79,6 @@ func displayPips(num):
 	
 	for I in $ViewCards/Container.get_children():
 		if I.cardData != null:
-			print("we got ", num)
 			if I.cardData.pipCost <= num:
 				I.modulate = Color(1.0, 1.0, 1.0, 1.0)
 			else:
