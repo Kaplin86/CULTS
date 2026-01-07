@@ -57,11 +57,13 @@ func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 				var newCount = clamp( selected_target.pool.get(cultistType,0) ,0,suspectedCount)
 				selected_target.changePoolCount(cultistType,newCount * -1)
 				player.changePoolCount(cultistType,newCount)
+				References.boardHandler.queueAnims.append({"type":"PTP","follower":effectChunk.targetType,"plyr1":player,"plyr2":selected_target,"count":newCount})
 			
 			if effectChunk.targetGroup == effectChunk.targetFactions.CIVILIANS:
 				var newCount = clamp( References.boardHandler.boardFigures.get(cultistType,0) ,0,suspectedCount)
 				References.boardHandler.changePoolCount(cultistType,newCount * -1)
 				player.changePoolCount(cultistType,newCount * 1)
+				References.boardHandler.queueAnims.append({"type":"CTP","follower":effectChunk.targetType,"plyr":player,"count":newCount})
 		
 		if effectChunk.type == effectChunk.types.KILL:
 			if effectChunk.targetGroup == effectChunk.targetFactions.USER:

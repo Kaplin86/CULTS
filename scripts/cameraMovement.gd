@@ -3,7 +3,7 @@ extends Camera3D
 @export var dist = 13.11
 var processingDist = dist
 
-var rotationProgress = 0
+var rotationProgress = 1.24
 var cameraMoveSpeed = 0.8
 
 func _process(delta: float) -> void:

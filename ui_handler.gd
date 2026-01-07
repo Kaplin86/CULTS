@@ -28,7 +28,8 @@ func _process(_delta):
 		draggingCard.global_position = draggingOffset + get_global_mouse_position() 
 	
 	
-	
+	if $"../BigCard":
+		$"../BigCard".rotation.y += _delta * 3
 	
 
 func _on_view_cards_mouse_entered() -> void:

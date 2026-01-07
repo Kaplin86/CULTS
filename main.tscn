@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=19 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bf0yg8p24j4kw" path="res://scripts/CardHandler.gd" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b3c7v5rq1wmc6" path="res://assets/dice/1.svg" id="8_kek77"]
 [ext_resource type="Texture2D" uid="uid://02bwcn7mc1jq" path="res://assets/board/board.svg" id="10_4c57u"]
+[ext_resource type="Texture2D" uid="uid://chlqrt03o4igh" path="res://assets/cards/snatch.svg" id="11_efxa6"]
 
 [sub_resource type="Curve" id="Curve_4c57u"]
 _data = [Vector2(0, 0), 0.0, 2.9023821, 0, 0, Vector2(0.25938565, 0.31056428), 1.6585643, 1.6585643, 0, 0, Vector2(1, 1), 1.5390834, 0.0, 0, 0]
@@ -20,6 +21,58 @@ radius = 2.4423828
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_efxa6"]
 radius = 1.559082
+
+[sub_resource type="Animation" id="Animation_efxa6"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 11.348093, 0), Vector3(0, 4.428387, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dg77c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 15.943693, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ycdy4"]
+resource_name = "up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 4.428387, 0), Vector3(0, 13.528, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ycdy4"]
+_data = {
+&"RESET": SubResource("Animation_dg77c"),
+&"fall": SubResource("Animation_efxa6"),
+&"up": SubResource("Animation_ycdy4")
+}
 
 [node name="Node3D" type="Node3D"]
 
@@ -85,6 +138,22 @@ Exponent = 1.725
 layout_mode = 2
 cardData = ExtResource("7_4c57u")
 
+[node name="Card2" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+cardData = ExtResource("7_4c57u")
+
+[node name="Card3" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+cardData = ExtResource("7_4c57u")
+
+[node name="Card4" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+cardData = ExtResource("7_4c57u")
+
+[node name="Card5" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+layout_mode = 2
+cardData = ExtResource("7_4c57u")
+
 [node name="EndTurn" type="Button" parent="UIHandler/ViewCards"]
 layout_mode = 0
 offset_left = 686.0
@@ -103,7 +172,7 @@ texture = ExtResource("8_kek77")
 script = ExtResource("8_5vw27")
 
 [node name="Board" type="Sprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.39514115, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.39514115, 0.92184734)
 axis = 1
 transparent = false
 texture = ExtResource("10_4c57u")
@@ -145,6 +214,17 @@ transform = Transform3D(0.012217055, 0, -0.9999254, 0, 1, 0, 0.9999254, 0, 0.012
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr5"]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
 shape = SubResource("CylinderShape3D_efxa6")
+
+[node name="BigCard" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.943693, 0)
+pixel_size = 0.005
+texture = ExtResource("11_efxa6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BigCard"]
+libraries = {
+&"": SubResource("AnimationLibrary_ycdy4")
+}
+speed_scale = 3.0
 
 [connection signal="gui_input" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_gui_input"]
 [connection signal="mouse_entered" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_entered"]

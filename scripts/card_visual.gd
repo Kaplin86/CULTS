@@ -19,8 +19,10 @@ func _process(_delta):
 	
 	if global_position.y <= -180.0:
 		if !References.boardHandler.usingCard:
-			References.boardHandler.playerUsedCard(cardData)
+			if cardData.pipCost <= References.boardHandler.currentPlayerPips:
+				References.boardHandler.playerUsedCard(cardData)
 		global_position.y = 1999
+		get_parent().queue_sort()
 	
 	return
 

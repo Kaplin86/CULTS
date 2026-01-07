@@ -85,8 +85,7 @@ func moveCivToPlayer(type : References.figureTypes,player : PlayerResource, coun
 	var num = playerObjects.find(player)
 	var area = PlayerplayingAreas[num]
 	var shape = area.get_child(0)
-	for I in count:
-		print(I)
+	for I in min(count,placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).size()):
 		var selectedCultist = placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).pick_random()
 		placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).erase(selectedCultist)
 		var newTween = create_tween()
@@ -105,10 +104,30 @@ func moveCivToPlayer(type : References.figureTypes,player : PlayerResource, coun
 		
 		placedFigures.get_or_add(player,{}).get_or_add(References.figureTypes.find_key(type),[]).append(selectedCultist)
 		selectedCultist.name = "cultist" + str(I)
-		print(placedFigures.get_or_add(player,{}).get_or_add(References.figureTypes.find_key(type),[]).size())
 
-func movePlayerToPlayer():
-	pass
+func movePlayerToPlayer(type : References.figureTypes,from : PlayerResource,to : PlayerResource, count = 1):
+	var num = playerObjects.find(to)
+	var area = PlayerplayingAreas[num]
+	var shape = area.get_child(0)
+	for I in min(count,placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).size()):
+		var selectedCultist = placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).pick_random()
+		placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).erase(selectedCultist)
+		var newTween = create_tween()
+		
+		
+		var newpos = Vector2(0,0)
+		var positionAngle = randf() * PI * 1
+		positionAngle += area.global_rotation.y
+		var distance = shape.shape.radius *2 * distanceGrad.sample(randf())
+		shape.global_position.y = 0
+		newpos = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + shape.global_position
+		
+		newTween.tween_property(selectedCultist.get_child(0),"offset",Vector2(0,120),0.25)
+		newTween.tween_property(selectedCultist,"global_position",newpos,0.5)
+		newTween.tween_property(selectedCultist.get_child(0),"offset",Vector2(0,0),0.25)
+		
+		placedFigures.get_or_add(to,{}).get_or_add(References.figureTypes.find_key(type),[]).append(selectedCultist)
+		selectedCultist.name = "cultist" + str(I)
 
 func changePoolCount(type,number):
 	if boardFigures.has(type):
@@ -147,6 +166,18 @@ func resetBoard():
 		E.pool.clear()
 		E.cards.clear()
 
+
+var queueAnims = []
+
+
+func parseQueuedAnims():
+	for I in queueAnims:
+		if I.get("type","n/a") == "CTP":
+			moveCivToPlayer(I.get("follower","n/a"),I.get("plyr"),I.get("count",1))
+		if I.get("type","n/a") == "PTP":
+			movePlayerToPlayer(I.get("follower","n/a"),I.get("plyr1"),I.get("plyr2"),I.get("count",1))
+	queueAnims.clear()
+
 func _ready() -> void:
 	References.boardHandler = self
 	
@@ -155,10 +186,16 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(1).timeout
 	
-	moveCivToPlayer(References.figureTypes.crimson,playerObjects[0],40)
+	for E in playerObjects:
+		var availablecards = References.CardHandler.loadedPull.values().duplicate()
+		for i in 3:
+			var selectedCard = availablecards.pick_random()
+			E.cards.append(selectedCard)
+			availablecards.erase(selectedCard)
 	
 	while getBoardCount() != 0:
 		for plyr in playerObjects:
+			print("turn", plyr)
 			await runTurn(plyr)
 
 
@@ -207,6 +244,7 @@ func simGames():
 var currentPlayerPips = 0
 var currentPlayer = null
 func runTurn(player :PlayerResource):
+	queueAnims.clear()
 	currentPlayerPips = randi_range(1,6)
 	currentPlayer = player
 	
@@ -214,13 +252,13 @@ func runTurn(player :PlayerResource):
 		References.uiHandler.displayPips(currentPlayerPips)
 		await References.uiHandler.turnEnded
 	else:
-		var lowestCost = 7
+		var lowestCost = 6
 		for CARD in player.cards:
 			if CARD.pipCost <= lowestCost:
 				lowestCost = CARD.pipCost
 		
 		
-		
+		print("lowest costsz si ", lowestCost)
 		while currentPlayerPips >= lowestCost:
 			var availableCards : Array[CardData] = []
 			for CARD in player.cards:
@@ -232,10 +270,22 @@ func runTurn(player :PlayerResource):
 			References.CardHandler.runCard(usingCard,player,currentPlayerPips)
 			currentPlayerPips -= usingCard.pipCost + usingCard.consumeExtraPips
 			currentPlayerPips = max(currentPlayerPips,0)
+			
+			
+			await animatedCardSegment(usingCard)
+			
 			#print("using card ", usingCard.card_name, " for ", usingCard.pipCost)
 		
 
 var usingCard = false
+
+func animatedCardSegment(carddata : CardData):
+	$"../BigCard/AnimationPlayer".play("fall")
+	await get_tree().create_timer(2).timeout
+	parseQueuedAnims()
+	
+	$"../BigCard/AnimationPlayer".play("up")
+	await get_tree().create_timer(1).timeout
 
 func playerUsedCard(cardData : CardData):
 	print("got card")
@@ -247,5 +297,5 @@ func playerUsedCard(cardData : CardData):
 	currentPlayerPips = max(currentPlayerPips,0)
 	References.uiHandler.displayPips(currentPlayerPips)
 	
-	await get_tree().create_timer(1).timeout
+	await animatedCardSegment(cardData)
 	usingCard = false
