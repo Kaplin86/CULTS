@@ -6,6 +6,8 @@ var playerObjects : Array[PlayerResource] = [PlayerResource.new(true,References.
 @export var MainArea : Area3D
 @export var PlayerplayingAreas : Array[Area3D] = []
 
+@export var distanceGrad : Curve = null
+
 var boardFigures := {
 	"crimson":43, 
 	"azure":43,
@@ -48,7 +50,7 @@ func renderNewBoard():
 			var newCultist = References.cultistVisual.duplicate()
 			add_child(newCultist)
 			var positionAngle = randf() * PI * 2
-			var distance = MainArea.get_child(0).shape.radius * randf()*2
+			var distance = MainArea.get_child(0).shape.radius * distanceGrad.sample(randf())*2
 			MainArea.get_child(0).global_position.y = 0
 			newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + MainArea.get_child(0).global_position
 			newCultist.global_rotation.y = randf() * PI * 2
@@ -71,7 +73,7 @@ func renderNewBoard():
 				add_child(newCultist)
 				var positionAngle = randf() * PI * 1
 				positionAngle += area.global_rotation.y
-				var distance = shape.shape.radius * randf()*2
+				var distance = shape.shape.radius * distanceGrad.sample(randf())*2
 				shape.global_position.y = 0
 				newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + shape.global_position
 				newCultist.global_rotation.y = randf() * PI * 2
@@ -84,14 +86,16 @@ func moveCivToPlayer(type : References.figureTypes,player : PlayerResource, coun
 	var area = PlayerplayingAreas[num]
 	var shape = area.get_child(0)
 	for I in count:
+		print(I)
 		var selectedCultist = placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).pick_random()
+		placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).erase(selectedCultist)
 		var newTween = create_tween()
 		
 		
 		var newpos = Vector2(0,0)
 		var positionAngle = randf() * PI * 1
 		positionAngle += area.global_rotation.y
-		var distance = shape.shape.radius * randf()*2
+		var distance = shape.shape.radius *2 * distanceGrad.sample(randf())
 		shape.global_position.y = 0
 		newpos = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + shape.global_position
 		
@@ -100,6 +104,8 @@ func moveCivToPlayer(type : References.figureTypes,player : PlayerResource, coun
 		newTween.tween_property(selectedCultist.get_child(0),"offset",Vector2(0,0),0.25)
 		
 		placedFigures.get_or_add(player,{}).get_or_add(References.figureTypes.find_key(type),[]).append(selectedCultist)
+		selectedCultist.name = "cultist" + str(I)
+		print(placedFigures.get_or_add(player,{}).get_or_add(References.figureTypes.find_key(type),[]).size())
 
 func movePlayerToPlayer():
 	pass
@@ -149,7 +155,7 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(1).timeout
 	
-	moveCivToPlayer(References.figureTypes.crimson,playerObjects[0],5)
+	moveCivToPlayer(References.figureTypes.crimson,playerObjects[0],40)
 	
 	while getBoardCount() != 0:
 		for plyr in playerObjects:

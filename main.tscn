@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=14 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
@@ -10,6 +10,10 @@
 [ext_resource type="Script" uid="uid://bf0yg8p24j4kw" path="res://scripts/CardHandler.gd" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b3c7v5rq1wmc6" path="res://assets/dice/1.svg" id="8_kek77"]
 [ext_resource type="Texture2D" uid="uid://02bwcn7mc1jq" path="res://assets/board/board.svg" id="10_4c57u"]
+
+[sub_resource type="Curve" id="Curve_4c57u"]
+_data = [Vector2(0, 0), 0.0, 2.9023821, 0, 0, Vector2(0.25938565, 0.31056428), 1.6585643, 1.6585643, 0, 0, Vector2(1, 1), 1.5390834, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4c57u"]
 radius = 2.4423828
@@ -23,6 +27,7 @@ radius = 1.559082
 script = ExtResource("1_ig7tw")
 MainArea = NodePath("../Board/Area3D")
 PlayerplayingAreas = [NodePath("../Board/plyr1"), NodePath("../Board/plyr2"), NodePath("../Board/plyr3"), NodePath("../Board/plyr4"), NodePath("../Board/plyr5")]
+distanceGrad = SubResource("Curve_4c57u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.76998097, 0.32765356, -0.5475148, 0, 0.8580838, 0.5135098, 0.6380668, 0.39539278, -0.6607082, -8.325111, 3.2379994, -10.128132)

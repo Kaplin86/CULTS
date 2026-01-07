@@ -26,6 +26,10 @@ func _process(_delta):
 	
 	if dragging:
 		draggingCard.global_position = draggingOffset + get_global_mouse_position() 
+	
+	
+	
+	
 
 func _on_view_cards_mouse_entered() -> void:
 	viewCards = true
