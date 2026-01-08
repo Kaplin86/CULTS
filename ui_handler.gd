@@ -104,4 +104,12 @@ func displayPips(num):
 		diceClone.texture = load("res://assets/dice/"+str(val)+".svg")
 		num -= val
 	
-	
+func showPlayerTurn(playerObject : PlayerResource):
+	if playerObject.isUser:
+		for I in References.boardHandler.playerObjects:
+			if I.isUser and I != playerObject:
+				$PlayerIndicator.text = "PLAYER: #" + str(References.boardHandler.playerObjects.find(playerObject))
+				return
+		$PlayerIndicator.text = "PLAYER: YOU"
+	else:
+		$PlayerIndicator.text = "PLAYER: " + playerObject.displayName

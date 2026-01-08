@@ -248,6 +248,8 @@ func runTurn(player :PlayerResource):
 	currentPlayerPips = randi_range(1,6)
 	currentPlayer = player
 	
+	References.uiHandler.showPlayerTurn(player)
+	
 	if player.isUser:
 		References.uiHandler.displayPips(currentPlayerPips)
 		await References.uiHandler.turnEnded
@@ -283,6 +285,7 @@ func animatedCardSegment(carddata : CardData):
 	$"../BigCard/AnimationPlayer".play("fall")
 	await get_tree().create_timer(2).timeout
 	parseQueuedAnims()
+	print("card played is ", carddata.card_name)
 	
 	$"../BigCard/AnimationPlayer".play("up")
 	await get_tree().create_timer(1).timeout

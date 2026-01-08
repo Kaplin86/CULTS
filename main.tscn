@@ -22,21 +22,6 @@ radius = 2.4423828
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_efxa6"]
 radius = 1.559082
 
-[sub_resource type="Animation" id="Animation_efxa6"]
-resource_name = "fall"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 11.348093, 0), Vector3(0, 4.428387, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_dg77c"]
 length = 0.001
 tracks/0/type = "value"
@@ -50,6 +35,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 15.943693, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_efxa6"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 11.348093, 0), Vector3(0, 4.428387, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ycdy4"]
@@ -167,6 +167,15 @@ text = "End Turn"
 position = Vector2(25, -30.99997)
 scale = Vector2(0.16174603, 0.16174603)
 texture = ExtResource("8_kek77")
+
+[node name="PlayerIndicator" type="RichTextLabel" parent="UIHandler"]
+layout_mode = 0
+offset_left = 182.0
+offset_right = 966.0
+offset_bottom = 107.0
+text = "PLAYER: "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("8_5vw27")
