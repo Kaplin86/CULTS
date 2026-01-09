@@ -1,7 +1,7 @@
 extends Node
 class_name boardHandlerNode
 
-var playerObjects : Array[PlayerResource] = [PlayerResource.new(true,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames)]
+var playerObjects : Array[PlayerResource] = [PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames)]
 
 @export var MainArea : Area3D
 @export var PlayerplayingAreas : Array[Area3D] = []

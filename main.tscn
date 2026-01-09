@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=20 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b3c7v5rq1wmc6" path="res://assets/dice/1.svg" id="8_kek77"]
 [ext_resource type="Texture2D" uid="uid://02bwcn7mc1jq" path="res://assets/board/board.svg" id="10_4c57u"]
 [ext_resource type="Texture2D" uid="uid://chlqrt03o4igh" path="res://assets/cards/snatch.svg" id="11_efxa6"]
+[ext_resource type="Texture2D" uid="uid://bkma8n3xcg3w2" path="res://followerSprites/S_L.svg" id="12_dg77c"]
 
 [sub_resource type="Curve" id="Curve_4c57u"]
 _data = [Vector2(0, 0), 0.0, 2.9023821, 0, 0, Vector2(0.25938565, 0.31056428), 1.6585643, 1.6585643, 0, 0, Vector2(1, 1), 1.5390834, 0.0, 0, 0]
@@ -234,6 +235,26 @@ libraries = {
 &"": SubResource("AnimationLibrary_ycdy4")
 }
 speed_scale = 3.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-11.713296, 0, -0.0053755105, 0, 11.713465, 0, 0.062965855, 0, -0.9999856, 0, 0.44802046, 12.216181)
+double_sided = false
+texture = ExtResource("12_dg77c")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(11.690274, 0, -0.06289504, 0, 11.713465, 0, 0.7367188, 0, 0.9980202, 5.5561914, 0.4480195, -10.088718)
+double_sided = false
+texture = ExtResource("12_dg77c")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(-0.88274574, 0, 0.99715626, 0, 11.713466, 0, -11.680158, 0, -0.07536164, -11.836567, 0.4480195, 2.841321)
+double_sided = false
+texture = ExtResource("12_dg77c")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(11.649832, 0, 0.10409452, 0, 11.713465, 0, -1.2193074, 0, 0.9945674, -5.676118, 0.4480195, -10.088718)
+double_sided = false
+texture = ExtResource("12_dg77c")
 
 [connection signal="gui_input" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_gui_input"]
 [connection signal="mouse_entered" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_entered"]

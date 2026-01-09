@@ -22,7 +22,13 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_right"):
 			cardContainer.changeToIndex(cardContainer.getCurrentIndex() + 1)
 	else:
-		$ViewCards.global_position.y = lerp($ViewCards.global_position.y,532.0,0.1)
+		if References.boardHandler.get("currentPlayer"):
+			if References.boardHandler.currentPlayer.isUser:
+				$ViewCards.global_position.y = lerp($ViewCards.global_position.y,532.0,0.1)
+			else:
+				$ViewCards.global_position.y = lerp($ViewCards.global_position.y,902.0,0.1)
+		else:
+			$ViewCards.global_position.y = lerp($ViewCards.global_position.y,532.0,0.1)
 	
 	if dragging:
 		draggingCard.global_position = draggingOffset + get_global_mouse_position() 
@@ -30,10 +36,16 @@ func _process(_delta):
 	
 	if $"../BigCard":
 		$"../BigCard".rotation.y += _delta * 3
+		
+	if References.boardHandler.currentPlayer:
+		if !References.boardHandler.currentPlayer.isUser:
+			viewCards = false
 	
 
 func _on_view_cards_mouse_entered() -> void:
-	viewCards = true
+	if References.boardHandler.currentPlayer:
+		if References.boardHandler.currentPlayer.isUser:
+			viewCards = true
 
 
 func _on_view_cards_mouse_exited() -> void:
@@ -108,7 +120,7 @@ func showPlayerTurn(playerObject : PlayerResource):
 	if playerObject.isUser:
 		for I in References.boardHandler.playerObjects:
 			if I.isUser and I != playerObject:
-				$PlayerIndicator.text = "PLAYER: #" + str(References.boardHandler.playerObjects.find(playerObject))
+				$PlayerIndicator.text = "PLAYER: #" + str(References.boardHandler.playerObjects.find(playerObject) + 1)
 				return
 		$PlayerIndicator.text = "PLAYER: YOU"
 	else:
