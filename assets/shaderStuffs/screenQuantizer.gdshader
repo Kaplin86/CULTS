@@ -1,5 +1,10 @@
 shader_type canvas_item;
 
+// Shader by "NanoMars"
+// https://github.com/NanoMars/space-game/blob/main/game/UI/filter_overlay.gdshader
+// ^ Project for "Shiba" YSWS
+// Using under MIT license
+
 // Put this on a full-screen ColorRect to affect everything behind it.
 
 uniform int levels : hint_range(1,16) = 8;
