@@ -1,0 +1,48 @@
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://2f5rm4r8brjt"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_x18ag"]
+input_name = "sky_coords"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_vukhw"]
+source = 5
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_lryhu"]
+parameter_name = "tex"
+texture_type = 1
+
+[resource]
+code = "shader_type sky;
+uniform sampler2D tex : source_color;
+
+
+
+void sky() {
+// Input:2
+	vec2 n_out2p0 = SKY_COORDS;
+
+
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(tex, n_out2p0);
+
+
+// Output:0
+	COLOR = vec3(n_out3p0.xyz);
+
+
+}
+"
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/sky/0/position = Vector2(700, 100)
+nodes/sky/2/node = SubResource("VisualShaderNodeInput_x18ag")
+nodes/sky/2/position = Vector2(-20, 80)
+nodes/sky/3/node = SubResource("VisualShaderNodeTexture_vukhw")
+nodes/sky/3/position = Vector2(360, 100)
+nodes/sky/4/node = SubResource("VisualShaderNodeTexture2DParameter_lryhu")
+nodes/sky/4/position = Vector2(-20, 240)
+nodes/sky/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 0, 0, 4, 0, 3, 2)

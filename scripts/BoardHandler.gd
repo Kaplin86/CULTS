@@ -23,12 +23,12 @@ var boardFigures := {
 var graveyardFigures := {}
 
 var typeToColor := {
-	"crimson":Color(0.385, 0.03, 0.117, 1.0), 
+	"crimson":Color(0.936, 0.203, 0.355, 1.0), 
 	"azure":Color(0.023, 0.193, 0.403, 1.0),
 	"ivory":Color(0.865, 0.781, 0.781, 1.0), 
-	"amethyst":Color(0.269, 0.001, 0.445, 1.0),
+	"amethyst":Color("6229a9ff"),
 	"gold":Color(0.802, 0.691, 0.255, 1.0),
-	"chartreuse":Color(0.098, 0.522, 0.231, 1.0),
+	"chartreuse":Color("56df4cff"),
 	"amber":Color(0.641, 0.25, 0.0, 1.0)
 }
 
