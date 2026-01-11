@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://fn40tw2d1soe"]
+
+[ext_resource type="Shader" uid="uid://cfpnar2tgmre0" path="res://assets/misc/metaball_texture.gdshader" id="1_w7x5c"]
+[ext_resource type="Texture2D" uid="uid://b2vnp0k33j31d" path="res://assets/misc/metaball.png" id="2_w1645"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7x5c"]
+shader = ExtResource("1_w7x5c")
+shader_parameter/threshold = 0.3
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w1645"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Gradient" id="Gradient_mckqg"]
+offsets = PackedFloat32Array(0, 0.62474227, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="MetaballTexture" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1002.0
+offset_bottom = 305.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_w7x5c")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_w1645")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1000, 1000)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+offset_right = 1797.0
+offset_bottom = 1797.0
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="SubViewport"]
+position = Vector2(500, 500)
+rotation = -1.5707964
+amount = 40
+texture = ExtResource("2_w1645")
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 283.81)
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 45.11
+initial_velocity_max = 63.91
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+color_ramp = SubResource("Gradient_mckqg")

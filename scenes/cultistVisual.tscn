@@ -8,5 +8,4 @@ script = ExtResource("1_5aqct")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 1
-shaded = true
 texture = ExtResource("2_b1c7b")
