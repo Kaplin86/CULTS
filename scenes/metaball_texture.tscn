@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://fn40tw2d1soe"]
 
 [ext_resource type="Shader" uid="uid://cfpnar2tgmre0" path="res://assets/misc/metaball_texture.gdshader" id="1_w7x5c"]
-[ext_resource type="Texture2D" uid="uid://b2vnp0k33j31d" path="res://assets/misc/metaball.png" id="2_w1645"]
+[ext_resource type="Texture2D" uid="uid://bruvwrgq6n4um" path="res://assets/misc/metaball2.png" id="2_w7x5c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w7x5c"]
 shader = ExtResource("1_w7x5c")
-shader_parameter/threshold = 0.3
+shader_parameter/threshold = 0.1710000081225
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_w1645"]
 viewport_path = NodePath("SubViewport")
@@ -43,10 +43,10 @@ offset_bottom = 1797.0
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="SubViewport"]
-position = Vector2(500, 500)
+position = Vector2(500, 547.37)
 rotation = -1.5707964
 amount = 40
-texture = ExtResource("2_w1645")
+texture = ExtResource("2_w7x5c")
 lifetime = 2.0
 emission_shape = 3
 emission_rect_extents = Vector2(1, 283.81)
@@ -55,6 +55,27 @@ spread = 0.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 45.11
 initial_velocity_max = 63.91
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+color_ramp = SubResource("Gradient_mckqg")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="SubViewport"]
+position = Vector2(500, 547.37)
+rotation = -1.5707964
+amount = 40
+texture = ExtResource("2_w7x5c")
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 283.81)
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 45.11
+initial_velocity_max = 63.91
+angle_min = -720.0
+angle_max = 720.0
 scale_amount_min = 0.2
 scale_amount_max = 0.4
 color_ramp = SubResource("Gradient_mckqg")
