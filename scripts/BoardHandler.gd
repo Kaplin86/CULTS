@@ -24,7 +24,7 @@ var graveyardFigures := {}
 
 var typeToColor := {
 	"crimson":Color(0.936, 0.203, 0.355, 1.0), 
-	"azure":Color(0.023, 0.193, 0.403, 1.0),
+	"azure":Color(0.371, 0.626, 0.976, 1.0),
 	"ivory":Color(0.865, 0.781, 0.781, 1.0), 
 	"amethyst":Color("6229a9ff"),
 	"gold":Color(0.802, 0.691, 0.255, 1.0),

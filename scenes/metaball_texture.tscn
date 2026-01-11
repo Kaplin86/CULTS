@@ -11,8 +11,8 @@ shader_parameter/threshold = 0.1710000081225
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_mckqg"]
-offsets = PackedFloat32Array(0, 0.62474227, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.039175257, 0.62474227, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="MetaballTexture" type="Control"]
 layout_mode = 3

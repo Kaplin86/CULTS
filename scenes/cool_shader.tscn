@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://o7no5bvyij37" path="res://assets/shaderStuffs/screenQuantizer.gdshader" id="1_bqmqs"]
 [ext_resource type="Texture2D" uid="uid://bulu6qpoqp3gw" path="res://assets/shaderStuffs/bayer8x8.png" id="2_6td2x"]
-[ext_resource type="Texture2D" uid="uid://cfmresswxx4mf" path="res://assets/shaderStuffs/joker-6-1x.png" id="3_g4axx"]
+[ext_resource type="Texture2D" uid="uid://8f284er2odeo" path="res://assets/shaderStuffs/Tarot3.png" id="3_g4axx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w48qg"]
 shader = ExtResource("1_bqmqs")

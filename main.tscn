@@ -170,8 +170,8 @@ offset_bottom = 385.0
 rotation = -4.712389
 
 [node name="Sprite2D" type="Sprite2D" parent="UIHandler/ViewCards"]
-modulate = Color(0, 0, 0, 0.5294118)
-position = Vector2(406, 188)
+modulate = Color(0, 0, 0, 0.7411765)
+position = Vector2(412, 169)
 texture = SubResource("ViewportTexture_2cqfq")
 
 [node name="ColorRect2" type="ColorRect" parent="UIHandler/ViewCards"]
