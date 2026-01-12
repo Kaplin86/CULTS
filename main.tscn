@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=31 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://fn40tw2d1soe" path="res://scenes/metaball_texture.tscn" id="5_vivmo"]
 [ext_resource type="Script" uid="uid://bggu23sc4k87m" path="res://scripts/cardContainer.gd" id="6_7mycd"]
 [ext_resource type="Resource" uid="uid://1jbip0dcrdsa" path="res://assets/cardData/idle.tres" id="7_4c57u"]
+[ext_resource type="Resource" uid="uid://d7fqll8kf2pn" path="res://assets/cardData/snatch.tres" id="8_2cqfq"]
 [ext_resource type="Script" uid="uid://bf0yg8p24j4kw" path="res://scripts/CardHandler.gd" id="8_5vw27"]
 [ext_resource type="Texture2D" uid="uid://b3c7v5rq1wmc6" path="res://assets/dice/1.svg" id="8_kek77"]
 [ext_resource type="Texture2D" uid="uid://02bwcn7mc1jq" path="res://assets/board/board.svg" id="10_4c57u"]
@@ -205,7 +206,7 @@ Exponent = 1.725
 
 [node name="Card" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2
-cardData = ExtResource("7_4c57u")
+cardData = ExtResource("8_2cqfq")
 
 [node name="Card2" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
 layout_mode = 2

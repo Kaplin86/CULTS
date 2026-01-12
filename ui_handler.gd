@@ -8,7 +8,10 @@ var dragging = false
 var draggingOffset = Vector2.ZERO
 var draggingCard = null
 
+var selectorButtons = []
+
 signal turnEnded
+signal chooseTarget(targetNum : int)
 
 func _ready() -> void:
 	References.uiHandler = self
@@ -40,6 +43,42 @@ func _process(_delta):
 	if References.boardHandler.currentPlayer:
 		if !References.boardHandler.currentPlayer.isUser:
 			viewCards = false
+	
+	if selectorButtons.size() != References.boardHandler.playerObjects.size():
+		for I in selectorButtons:
+			I.queue_free()
+		selectorButtons.clear()
+		for I in References.boardHandler.playerObjects.size():
+			var newbutton = Button.new()
+			selectorButtons.append(newbutton)
+			newbutton.text = "Target"
+			add_child(newbutton)
+			newbutton.pressed.connect(chooseTarget.emit.bind(I))
+	
+	for button in selectorButtons:
+		if References.boardHandler.playerObjects[selectorButtons.find(button)] == References.boardHandler.currentPlayer:
+			button.visible = false
+		elif !References.boardHandler.userTargeting:
+			button.visible = false
+		else:
+			button.visible = true
+		targetButtonMove(selectorButtons.find(button),button)
+	
+func targetButtonMove(areaNum : int,button : Button):
+	var currentCam : Camera3D = get_viewport().get_camera_3d()
+	
+	var boardArea = get_node("../Board/plyr"  + str(areaNum + 1))
+	var wantedPos = boardArea.global_position
+	var dist = boardArea.get_child(0).shape.radius
+	wantedPos.x += dist * sin(boardArea.get_child(0).global_rotation.y + deg_to_rad(90))
+	wantedPos.z += dist * cos(boardArea.get_child(0).global_rotation.y + deg_to_rad(90))
+	
+	
+	wantedPos += Vector3(0,1,0)
+	var PositionOnCamera = currentCam.unproject_position(wantedPos)
+	var buttonPosition = PositionOnCamera - (button.size / 2)
+	button.position = buttonPosition
+	
 	
 
 func _on_view_cards_mouse_entered() -> void:

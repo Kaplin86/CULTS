@@ -35,7 +35,10 @@ func getPoolCount(): ## Gets the pool number / score of the player
 
 func getSelectedTarget(running : PlayerResource,card : CardData = null) -> PlayerResource: ## Allows a choosing of an enemy. Random for CPUs.
 	if isUser:
-		return References.boardHandler.playerObjects[1]
+		References.boardHandler.userTargeting = true
+		var targetNum : int = await References.uiHandler.chooseTarget
+		References.boardHandler.userTargeting = false
+		return References.boardHandler.playerObjects[targetNum]
 	else:
 		var playersArray = References.boardHandler.playerObjects.duplicate()
 		playersArray.erase(self)

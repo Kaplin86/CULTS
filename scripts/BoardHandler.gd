@@ -1,7 +1,7 @@
 extends Node
 class_name boardHandlerNode
 
-var playerObjects : Array[PlayerResource] = [PlayerResource.new(true,References.takenNames),PlayerResource.new(true,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames)]
+var playerObjects : Array[PlayerResource] = [PlayerResource.new(true,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames)]
 
 @export var MainArea : Area3D
 @export var PlayerplayingAreas : Array[Area3D] = []
@@ -184,6 +184,10 @@ func _ready() -> void:
 	renderNewBoard()
 	
 	
+	#await get_tree().create_timer(1).timeout
+	
+	#simGames()
+	
 	await get_tree().create_timer(1).timeout
 	
 	for E in playerObjects:
@@ -224,7 +228,7 @@ func simGames():
 					boardFiguresLastTurn = boardFigures.duplicate()
 					
 					for plyr in playerObjects:
-						runTurn(plyr)
+						runTurn(plyr,false)
 					
 					if boardFigures == boardFiguresLastTurn:
 						boardFigures = {"h":0}
@@ -243,7 +247,10 @@ func simGames():
 
 var currentPlayerPips = 0
 var currentPlayer = null
-func runTurn(player :PlayerResource):
+
+var userTargeting = false
+
+func runTurn(player :PlayerResource, anim = true):
 	queueAnims.clear()
 	currentPlayerPips = randi_range(1,6)
 	currentPlayer = player
@@ -259,46 +266,51 @@ func runTurn(player :PlayerResource):
 			if CARD.pipCost <= lowestCost:
 				lowestCost = CARD.pipCost
 		
-		
-		print("lowest costsz si ", lowestCost)
+
 		while currentPlayerPips >= lowestCost:
 			var availableCards : Array[CardData] = []
 			for CARD in player.cards:
 				if CARD.pipCost <= currentPlayerPips:
 					availableCards.append(CARD)
 			
-			var usingCard : CardData = availableCards.pick_random()
+			var ChosenCard : CardData = availableCards.pick_random()
 			
-			References.CardHandler.runCard(usingCard,player,currentPlayerPips)
-			currentPlayerPips -= usingCard.pipCost + usingCard.consumeExtraPips
+			References.CardHandler.runCard(ChosenCard,player,currentPlayerPips)
+			currentPlayerPips -= ChosenCard.pipCost + ChosenCard.consumeExtraPips
 			currentPlayerPips = max(currentPlayerPips,0)
 			
-			
-			await animatedCardSegment(usingCard)
+			if anim:
+				await animatedCardSegment(ChosenCard)
 			
 			#print("using card ", usingCard.card_name, " for ", usingCard.pipCost)
 		
 
 var usingCard = false
 
-func animatedCardSegment(carddata : CardData):
-	$"../BigCard/AnimationPlayer".play("fall")
-	await get_tree().create_timer(2).timeout
-	parseQueuedAnims()
-	print("card played is ", carddata.card_name)
+func animatedCardSegment(carddata : CardData, state : int = -1):
+	if state in [-1,0]:
+		$"../BigCard/AnimationPlayer".play("fall")
 	
-	$"../BigCard/AnimationPlayer".play("up")
-	await get_tree().create_timer(1).timeout
+	if state in [-1]:
+		await get_tree().create_timer(2).timeout
+	
+	if state in [-1,1]:
+		parseQueuedAnims()
+		
+		$"../BigCard/AnimationPlayer".play("up")
+		await get_tree().create_timer(1).timeout
 
 func playerUsedCard(cardData : CardData):
 	print("got card")
 	usingCard = true
 	
-	References.CardHandler.runCard(cardData,currentPlayer,currentPlayerPips)
+	await animatedCardSegment(cardData,0)
+	
+	await References.CardHandler.runCard(cardData,currentPlayer,currentPlayerPips)
 	
 	currentPlayerPips -= cardData.pipCost + cardData.consumeExtraPips
 	currentPlayerPips = max(currentPlayerPips,0)
 	References.uiHandler.displayPips(currentPlayerPips)
 	
-	await animatedCardSegment(cardData)
+	await animatedCardSegment(cardData,1)
 	usingCard = false

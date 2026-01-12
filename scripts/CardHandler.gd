@@ -17,7 +17,7 @@ func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 	
 	for effectChunk : EffectData in data.effects:
 		if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY and selected_target == null:
-			selected_target = player.getSelectedTarget(player,data)
+			selected_target = await player.getSelectedTarget(player,data)
 			
 	
 	for effectChunk : EffectData in data.effects:
