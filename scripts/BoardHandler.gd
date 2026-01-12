@@ -23,13 +23,13 @@ var boardFigures := {
 var graveyardFigures := {}
 
 var typeToColor := {
-	"crimson":Color(0.936, 0.203, 0.355, 1.0), 
+	"crimson":Color(0.641, 0.25, 0.0, 1.0),
 	"azure":Color(0.371, 0.626, 0.976, 1.0),
 	"ivory":Color(0.865, 0.781, 0.781, 1.0), 
 	"amethyst":Color("6229a9ff"),
 	"gold":Color(0.802, 0.691, 0.255, 1.0),
 	"chartreuse":Color("56df4cff"),
-	"amber":Color(0.641, 0.25, 0.0, 1.0)
+	"amber":Color(0.936, 0.203, 0.355, 1.0)
 }
 
 
@@ -109,7 +109,10 @@ func movePlayerToPlayer(type : References.figureTypes,from : PlayerResource,to :
 	var num = playerObjects.find(to)
 	var area = PlayerplayingAreas[num]
 	var shape = area.get_child(0)
+	print("plcaed figs is",placedFigures.get_or_add(from,{}), " looking for ", References.figureTypes.find_key(type))
+	print("funne value is", placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).size())
 	for I in min(count,placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).size()):
+		print(I)
 		var selectedCultist = placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).pick_random()
 		placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).erase(selectedCultist)
 		var newTween = create_tween()
@@ -171,6 +174,7 @@ var queueAnims = []
 
 
 func parseQueuedAnims():
+	print(queueAnims)
 	for I in queueAnims:
 		if I.get("type","n/a") == "CTP":
 			moveCivToPlayer(I.get("follower","n/a"),I.get("plyr"),I.get("count",1))
@@ -196,6 +200,8 @@ func _ready() -> void:
 			var selectedCard = availablecards.pick_random()
 			E.cards.append(selectedCard)
 			availablecards.erase(selectedCard)
+	
+	playerObjects[1].cards = [ References.CardHandler.loadedPull["crave"] ]
 	
 	while getBoardCount() != 0:
 		for plyr in playerObjects:
@@ -258,6 +264,7 @@ func runTurn(player :PlayerResource, anim = true):
 	References.uiHandler.showPlayerTurn(player)
 	
 	if player.isUser:
+		References.uiHandler.addCardsForUser(player)
 		References.uiHandler.displayPips(currentPlayerPips)
 		await References.uiHandler.turnEnded
 	else:
@@ -304,9 +311,19 @@ func playerUsedCard(cardData : CardData):
 	print("got card")
 	usingCard = true
 	
+	
+	
 	await animatedCardSegment(cardData,0)
 	
+	var cardSelectionTime =get_tree().create_timer(999)
+	
+	
 	await References.CardHandler.runCard(cardData,currentPlayer,currentPlayerPips)
+	
+	print("runtime",999.0 - cardSelectionTime.time_left )
+	
+	if 999.0 - cardSelectionTime.time_left < 0.25:
+		await get_tree().create_timer(2).timeout
 	
 	currentPlayerPips -= cardData.pipCost + cardData.consumeExtraPips
 	currentPlayerPips = max(currentPlayerPips,0)

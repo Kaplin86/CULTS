@@ -1,6 +1,8 @@
 extends Control
 class_name uiHandlerNode
 
+var baseCard = preload("uid://blyecf3me8n0x")
+
 var viewCards = false
 var hoverCard = null
 @onready var cardContainer : SidewaysUContainer = $ViewCards/Container
@@ -78,8 +80,16 @@ func targetButtonMove(areaNum : int,button : Button):
 	var PositionOnCamera = currentCam.unproject_position(wantedPos)
 	var buttonPosition = PositionOnCamera - (button.size / 2)
 	button.position = buttonPosition
-	
-	
+
+func addCardsForUser(playerResource : PlayerResource):
+	for I in $ViewCards/Container.get_children():
+		I.queue_free()
+	for I in playerResource.cards:
+		var newcard = baseCard.instantiate()
+		newcard.cardData = I
+		$ViewCards/Container.add_child(newcard)
+		if playerResource.cards.find(I) == floor(playerResource.cards.size() / 2.0):
+			$ViewCards/Container.FocusedNode = newcard
 
 func _on_view_cards_mouse_entered() -> void:
 	if References.boardHandler.currentPlayer:

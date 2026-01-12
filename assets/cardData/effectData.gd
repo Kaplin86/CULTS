@@ -34,3 +34,4 @@ enum targetFactions {
 ## Allows a requirement object to be attached
 @export var requirement : EffectReq
 @export var useAllPips : bool = false ## If true, uses currentPips instead of count
+@export var cancelCardIfFail : bool = false ## If true, when this card is used, cancel all effects after if this effect cannot happen fully successfully (I.e. it cant kill a specific follower)

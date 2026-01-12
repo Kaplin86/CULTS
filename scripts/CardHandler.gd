@@ -53,14 +53,23 @@ func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 				selected_target.changePoolCount(cultistType,suspectedCount)
 		
 		if effectChunk.type == effectChunk.types.STEAL:
+			
 			if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY:
 				var newCount = clamp( selected_target.pool.get(cultistType,0) ,0,suspectedCount)
+				
+				if effectChunk.cancelCardIfFail and newCount != suspectedCount:
+					return
+				
 				selected_target.changePoolCount(cultistType,newCount * -1)
 				player.changePoolCount(cultistType,newCount)
-				References.boardHandler.queueAnims.append({"type":"PTP","follower":effectChunk.targetType,"plyr1":player,"plyr2":selected_target,"count":newCount})
+				References.boardHandler.queueAnims.append({"type":"PTP","follower":effectChunk.targetType,"plyr1":selected_target,"plyr2":player,"count":newCount})
 			
 			if effectChunk.targetGroup == effectChunk.targetFactions.CIVILIANS:
 				var newCount = clamp( References.boardHandler.boardFigures.get(cultistType,0) ,0,suspectedCount)
+				
+				if effectChunk.cancelCardIfFail and newCount != suspectedCount:
+					return
+				
 				References.boardHandler.changePoolCount(cultistType,newCount * -1)
 				player.changePoolCount(cultistType,newCount * 1)
 				References.boardHandler.queueAnims.append({"type":"CTP","follower":effectChunk.targetType,"plyr":player,"count":newCount})
@@ -68,15 +77,27 @@ func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 		if effectChunk.type == effectChunk.types.KILL:
 			if effectChunk.targetGroup == effectChunk.targetFactions.USER:
 				var newCount = clamp( player.pool.get(cultistType,0) ,0,suspectedCount)
+				
+				if effectChunk.cancelCardIfFail and newCount != suspectedCount:
+					return
+				
 				player.changePoolCount(cultistType,newCount * -1)
 				References.boardHandler.changeGraveyardPoolCount(cultistType,newCount)
 				
 			if effectChunk.targetGroup == effectChunk.targetFactions.CIVILIANS:
 				var newCount = clamp( References.boardHandler.boardFigures.get(cultistType,0) ,0,suspectedCount)
+				
+				if effectChunk.cancelCardIfFail and newCount != suspectedCount:
+					return
+				
 				References.boardHandler.changePoolCount(cultistType,newCount * -1)
 				References.boardHandler.changeGraveyardPoolCount(cultistType,newCount)
 			
 			if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY:
 				var newCount = clamp( selected_target.pool.get(cultistType,0) ,0,suspectedCount) 
+				
+				if effectChunk.cancelCardIfFail and newCount != suspectedCount:
+					return
+				
 				selected_target.changePoolCount(cultistType,newCount * -1)
 				References.boardHandler.changeGraveyardPoolCount(cultistType,newCount)

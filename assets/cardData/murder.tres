@@ -8,6 +8,7 @@ script = ExtResource("1_85cxg")
 type = 2
 targetType = 0
 count = 2
+cancelCardIfFail = true
 metadata/_custom_type_script = "uid://qhkavreto84g"
 
 [sub_resource type="Resource" id="Resource_eklwq"]
