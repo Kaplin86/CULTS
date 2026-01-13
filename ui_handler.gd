@@ -45,6 +45,18 @@ func _process(_delta):
 	if References.boardHandler.currentPlayer:
 		if !References.boardHandler.currentPlayer.isUser:
 			viewCards = false
+		
+		var boardArea = get_node("../Board/plyr"  + str(References.boardHandler.playerObjects.find(References.boardHandler.currentPlayer) + 1))
+		var wantedPos = boardArea.global_position
+		var dist = boardArea.get_child(0).shape.radius
+		wantedPos.x += dist * sin(boardArea.get_child(0).global_rotation.y + deg_to_rad(90))
+		wantedPos.z += dist * cos(boardArea.get_child(0).global_rotation.y + deg_to_rad(90))
+		
+		wantedPos += Vector3(0,4,0)
+		var tween = create_tween()
+		tween.tween_property($CurrentPlayer,"global_position",wantedPos,1)
+		
+		
 	
 	if selectorButtons.size() != References.boardHandler.playerObjects.size():
 		for I in selectorButtons:
@@ -65,6 +77,9 @@ func _process(_delta):
 		else:
 			button.visible = true
 		targetButtonMove(selectorButtons.find(button),button)
+	
+	
+	
 	
 func targetButtonMove(areaNum : int,button : Button):
 	var currentCam : Camera3D = get_viewport().get_camera_3d()
