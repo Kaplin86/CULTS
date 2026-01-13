@@ -1,0 +1,134 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4qnio0lbfbwj"]
+
+[ext_resource type="Script" uid="uid://lm8aiivn1ohb" path="res://scripts/card_generator.gd" id="1_wriam"]
+[ext_resource type="Texture2D" uid="uid://b3mgkb7hgru35" path="res://assets/cards/blank.svg" id="2_xnjhg"]
+[ext_resource type="FontFile" uid="uid://dp8hneqb4cirb" path="res://assets/misc/Times New Roman.ttf" id="3_xd7i4"]
+[ext_resource type="FontFile" uid="uid://q4e4dudun2om" path="res://assets/misc/VCR_OSD_MONO_1.001.ttf" id="4_xnjhg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wriam")
+
+[node name="Blank" type="Sprite2D" parent="."]
+position = Vector2(904, 318)
+scale = Vector2(0.620342, 0.620342)
+texture = ExtResource("2_xnjhg")
+
+[node name="Text" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 730.0
+offset_top = 55.0
+offset_right = 1078.0
+offset_bottom = 581.0
+
+[node name="name" type="RichTextLabel" parent="Text"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 35.0
+offset_right = 475.0
+offset_bottom = 121.0
+scale = Vector2(0.5, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xd7i4")
+theme_override_fonts/bold_font = ExtResource("3_xd7i4")
+theme_override_font_sizes/normal_font_size = 62
+text = "STRENGTHEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="desc" type="RichTextLabel" parent="Text"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 346.0
+offset_right = 617.0
+offset_bottom = 544.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_xnjhg")
+theme_override_font_sizes/normal_font_size = 47
+bbcode_enabled = true
+text = "THIS CARD CONSUMES ALL YOUR PIPS.
+ FOR EVERY PIP, GAIN 1 CHARTERUSE FOLLOWER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="desc2" type="RichTextLabel" parent="Text"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 453.0
+offset_right = 378.0
+offset_bottom = 531.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xd7i4")
+theme_override_fonts/bold_font = ExtResource("3_xd7i4")
+theme_override_font_sizes/normal_font_size = 54
+theme_override_font_sizes/bold_font_size = 54
+bbcode_enabled = true
+text = "[b]BENDY[/b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(348, 526)
+render_target_update_mode = 4
+
+[node name="Text" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 348.0
+offset_bottom = 526.0
+
+[node name="name" type="RichTextLabel" parent="SubViewport/Text"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 35.0
+offset_right = 475.0
+offset_bottom = 121.0
+scale = Vector2(0.5, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xd7i4")
+theme_override_fonts/bold_font = ExtResource("3_xd7i4")
+theme_override_font_sizes/normal_font_size = 62
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="desc" type="RichTextLabel" parent="SubViewport/Text"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 346.0
+offset_right = 617.0
+offset_bottom = 544.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xd7i4")
+theme_override_fonts/bold_font = ExtResource("3_xd7i4")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "BBB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="desc2" type="RichTextLabel" parent="SubViewport/Text"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 453.0
+offset_right = 378.0
+offset_bottom = 531.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xd7i4")
+theme_override_fonts/bold_font = ExtResource("3_xd7i4")
+theme_override_font_sizes/normal_font_size = 54
+theme_override_font_sizes/bold_font_size = 54
+bbcode_enabled = true
+text = "CCC"
+horizontal_alignment = 1
+vertical_alignment = 1
