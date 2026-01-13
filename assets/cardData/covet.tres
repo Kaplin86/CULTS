@@ -17,6 +17,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 [resource]
 script = ExtResource("2_ybqr4")
 card_name = "covet"
-text_description = "GAIN 1 AZURE AND IVORY FOLLOWER"
+text_description = "GAIN 1 AZURE FOLLOWER AND IVORY FOLLOWER"
 effects = Array[ExtResource("1_y1be3")]([SubResource("Resource_y1be3"), SubResource("Resource_ybqr4")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 [resource]
 script = ExtResource("2_dh3ts")
 card_name = "devour"
-text_description = "THIS CARD CONSUMES ALL YOUR PIPS. FOR EVERY PIP, GAIN 1 CHARTERUSE FOLLOWER"
+text_description = "THIS CARD CONSUMES ALL YOUR PIPS. FOR EVERY PIP, GAIN 1 CHARTREUSE FOLLOWER"
 pipCost = 3
 effects = Array[ExtResource("1_rgj4l")]([SubResource("Resource_rgj4l")])
 consumeExtraPips = 99
