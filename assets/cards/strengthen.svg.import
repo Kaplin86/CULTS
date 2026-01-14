@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://52g0s3fhw5oo"
-path="res://.godot/imported/snatch.svg-fe72a2b0c98b316e98477fee382ecfa3.ctex"
+uid="uid://bh8lk3fkl8aa7"
+path="res://.godot/imported/strengthen.svg-80f4b09328a768cd8fc8e3f687e45a20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/snatch.svg"
-dest_files=["res://.godot/imported/snatch.svg-fe72a2b0c98b316e98477fee382ecfa3.ctex"]
+source_file="res://assets/cards/strengthen.svg"
+dest_files=["res://.godot/imported/strengthen.svg-80f4b09328a768cd8fc8e3f687e45a20.ctex"]
 
 [params]
 

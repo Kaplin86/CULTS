@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://52g0s3fhw5oo"
-path="res://.godot/imported/snatch.svg-fe72a2b0c98b316e98477fee382ecfa3.ctex"
+uid="uid://617u8fka6bw6"
+path="res://.godot/imported/indulge.svg-01bc15a1f522db0f4bbafc54e51b80e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/snatch.svg"
-dest_files=["res://.godot/imported/snatch.svg-fe72a2b0c98b316e98477fee382ecfa3.ctex"]
+source_file="res://assets/cards/indulge.svg"
+dest_files=["res://.godot/imported/indulge.svg-01bc15a1f522db0f4bbafc54e51b80e8.ctex"]
 
 [params]
 
