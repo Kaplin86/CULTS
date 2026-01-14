@@ -22,6 +22,7 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_eklwq")
 card_name = "murder"
 text_description = "KILL 2 CRIMSON CIVILLIANS TO GAIN 4 AMBER FOLLOWERS"
+word = "QUESTIONABLE"
 pipCost = 3
 effects = Array[ExtResource("1_85cxg")]([SubResource("Resource_85cxg"), SubResource("Resource_eklwq")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

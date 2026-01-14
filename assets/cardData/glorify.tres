@@ -48,6 +48,7 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_kuoon")
 card_name = "glorify"
 text_description = "GAIN 1 AND 3 AZURE AND CRIMSON FOLLOWERS, THE ONE YOU HAVE THE MOST OF GAINS 3"
+word = "EVIL"
 pipCost = 3
 effects = Array[ExtResource("1_jfmt3")]([SubResource("Resource_1exck"), SubResource("Resource_4vo3m"), SubResource("Resource_dickx"), SubResource("Resource_6tm75")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

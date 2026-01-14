@@ -15,5 +15,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_j06yq")
 card_name = "thief"
 text_description = "STEAL 2 AMETHYST FOLLOWER"
+word = "LOVABLE"
 effects = Array[ExtResource("1_m4k74")]([SubResource("Resource_m4k74")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

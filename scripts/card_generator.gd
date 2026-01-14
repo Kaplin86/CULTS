@@ -9,20 +9,20 @@ var baseImage = """<image
   xlink:href="data:image/png;base64,{{BODY_TEXT}}"
 />"""
 
+var twopip = """
+<g stroke-width="0.5" stroke-linecap="butt">
+            <path d="M254.81152,154.91303c-1.38071,0 -2.5,-1.11929 -2.5,-2.5v-5.21214c0,-1.38071 1.11929,-2.5 2.5,-2.5h5.21214c1.38071,0 2.5,1.11929 2.5,2.5v5.21214c0,1.38071 -1.11929,2.5 -2.5,2.5z" fill="#ffffff" stroke="#f3f3f3"/>
+            <path d="M258.96389,146.92135c0,-0.69036 0.55964,-1.25 1.25,-1.25c0.69036,0 1.25,0.55964 1.25,1.25c0,0.69036 -0.55964,1.25 -1.25,1.25c-0.69036,0 -1.25,-0.55964 -1.25,-1.25z" fill="#000000" stroke="none"/>
+            <path d="M253.42094,152.78767c0,-0.69036 0.55964,-1.25 1.25,-1.25c0.69036,0 1.25,0.55964 1.25,1.25c0,0.69036 -0.55964,1.25 -1.25,1.25c-0.69036,0 -1.25,-0.55964 -1.25,-1.25z" fill="#000000" stroke="none"/>
+        </g>
+"""
+
 func _ready():
 	await RenderingServer.frame_post_draw
 	await RenderingServer.frame_post_draw
 	$Text/desc.parse_bbcode(sanitizeDesc($Text/desc.text))
-	makeNew()
 	
-	
-	var font : FontFile= $Text/desc.get_theme_font("font")
-	var longestDesc = "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
-	for I : CardData in References.CardHandler.loadedPull.values():
-		if font.get_string_size(I.text_description).x < font.get_string_size(longestDesc).x:
-			longestDesc = I.text_description
-	print(longestDesc)
-	
+	makeNew(References.CardHandler.loadedPull.values()[0])
 
 
 
@@ -33,12 +33,21 @@ func sanitizeDesc(desc):
 		newstring = newstring.replace(I.to_upper(),newimgtag)
 	return newstring
 
-func makeNew():
+func makeNew(cardData : CardData):
 	var opening = FileAccess.open("uid://b3mgkb7hgru35", FileAccess.READ)
 	var baseSVG = opening.get_as_text()
 	opening.close()
 	
-	var actualImage : Image = $SubViewport.get_texture().get_image()
+	var newviewport = $SubViewport.duplicate()
+	add_child(newviewport)
+	newviewport.get_child(0).get_child(0).text = cardData.card_name.to_upper()
+	newviewport.get_child(0).get_child(1).text = sanitizeDesc(cardData.text_description)
+	newviewport.get_child(0).get_child(2).text = cardData.word
+	
+	await RenderingServer.frame_post_draw
+	await RenderingServer.frame_post_draw
+	
+	var actualImage : Image = newviewport.get_texture().get_image()
 	var bytes : PackedByteArray = actualImage.save_png_to_buffer()
 	var data : String = Marshalls.raw_to_base64(bytes)
 	var newChunk = baseImage.replace("{{BODY_TEXT}}",data)

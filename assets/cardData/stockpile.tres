@@ -48,6 +48,7 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_tpqu3")
 card_name = "stockpile"
 text_description = "GAIN 1 AND 3 GOLD AND AMETHYST FOLLOWERS, THE ONE YOU HAVE THE LEAST OF GAINS 3"
+word = "STRANGE"
 pipCost = 3
 effects = Array[ExtResource("1_tuo34")]([SubResource("Resource_knbkw"), SubResource("Resource_pyyad"), SubResource("Resource_uelvp"), SubResource("Resource_toioo")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

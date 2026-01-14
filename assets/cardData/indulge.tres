@@ -56,6 +56,7 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_jdxli")
 card_name = "indulge"
 text_description = "GAIN 1 IVORY FOLLOWER FOR EVERY 2 GOLD FOLLOWERS YOU HAVE, UP TO 4"
+word = "RAPID"
 pipCost = 3
 effects = Array[ExtResource("1_2h78c")]([SubResource("Resource_pwmln"), SubResource("Resource_edcuh"), SubResource("Resource_28cu4"), SubResource("Resource_qv4hg")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

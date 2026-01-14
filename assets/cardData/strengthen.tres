@@ -14,5 +14,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_3rx0x")
 card_name = "strengthen"
 text_description = "GAIN 2 AMBER FOLLOWERS"
+word = "NEAT"
 effects = Array[ExtResource("1_1svkh")]([SubResource("Resource_1svkh")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

@@ -19,5 +19,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_v2pcu")
 card_name = "idle"
 text_description = "GAIN 1 CHARTREUSE AND 1 AMBER FOLLOWER"
+word = "LAZY"
 effects = Array[ExtResource("1_6yppf")]([SubResource("Resource_6yppf"), SubResource("Resource_v2pcu")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

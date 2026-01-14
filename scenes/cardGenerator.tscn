@@ -61,18 +61,18 @@ vertical_alignment = 1
 
 [node name="desc2" type="RichTextLabel" parent="Text"]
 layout_mode = 0
-offset_left = 108.0
+offset_left = 96.0
 offset_top = 453.0
-offset_right = 378.0
+offset_right = 414.0
 offset_bottom = 531.0
 scale = Vector2(0.5, 0.5)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_xd7i4")
 theme_override_fonts/bold_font = ExtResource("3_xd7i4")
-theme_override_font_sizes/normal_font_size = 54
-theme_override_font_sizes/bold_font_size = 54
+theme_override_font_sizes/normal_font_size = 44
+theme_override_font_sizes/bold_font_size = 44
 bbcode_enabled = true
-text = "[b]BENDY[/b]"
+text = "THOUGHTFUL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -81,13 +81,13 @@ transparent_bg = true
 size = Vector2i(348, 526)
 render_target_update_mode = 4
 
-[node name="Text" type="Control" parent="SubViewport"]
+[node name="Text2" type="Control" parent="SubViewport"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 348.0
 offset_bottom = 526.0
 
-[node name="name" type="RichTextLabel" parent="SubViewport/Text"]
+[node name="name" type="RichTextLabel" parent="SubViewport/Text2"]
 layout_mode = 0
 offset_left = 25.0
 offset_top = 35.0
@@ -98,41 +98,41 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_xd7i4")
 theme_override_fonts/bold_font = ExtResource("3_xd7i4")
 theme_override_font_sizes/normal_font_size = 62
-text = "AAA"
+text = "STRENGTHEN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="desc" type="RichTextLabel" parent="SubViewport/Text"]
+[node name="desc" type="RichTextLabel" parent="SubViewport/Text2"]
 layout_mode = 0
 offset_left = 27.0
-offset_top = 346.0
+offset_top = 347.0
 offset_right = 617.0
-offset_bottom = 544.0
+offset_bottom = 537.0
 scale = Vector2(0.5, 0.5)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_xd7i4")
-theme_override_fonts/bold_font = ExtResource("3_xd7i4")
-theme_override_font_sizes/normal_font_size = 35
+theme_override_fonts/normal_font = ExtResource("4_xnjhg")
+theme_override_font_sizes/normal_font_size = 42
 bbcode_enabled = true
-text = "BBB
+text = "STEAL 2 IVORY FOLLOWER
 "
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="desc2" type="RichTextLabel" parent="SubViewport/Text"]
+[node name="desc2" type="RichTextLabel" parent="SubViewport/Text2"]
 layout_mode = 0
-offset_left = 108.0
+offset_left = 96.0
 offset_top = 453.0
-offset_right = 378.0
+offset_right = 414.0
 offset_bottom = 531.0
 scale = Vector2(0.5, 0.5)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_xd7i4")
 theme_override_fonts/bold_font = ExtResource("3_xd7i4")
-theme_override_font_sizes/normal_font_size = 54
-theme_override_font_sizes/bold_font_size = 54
+theme_override_font_sizes/normal_font_size = 44
+theme_override_font_sizes/bold_font_size = 44
 bbcode_enabled = true
-text = "CCC"
+text = "THOUGHTFUL"
 horizontal_alignment = 1
 vertical_alignment = 1
 

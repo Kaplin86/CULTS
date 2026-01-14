@@ -14,5 +14,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_bvpor")
 card_name = "feed"
 text_description = "GAIN 2 CHARTREUSE FOLLOWERS"
+word = "SMALL"
 effects = Array[ExtResource("1_o2ka5")]([SubResource("Resource_o2ka5")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

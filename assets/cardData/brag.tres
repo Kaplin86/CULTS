@@ -14,5 +14,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_gp5jk")
 card_name = "brag"
 text_description = "GAIN 2 AZURE FOLLOWERS"
+word = "ANNOYING"
 effects = Array[ExtResource("1_sajsv")]([SubResource("Resource_sajsv")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

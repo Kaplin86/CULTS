@@ -27,5 +27,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_15blk")
 card_name = "laze"
 text_description = "IF YOU HAVE EXACTLY 2 PIPS REMAINING, GAIN 4 CHARTERUSE FOLLOWERS, OTHERWISE 2"
+word = "LONGING"
 effects = Array[ExtResource("1_qhfc6")]([SubResource("Resource_mgd01"), SubResource("Resource_oy58d")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

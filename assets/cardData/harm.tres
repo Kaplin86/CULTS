@@ -21,5 +21,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_qc8r0")
 card_name = "harm"
 text_description = "KILL 1 CRIMSON CIVILLIAN TO GET 2 AMBER FOLLOWERS"
+word = "PAINFUL"
 effects = Array[ExtResource("1_7r4yv")]([SubResource("Resource_7r4yv"), SubResource("Resource_qc8r0")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

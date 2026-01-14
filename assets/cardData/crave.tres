@@ -13,5 +13,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_2asr8")
 card_name = "crave"
 text_description = "GAIN 2 IVORY FOLLOWERS"
+word = "TASTEFUL"
 effects = Array[ExtResource("1_1a62p")]([SubResource("Resource_1a62p")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

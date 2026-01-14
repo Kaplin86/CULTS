@@ -19,5 +19,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_06ut2")
 card_name = "hoard"
 text_description = "GAIN 1 AMETHYST AND 1 GOLD FOLLOWER"
+word = "SNEAKY"
 effects = Array[ExtResource("1_0hfhx")]([SubResource("Resource_0hfhx"), SubResource("Resource_06ut2")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"

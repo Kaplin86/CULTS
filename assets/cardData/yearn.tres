@@ -14,5 +14,6 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 script = ExtResource("2_s5dr3")
 card_name = "yearn"
 text_description = "GAIN 2 GOLD FOLLOWERS"
+word = "YELPING"
 effects = Array[ExtResource("1_onk31")]([SubResource("Resource_onk31")])
 metadata/_custom_type_script = "uid://gabpvdnuhasd"
