@@ -29,6 +29,7 @@ func _process(_delta):
 func _ready():
 	if cardData:
 		tooltip_text = cardData.text_description
+		$Vis.texture = load("res://assets/cards/" + cardData.card_name + ".svg")
 
 func _on_mouse_entered():
 	References.uiHandler.hoverCard = self

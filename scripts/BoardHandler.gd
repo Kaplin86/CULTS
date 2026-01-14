@@ -295,6 +295,9 @@ func runTurn(player :PlayerResource, anim = true):
 var usingCard = false
 
 func animatedCardSegment(carddata : CardData, state : int = -1):
+	
+	$"../BigCard".texture = load("res://assets/cards/" + carddata.card_name + ".svg")
+	
 	if state in [-1,0]:
 		$"../BigCard/AnimationPlayer".play("fall")
 	
