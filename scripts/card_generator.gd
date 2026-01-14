@@ -39,7 +39,15 @@ func _ready():
 	$Text/desc.parse_bbcode(sanitizeDesc($Text/desc.text))
 	
 	
-
+var typeToColor := {
+	"crimson":Color("943C29"),
+	"azure":Color("5CA9F2"),
+	"ivory":Color("ddc7c7ff"), 
+	"amethyst":Color("6229a9ff"),
+	"gold":Color("CDCA4A"),
+	"chartreuse":Color("7AA341"),
+	"amber":Color("DE6939")
+}
 
 
 func sanitizeDesc(desc):

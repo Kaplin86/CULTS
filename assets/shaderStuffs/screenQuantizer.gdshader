@@ -50,7 +50,8 @@ void fragment() {
 
 	vec2 d_size = vec2(textureSize(dither_texture, 0));
 	vec2 d_uv = mod(UV * screen_size, d_size) / d_size;
-
+	
+	vec4 screencol = texture(SCREEN_TEXTURE, sample_uv);
 	vec3 col = texture(SCREEN_TEXTURE, sample_uv).rgb;
 	float d_val = texture(dither_texture, d_uv).r;
 
@@ -59,5 +60,5 @@ void fragment() {
 		q[i] = dither(col[i], threshold * d_val, levels);
 
 	COLOR.rgb = nearest_palette_color(q);
-	COLOR.a = 1.0;
+	COLOR.a = screencol.a;
 }
