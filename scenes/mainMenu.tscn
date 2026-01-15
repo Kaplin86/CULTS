@@ -1,0 +1,146 @@
+[gd_scene load_steps=18 format=3 uid="uid://cb4wixhytvkeh"]
+
+[ext_resource type="Script" uid="uid://3phadsllqajj" path="res://scripts/gameBoxSpin.gd" id="1_3d1i7"]
+[ext_resource type="Script" uid="uid://tmm5j54esu6j" path="res://scripts/main_menu.gd" id="1_7nrmo"]
+[ext_resource type="Texture2D" uid="uid://ijb6mqsx6gai" path="res://assets/logo/boxCover1.png" id="1_qkhwq"]
+[ext_resource type="Script" uid="uid://dl0elgd8qbgfx" path="res://scripts/MainMenuMouse.gd" id="3_48ign"]
+[ext_resource type="Texture2D" uid="uid://bs6bsftag3ymi" path="res://assets/logo/logo.svg" id="4_l7wge"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7uy4"]
+albedo_color = Color(1, 0.862, 0.07999998, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qkhwq"]
+material = SubResource("StandardMaterial3D_c7uy4")
+size = Vector3(4.023, 2.98, 0.805)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_3d1i7"]
+input_name = "sky_coords"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_48ign"]
+source = 5
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_l7wge"]
+parameter_name = "tex"
+texture_type = 1
+
+[sub_resource type="VisualShader" id="VisualShader_7nrmo"]
+code = "shader_type sky;
+uniform sampler2D tex : source_color;
+
+
+
+void sky() {
+// Input:2
+	vec2 n_out2p0 = SKY_COORDS;
+
+
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(tex, n_out2p0);
+
+
+// Output:0
+	COLOR = vec3(n_out3p0.xyz);
+
+
+}
+"
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/sky/0/position = Vector2(700, 100)
+nodes/sky/2/node = SubResource("VisualShaderNodeInput_3d1i7")
+nodes/sky/2/position = Vector2(-20, 80)
+nodes/sky/3/node = SubResource("VisualShaderNodeTexture_48ign")
+nodes/sky/3/position = Vector2(360, 100)
+nodes/sky/4/node = SubResource("VisualShaderNodeTexture2DParameter_l7wge")
+nodes/sky/4/position = Vector2(-20, 240)
+nodes/sky/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 0, 0, 4, 0, 3, 2)
+
+[sub_resource type="Gradient" id="Gradient_clbkb"]
+offsets = PackedFloat32Array(0, 0.5170068, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.83889705, 0.83889705, 0.838897, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ldpc3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y35fp"]
+noise = SubResource("FastNoiseLite_ldpc3")
+color_ramp = SubResource("Gradient_clbkb")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dj72i"]
+shader = SubResource("VisualShader_7nrmo")
+shader_parameter/tex = SubResource("NoiseTexture2D_y35fp")
+
+[sub_resource type="Sky" id="Sky_6b2wv"]
+sky_material = SubResource("ShaderMaterial_dj72i")
+
+[sub_resource type="Environment" id="Environment_tov5d"]
+background_mode = 2
+sky = SubResource("Sky_6b2wv")
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_7nrmo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9920783, 0.024872677, -0.12313371, 0.002162294, 0.97667605, 0.21470742, 0.12560208, -0.2132728, 0.9688855, 0, 0.71100295, 0)
+mesh = SubResource("BoxMesh_qkhwq")
+script = ExtResource("1_3d1i7")
+
+[node name="Sprite3D" type="Sprite3D" parent="MeshInstance3D"]
+transform = Transform3D(0.6842527, 1.777776e-09, -7.450581e-09, 0, 0.6822667, -2.9802322e-08, 0, 0, 0.97392696, -0.0045184493, -0.007388234, 0.40639418)
+shaded = true
+texture = ExtResource("1_qkhwq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tov5d")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.89879405, 0.007650631, 0.4383044, 0, 0.9998477, -0.017452406, -0.43837115, 0.015686119, 0.8986572, 1.2125688, 1.2607013, 6.275153)
+fov = 47.479263
+script = ExtResource("3_48ign")
+
+[node name="Node2D" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Logo" type="Sprite2D" parent="Node2D"]
+position = Vector2(119, 609)
+scale = Vector2(0.11901938, 0.11901938)
+texture = ExtResource("4_l7wge")
+
+[node name="Control" type="Control" parent="Node2D"]
+anchors_preset = 0
+offset_left = 244.0
+offset_top = 571.0
+offset_right = 1144.0
+offset_bottom = 645.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Node2D/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Normal" type="Button" parent="Node2D/Control/HBoxContainer"]
+custom_minimum_size = Vector2(142.835, 0)
+layout_mode = 2
+text = "Normal Game"
+
+[node name="Custom" type="Button" parent="Node2D/Control/HBoxContainer"]
+custom_minimum_size = Vector2(142.835, 0)
+layout_mode = 2
+text = "Custom Game"
+
+[node name="Settings" type="Button" parent="Node2D/Control/HBoxContainer"]
+custom_minimum_size = Vector2(142.835, 0)
+layout_mode = 2
+text = "Settings"
+
+[connection signal="pressed" from="Node2D/Control/HBoxContainer/Normal" to="." method="_on_normal_pressed"]

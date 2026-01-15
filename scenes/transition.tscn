@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://buem7vxcho2se"]
+
+[ext_resource type="Script" uid="uid://8itk40cpyews" path="res://Transition.gd" id="1_f0i4t"]
+[ext_resource type="Texture2D" uid="uid://bodb5wcc0jbxk" path="res://assets/misc/blackPixel.png" id="2_px735"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xmi56"]
+texture = ExtResource("2_px735")
+texture_region_size = Vector2i(2, 2)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hi828"]
+tile_size = Vector2i(2, 2)
+sources/0 = SubResource("TileSetAtlasSource_xmi56")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_f0i4t")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Node2D"]
+tile_map_data = PackedByteArray(0, 0, 46, 1, 135, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_hi828")
