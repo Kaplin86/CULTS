@@ -3,36 +3,28 @@ extends CanvasLayer
 var untagged = []
 var todo = []
 var dt = 0.0
+var targetColor = Color.BLACK
+var Gdelta = 0.1
+
 func _process(delta):
+	Gdelta = delta
+
+func transition(wantedScene : String):
+	targetColor = Color.BLACK
+	var ramp : Gradient = $Sprite2D.texture.color_ramp
+	ramp.set_color(0,Color(0.0, 0.0, 0.0, 0.0))
 	
-	dt += delta
+	while ramp.get_offset(0) <= 0.9:
+		ramp.set_color(0,ramp.get_color(0).lerp(targetColor,Gdelta * 2))
+		ramp.set_offset(0,lerp(ramp.get_offset(0),targetColor.a,Gdelta))
+		print(ramp.get_offset(0))
+		await RenderingServer.frame_post_draw
 	
-	if todo == []:
-		todo = $Node2D/TileMapLayer.get_used_cells()
+	get_tree().change_scene_to_file(wantedScene)
 	
-	if dt <= 0.5:
-		return
-	
-	for I : Vector2i in todo:
-		if not I in untagged:
-			untagged.append(I)
-			todo.erase(I)
-			var pos = I + Vector2i(randi_range(-1,1),randi_range(-1,1))
-			$Node2D/TileMapLayer.set_cell(pos,0,Vector2i(0,0),0)
-			todo.append(pos)
-			
-			pos = I + Vector2i(randi_range(-1,1),randi_range(-1,1))
-			$Node2D/TileMapLayer.set_cell(pos,0,Vector2i(0,0),0)
-			todo.append(pos)
-			
-			pos = I + Vector2i(randi_range(-1,1),randi_range(-1,1))
-			$Node2D/TileMapLayer.set_cell(pos,0,Vector2i(0,0),0)
-			todo.append(pos)
-			
-			pos = I + Vector2i(randi_range(-1,1),randi_range(-1,1))
-			$Node2D/TileMapLayer.set_cell(pos,0,Vector2i(0,0),0)
-			todo.append(pos)
-		
-		#for X in 3:
-		#	for Y in 3:
-		#		print(X - 1,Y - 1)
+	targetColor = Color(0.0, 0.0, 0.0, 0.0)
+	while ramp.get_offset(0) != 0.0:
+		ramp.set_color(0,ramp.get_color(0).lerp(targetColor,Gdelta * 2))
+		ramp.set_offset(0,lerp(ramp.get_offset(0),targetColor.a,Gdelta))
+		print(ramp.get_offset(0))
+		await RenderingServer.frame_post_draw

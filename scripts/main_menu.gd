@@ -2,4 +2,4 @@ extends Node3D
 
 
 func _on_normal_pressed():
-	pass # Replace with function body.
+	Transition.transition("uid://xg852gnosvsa")

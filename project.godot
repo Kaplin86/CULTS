@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 References="*res://references.gd"
 CoolShader="*res://scenes/cool_shader.tscn"
+Transition="*res://scenes/transition.tscn"
 
 [display]
 
