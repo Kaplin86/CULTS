@@ -156,18 +156,22 @@ func getBoardCount():
 
 func resetBoard():
 	boardFigures = {
-	"crimson":43, 
-	"azure":43,
-	"ivory":43, 
-	"amethyst":43,
-	"gold":43,
-	"chartreuse":43,
-	"amber":43
+	"crimson":References.FollowerCount, 
+	"azure":References.FollowerCount,
+	"ivory":References.FollowerCount, 
+	"amethyst":References.FollowerCount,
+	"gold":References.FollowerCount,
+	"chartreuse":References.FollowerCount,
+	"amber":References.FollowerCount
 	}
 	graveyardFigures.clear()
-	for E in playerObjects:
-		E.pool.clear()
-		E.cards.clear()
+	playerObjects.clear()
+	var cpus = References.CPUCount
+	print("cpu count is", cpus)
+	for I in References.PlayerCount - cpus:
+		playerObjects.append(PlayerResource.new(true,References.takenNames))
+	for I in cpus:
+		playerObjects.append(PlayerResource.new(false,References.takenNames))
 
 
 var queueAnims = []
@@ -184,7 +188,7 @@ func parseQueuedAnims():
 
 func _ready() -> void:
 	References.boardHandler = self
-	
+	resetBoard()
 	renderNewBoard()
 	
 	
@@ -201,7 +205,7 @@ func _ready() -> void:
 			E.cards.append(selectedCard)
 			availablecards.erase(selectedCard)
 	
-	playerObjects[1].cards = [ References.CardHandler.loadedPull["crave"] ]
+	
 	
 	while getBoardCount() != 0:
 		for plyr in playerObjects:

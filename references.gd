@@ -10,3 +10,10 @@ var uiHandler : uiHandlerNode
 var CardHandler : CardHandlerNode
 
 var takenNames = []
+
+
+# vars
+var PlayerCount = 5
+var DiceCount = 1
+var FollowerCount = 43
+var CPUCount = 4
