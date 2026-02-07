@@ -34,9 +34,13 @@ var sixthpip = """
 <g stroke-width="0.5" stroke-linecap="butt"><path d="M254.81153,154.91303c-1.38071,0 -2.5,-1.11929 -2.5,-2.5v-5.21214c0,-1.38071 1.11929,-2.5 2.5,-2.5h5.21214c1.38071,0 2.5,1.11929 2.5,2.5v5.21214c0,1.38071 -1.11929,2.5 -2.5,2.5z" fill="#ffffff" stroke="#f3f3f3"/><path d="M258.96389,146.92135c0,-0.69036 0.55964,-1.25 1.25,-1.25c0.69036,0 1.25,0.55964 1.25,1.25c0,0.69036 -0.55964,1.25 -1.25,1.25c-0.69036,0 -1.25,-0.55964 -1.25,-1.25z" fill="#000000" stroke="none"/><path d="M253.42095,152.78767c0,-0.69036 0.55964,-1.25 1.25,-1.25c0.69036,0 1.25,0.55964 1.25,1.25c0,0.69036 -0.55964,1.25 -1.25,1.25c-0.69036,0 -1.25,-0.55964 -1.25,-1.25z" fill="#000000" stroke="none"/><path d="M253.42992,147.05608c0,-0.69036 0.55964,-1.25 1.25,-1.25c0.69036,0 1.25,0.55964 1.25,1.25c0,0.69036 -0.55964,1.25 -1.25,1.25c-0.69036,0 -1.25,-0.55964 -1.25,-1.25z" fill="#000000" stroke="none"/><path d="M258.96555,152.81488c0,-0.69036 0.55964,-1.25 1.25,-1.25c0.69036,0 1.25,0.55964 1.25,1.25c0,0.69036 -0.55964,1.25 -1.25,1.25c-0.69036,0 -1.25,-0.55964 -1.25,-1.25z" fill="#000000" stroke="none"/><path d="M259.09863,149.82348c0,-0.69036 0.55964,-1.25 1.25,-1.25c0.69036,0 1.25,0.55964 1.25,1.25c0,0.69036 -0.55964,1.25 -1.25,1.25c-0.69036,0 -1.25,-0.55964 -1.25,-1.25z" fill="#000000" stroke="none"/><path d="M253.52002,149.86894c0,-0.69036 0.55964,-1.25 1.25,-1.25c0.69036,0 1.25,0.55964 1.25,1.25c0,0.69036 -0.55964,1.25 -1.25,1.25c-0.69036,0 -1.25,-0.55964 -1.25,-1.25z" fill="#000000" stroke="none"/></g>"""
 
 func _ready():
+	var TextObj = $Text
+	TextObj.reparent($SubViewport)
+	TextObj.position = Vector2.ZERO
+	
 	await RenderingServer.frame_post_draw
 	await RenderingServer.frame_post_draw
-	$Text/desc.parse_bbcode(sanitizeDesc($Text/desc.text))
+	#$Text/desc.parse_bbcode(sanitizeDesc($Text/desc.text))
 	
 	
 var typeToColor := {
@@ -66,7 +70,7 @@ func makeNew(cardData : CardData, destination : String):
 	add_child(newviewport)
 	newviewport.get_child(0).get_child(0).text = cardData.card_name.to_upper()
 	newviewport.get_child(0).get_child(1).text = sanitizeDesc(cardData.text_description)
-	newviewport.get_child(0).get_child(2).text = cardData.word
+	newviewport.get_child(0).get_child(2).text = cardData.word.to_upper()
 	
 	await RenderingServer.frame_post_draw
 	await RenderingServer.frame_post_draw
@@ -99,4 +103,6 @@ func makeNew(cardData : CardData, destination : String):
 func _on_file_dialog_dir_selected(dir):
 	print(dir)
 	for I in References.CardHandler.loadedPull.values():
+		makeNew(I,dir)
+	for I in References.CardHandler.loadedPush.values():
 		makeNew(I,dir)

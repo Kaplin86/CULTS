@@ -157,6 +157,7 @@ layout_mode = 2
 text = "Settings"
 
 [node name="Panel" type="Panel" parent="Node2D"]
+visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0

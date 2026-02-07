@@ -47,4 +47,5 @@ func _process(delta):
 
 func _on_cancel_pressed():
 	$Node2D/Panel.visible = false
+	$Node2D/Panel.mouse_filter = Control.MouseFilter.MOUSE_FILTER_IGNORE
 	$Node2D/Control/HBoxContainer.visible = true

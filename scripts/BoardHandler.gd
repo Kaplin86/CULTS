@@ -1,7 +1,7 @@
 extends Node
 class_name boardHandlerNode
 
-var playerObjects : Array[PlayerResource] = [PlayerResource.new(true,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames),PlayerResource.new(false,References.takenNames)]
+var playerObjects : Array[PlayerResource] = []
 
 @export var MainArea : Area3D
 @export var PlayerplayingAreas : Array[Area3D] = []
@@ -184,7 +184,18 @@ func parseQueuedAnims():
 			moveCivToPlayer(I.get("follower","n/a"),I.get("plyr"),I.get("count",1))
 		if I.get("type","n/a") == "PTP":
 			movePlayerToPlayer(I.get("follower","n/a"),I.get("plyr1"),I.get("plyr2"),I.get("count",1))
+		if I.get("type","n/a") == "CTG":
+			pass #ADD THE ANIMS HERE
+		if I.get("type","n/a") == "PTG":
+			pass
 	queueAnims.clear()
+
+func addCardsFromPool(pool,cardsToAppend,count):
+	var availablecards = pool
+	for i in count:
+		var selectedCard = availablecards.pick_random()
+		cardsToAppend.append(selectedCard)
+		availablecards.erase(selectedCard)
 
 func _ready() -> void:
 	References.boardHandler = self
@@ -198,12 +209,10 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(1).timeout
 	
-	for E in playerObjects:
-		var availablecards = References.CardHandler.loadedPull.values().duplicate()
-		for i in 3:
-			var selectedCard = availablecards.pick_random()
-			E.cards.append(selectedCard)
-			availablecards.erase(selectedCard)
+	for E in playerObjects:		
+		addCardsFromPool(References.CardHandler.loadedPull.values(),E.cards,1)
+		addCardsFromPool(References.CardHandler.loadedPush.values(),E.cards,1)
+		
 	
 	
 	
@@ -252,8 +261,23 @@ func simGames():
 				for E in largestPlayer.cards:
 					winningCards[E.card_name] = winningCards.get(E.card_name,0) + 1
 			overallwinning[Vector2(count + 1,plyrCount)] = winningCards
-	print(overallwinning)
 
+
+func sortPlayerByMostFollowers():
+	var sortDictionary = {}
+	var sortedList = []
+	for I in playerObjects:
+		var PieceCount = I.getPoolCount() + (0.001 * playerObjects.find(I))
+		sortDictionary[PieceCount] = I 
+	var order = sortDictionary.keys()
+	order.sort()
+	order.reverse()
+	for I in order:
+		sortedList.append(sortDictionary[I])
+	return sortedList
+
+func calculateOddsForNewCard(placement,playerCount):
+	return (cos(placement * (PI/ ((playerCount - 1)/2)  ) ) * 0.3) + 0.5
 
 var currentPlayerPips = 0
 var currentPlayer = null
@@ -295,6 +319,29 @@ func runTurn(player :PlayerResource, anim = true):
 			
 			#print("using card ", usingCard.card_name, " for ", usingCard.pipCost)
 		
+		var currentRanking = sortPlayerByMostFollowers()
+		print("My Placement is ",  sortPlayerByMostFollowers().find(player) + 1, "#")
+		var oddsToUseCard = calculateOddsForNewCard(currentRanking.find(player),playerObjects.size())
+		if randf() <= oddsToUseCard:
+			# this is the part where they get the extra card
+			var usableTypes = []
+			for I in player.pool:
+				if player.pool[I] >= References.CostForNewCard:
+					usableTypes.append(I)
+			
+			if usableTypes != []:
+				var chosenType = usableTypes.pick_random()
+				
+				var newCount = clamp( player.pool.get(chosenType,0) ,0,References.CostForNewCard)
+				player.changePoolCount(chosenType,newCount * -1)
+				References.boardHandler.changeGraveyardPoolCount(chosenType,newCount)
+				References.boardHandler.queueAnims.append({"type":"PTG","follower":chosenType,"plyr":player,"count":newCount})
+				
+				var chosenCardType = ["pull","push"].pick_random()
+				if chosenCardType == "pull":
+					addCardsFromPool(References.CardHandler.loadedPull.values(),player.cards,1)
+				elif chosenCardType == "push":
+					addCardsFromPool(References.CardHandler.loadedPush.values(),player.cards,1)
 
 var usingCard = false
 

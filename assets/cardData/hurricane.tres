@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://dc0ypeme428k5"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_2t7ek"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_kofxu"]
+
+[sub_resource type="Resource" id="Resource_hu2y0"]
+script = ExtResource("1_2t7ek")
+type = 2
+targetGroup = 3
+count = 3
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_kofxu")
+card_name = "hurricane"
+text_description = "KILL 3 ENEMY IVORY FOLLOWERS"
+word = "Windy"
+pipCost = 4
+effects = Array[ExtResource("1_2t7ek")]([SubResource("Resource_hu2y0")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

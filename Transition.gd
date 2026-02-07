@@ -17,7 +17,6 @@ func transition(wantedScene : String):
 	while ramp.get_offset(0) <= 0.9:
 		ramp.set_color(0,ramp.get_color(0).lerp(targetColor,Gdelta * 2))
 		ramp.set_offset(0,lerp(ramp.get_offset(0),targetColor.a,Gdelta))
-		print(ramp.get_offset(0))
 		await RenderingServer.frame_post_draw
 	
 	get_tree().change_scene_to_file(wantedScene)
@@ -26,5 +25,4 @@ func transition(wantedScene : String):
 	while ramp.get_offset(0) != 0.0:
 		ramp.set_color(0,ramp.get_color(0).lerp(targetColor,Gdelta * 2))
 		ramp.set_offset(0,lerp(ramp.get_offset(0),targetColor.a,Gdelta))
-		print(ramp.get_offset(0))
 		await RenderingServer.frame_post_draw

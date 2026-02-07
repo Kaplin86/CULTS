@@ -1,12 +1,15 @@
 extends Node
 class_name CardHandlerNode
 
-var loadedPull = {}
+var loadedPull = {} # for loaded pull card resources
+var loadedPush = {} # for loaded push card resources
 
 func _ready():
 	References.CardHandler = self
 	for pullName in References.pullCards:
 		loadedPull[pullName] = ResourceLoader.load("res://assets/cardData/"+pullName+".tres")
+	for pushName in References.pushCards:
+		loadedPush[pushName] = ResourceLoader.load("res://assets/cardData/"+pushName+".tres")
 
 func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 	
@@ -83,6 +86,7 @@ func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 				
 				player.changePoolCount(cultistType,newCount * -1)
 				References.boardHandler.changeGraveyardPoolCount(cultistType,newCount)
+				References.boardHandler.queueAnims.append({"type":"PTG","follower":effectChunk.targetType,"plyr":player,"count":newCount})
 				
 			if effectChunk.targetGroup == effectChunk.targetFactions.CIVILIANS:
 				var newCount = clamp( References.boardHandler.boardFigures.get(cultistType,0) ,0,suspectedCount)
@@ -92,6 +96,7 @@ func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 				
 				References.boardHandler.changePoolCount(cultistType,newCount * -1)
 				References.boardHandler.changeGraveyardPoolCount(cultistType,newCount)
+				References.boardHandler.queueAnims.append({"type":"CTG","follower":effectChunk.targetType,"count":newCount})
 			
 			if effectChunk.targetGroup == effectChunk.targetFactions.SELECTED_ENEMY:
 				var newCount = clamp( selected_target.pool.get(cultistType,0) ,0,suspectedCount) 
@@ -101,3 +106,4 @@ func runCard(data : CardData,player : PlayerResource, currentPips = 0):
 				
 				selected_target.changePoolCount(cultistType,newCount * -1)
 				References.boardHandler.changeGraveyardPoolCount(cultistType,newCount)
+				References.boardHandler.queueAnims.append({"type":"PTG","follower":effectChunk.targetType,"plyr":selected_target,"count":newCount})

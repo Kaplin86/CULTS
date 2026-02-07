@@ -268,7 +268,7 @@ texture = ExtResource("11_yaehf")
 script = ExtResource("8_5vw27")
 
 [node name="Board" type="Sprite3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.39514115, 0.92184734)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.39514115, -0.095154285)
 axis = 1
 texture = ExtResource("13_yaehf")
 

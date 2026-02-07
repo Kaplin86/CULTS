@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://bp84q2oejf6vr"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_1s78b"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_rewt6"]
+
+[sub_resource type="Resource" id="Resource_1s78b"]
+script = ExtResource("1_1s78b")
+type = 2
+targetGroup = 0
+count = 5
+cancelCardIfFail = true
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_rewt6"]
+script = ExtResource("1_1s78b")
+type = 1
+targetGroup = 3
+targetType = 3
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_plq6c"]
+script = ExtResource("1_1s78b")
+type = 1
+targetGroup = 3
+targetType = 4
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_n0m28"]
+script = ExtResource("1_1s78b")
+type = 1
+targetGroup = 3
+targetType = 0
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_rewt6")
+card_name = "conquest"
+text_description = "KILL 5 IVORY FOLLOWERS, STEAL 1 AMETHYST GOLD AND CRIMSON FOLLOWER FROM ANY PLAYER"
+word = "victorious"
+pipCost = 4
+effects = Array[ExtResource("1_1s78b")]([SubResource("Resource_1s78b"), SubResource("Resource_rewt6"), SubResource("Resource_plq6c"), SubResource("Resource_n0m28")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

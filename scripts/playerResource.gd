@@ -15,7 +15,7 @@ func _init(user := false, takenNames = []):
 	for Name in takenNames:
 		_displayNameChoices.erase(Name)
 	displayName = _displayNameChoices.pick_random()
-
+	print("Hi i am picking a name and the taken names are ", takenNames)
 	
 	References.takenNames.append(displayName)
 

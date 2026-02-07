@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://c8wsllolixg1a"]
+
+[ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_eynun"]
+[ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_sfbjp"]
+
+[sub_resource type="Resource" id="Resource_eynun"]
+script = ExtResource("1_eynun")
+type = 2
+targetGroup = 0
+targetType = 3
+count = 2
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[sub_resource type="Resource" id="Resource_sfbjp"]
+script = ExtResource("1_eynun")
+type = 1
+targetGroup = 3
+targetType = 3
+count = 4
+metadata/_custom_type_script = "uid://qhkavreto84g"
+
+[resource]
+script = ExtResource("2_sfbjp")
+card_name = "curse"
+text_description = "KILL 2 AMETHYST FOLLOWERS, STEAL 4 AMETHYST FOLLOWERS"
+word = "Cursed"
+pipCost = 4
+effects = Array[ExtResource("1_eynun")]([SubResource("Resource_eynun"), SubResource("Resource_sfbjp")])
+metadata/_custom_type_script = "uid://gabpvdnuhasd"

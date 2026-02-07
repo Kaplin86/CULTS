@@ -1,19 +1,12 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=12 format=3 uid="uid://m5bgrsc6l7n5"]
+[gd_resource type="Resource" script_class="CardData" load_steps=11 format=3 uid="uid://m5bgrsc6l7n5"]
 
 [ext_resource type="Script" uid="uid://qhkavreto84g" path="res://assets/cardData/effectData.gd" id="1_2h78c"]
 [ext_resource type="Script" uid="uid://gabpvdnuhasd" path="res://assets/cardData/cardData.gd" id="2_jdxli"]
 [ext_resource type="Script" uid="uid://db0def6h2ura5" path="res://assets/cardData/effectReq.gd" id="2_mgnfr"]
 
-[sub_resource type="Resource" id="Resource_s0rwy"]
-script = ExtResource("2_mgnfr")
-minType = 4
-minTypeCount = 2
-metadata/_custom_type_script = "uid://db0def6h2ura5"
-
 [sub_resource type="Resource" id="Resource_pwmln"]
 script = ExtResource("1_2h78c")
 type = 1
-requirement = SubResource("Resource_s0rwy")
 metadata/_custom_type_script = "uid://qhkavreto84g"
 
 [sub_resource type="Resource" id="Resource_3pspg"]
@@ -55,7 +48,7 @@ metadata/_custom_type_script = "uid://qhkavreto84g"
 [resource]
 script = ExtResource("2_jdxli")
 card_name = "indulge"
-text_description = "GAIN 1 IVORY FOLLOWER FOR EVERY 2 GOLD FOLLOWERS YOU HAVE, UP TO 4"
+text_description = "GAIN 1 IVORY FOLLOWER FOR EVERY 2 GOLD FOLLOWERS YOU HAVE, UP TO 4, MIN OF 1"
 word = "RAPID"
 pipCost = 3
 effects = Array[ExtResource("1_2h78c")]([SubResource("Resource_pwmln"), SubResource("Resource_edcuh"), SubResource("Resource_28cu4"), SubResource("Resource_qv4hg")])

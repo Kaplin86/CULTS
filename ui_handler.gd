@@ -188,4 +188,7 @@ func showPlayerTurn(playerObject : PlayerResource):
 				return
 		$PlayerIndicator.text = "PLAYER: YOU"
 	else:
-		$PlayerIndicator.text = "PLAYER: " + playerObject.displayName
+		var playerName = playerObject.displayName
+		if playerName == null:
+			playerName = "ERROR"
+		$PlayerIndicator.text = "PLAYER: " + playerName
