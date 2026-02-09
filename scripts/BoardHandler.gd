@@ -105,6 +105,54 @@ func moveCivToPlayer(type : References.figureTypes,player : PlayerResource, coun
 		placedFigures.get_or_add(player,{}).get_or_add(References.figureTypes.find_key(type),[]).append(selectedCultist)
 		selectedCultist.name = "cultist" + str(I)
 
+func moveCivToGrave(type : References.figureTypes, count = 1):
+	var area = $"../Board/graveyard"
+	var shape = area.get_child(0)
+	for I in min(count,placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).size()):
+		var selectedCultist = placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).pick_random()
+		placedFigures.get_or_add("civ",{}).get_or_add(References.figureTypes.find_key(type),[]).erase(selectedCultist)
+		var newTween = create_tween()
+		
+		
+		var newpos = Vector2(0,0)
+		var positionAngle = randf() * PI * 1
+		positionAngle += area.global_rotation.y
+		var distance = shape.shape.radius *2 * distanceGrad.sample(randf())
+		shape.global_position.y = 0
+		newpos = Vector3(sin(positionAngle) * distance,$"../Board/graveyard".position.y,cos(positionAngle)* distance) + shape.global_position
+		
+		newTween.tween_property(selectedCultist.get_child(0),"offset",Vector2(0,120),0.25)
+		newTween.tween_property(selectedCultist,"global_position",newpos,0.5)
+		newTween.tween_property(selectedCultist.get_child(0),"offset",Vector2(0,0),0.25)
+		
+		placedFigures.get_or_add("grave",{}).get_or_add(References.figureTypes.find_key(type),[]).append(selectedCultist)
+		selectedCultist.name = "cultist" + str(I)
+
+
+func movePlayerToGrave(type : References.figureTypes,from : PlayerResource, count = 1):
+	var area = $"../Board/graveyard"
+	var shape = area.get_child(0)
+	for I in min(count,placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).size()):
+		print(I)
+		var selectedCultist = placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).pick_random()
+		placedFigures.get_or_add(from,{}).get_or_add(References.figureTypes.find_key(type),[]).erase(selectedCultist)
+		var newTween = create_tween()
+		
+		
+		var newpos = Vector2(0,0)
+		var positionAngle = randf() * PI * 1
+		positionAngle += area.global_rotation.y
+		var distance = shape.shape.radius *2 * distanceGrad.sample(randf())
+		shape.global_position.y = 0
+		newpos = Vector3(sin(positionAngle) * distance,$"../Board/graveyard".position.y,cos(positionAngle)* distance) + shape.global_position
+		
+		newTween.tween_property(selectedCultist.get_child(0),"offset",Vector2(0,120),0.25)
+		newTween.tween_property(selectedCultist,"global_position",newpos,0.5)
+		newTween.tween_property(selectedCultist.get_child(0),"offset",Vector2(0,0),0.25)
+		
+		placedFigures.get_or_add("grave",{}).get_or_add(References.figureTypes.find_key(type),[]).append(selectedCultist)
+		selectedCultist.name = "cultist" + str(I)
+
 func movePlayerToPlayer(type : References.figureTypes,from : PlayerResource,to : PlayerResource, count = 1):
 	var num = playerObjects.find(to)
 	var area = PlayerplayingAreas[num]
@@ -148,6 +196,8 @@ func changeGraveyardPoolCount(type,number):
 	if graveyardFigures[type] < 0: 
 		graveyardFigures[type] = 0
 
+
+
 func getBoardCount():
 	var total = 0
 	for E in boardFigures.values():
@@ -185,10 +235,28 @@ func parseQueuedAnims():
 		if I.get("type","n/a") == "PTP":
 			movePlayerToPlayer(I.get("follower","n/a"),I.get("plyr1"),I.get("plyr2"),I.get("count",1))
 		if I.get("type","n/a") == "CTG":
-			pass #ADD THE ANIMS HERE
+			moveCivToGrave(I.get("follower","n/a"),I.get("count",1))
 		if I.get("type","n/a") == "PTG":
-			pass
+			movePlayerToGrave(I.get("follower","n/a"),I.get("plyr"),I.get("count",1))
 	queueAnims.clear()
+	
+	for I in $"../PlayerSprites".get_children():
+		for E in I.get_children():
+			E.queue_free()
+		
+		var plyrnum = $"../PlayerSprites".get_children().find(I)
+		var cardCount = playerObjects[plyrnum].cards.size()
+		print("the card count for ", playerObjects[plyrnum].displayName, " is ", cardCount)
+		var boundingDist = 0.11
+		for num in cardCount:
+			var boundingPoint = lerp(boundingDist * -1,boundingDist,(num + 1)/float(cardCount))
+			var newcard = Sprite3D.new()
+			newcard.texture = load("res://assets/cards/blank.svg")
+			I.add_child(newcard)
+			newcard.position = Vector3(boundingPoint,-0.038,1.13)
+			newcard.rotation_degrees = Vector3(0,180,0)
+			newcard.scale = Vector3(0.008,0.008,0.008)
+			newcard.render_priority = -1
 
 func addCardsFromPool(pool,cardsToAppend,count):
 	var availablecards = pool
@@ -286,7 +354,7 @@ var userTargeting = false
 
 func runTurn(player :PlayerResource, anim = true):
 	queueAnims.clear()
-	currentPlayerPips = randi_range(1,6)
+	currentPlayerPips = randi_range(1,6 * References.DiceCount)
 	currentPlayer = player
 	
 	References.uiHandler.showPlayerTurn(player)
@@ -322,26 +390,34 @@ func runTurn(player :PlayerResource, anim = true):
 		var currentRanking = sortPlayerByMostFollowers()
 		print("My Placement is ",  sortPlayerByMostFollowers().find(player) + 1, "#")
 		var oddsToUseCard = calculateOddsForNewCard(currentRanking.find(player),playerObjects.size())
+		print("I am ", player.displayName, " and my odds are ", oddsToUseCard)
 		if randf() <= oddsToUseCard:
+			print("ok trying to get a new card")
 			# this is the part where they get the extra card
 			var usableTypes = []
 			for I in player.pool:
+				print("thinking of ", I, " which has a value of ", player.pool[I])
 				if player.pool[I] >= References.CostForNewCard:
+					print("goodie!")
 					usableTypes.append(I)
 			
 			if usableTypes != []:
-				var chosenType = usableTypes.pick_random()
-				
-				var newCount = clamp( player.pool.get(chosenType,0) ,0,References.CostForNewCard)
-				player.changePoolCount(chosenType,newCount * -1)
-				References.boardHandler.changeGraveyardPoolCount(chosenType,newCount)
-				References.boardHandler.queueAnims.append({"type":"PTG","follower":chosenType,"plyr":player,"count":newCount})
-				
-				var chosenCardType = ["pull","push"].pick_random()
-				if chosenCardType == "pull":
-					addCardsFromPool(References.CardHandler.loadedPull.values(),player.cards,1)
-				elif chosenCardType == "push":
-					addCardsFromPool(References.CardHandler.loadedPush.values(),player.cards,1)
+				if References.CardHandler.loadedPull.size() and References.CardHandler.loadedPull.size() != 0:
+					var chosenType = usableTypes.pick_random()
+					
+					var newCount = References.CostForNewCard
+					player.changePoolCount(chosenType,newCount * -1)
+					References.boardHandler.changeGraveyardPoolCount(chosenType,newCount)
+					References.boardHandler.queueAnims.append({"type":"PTG","follower":References.figureTypes.get(chosenType),"plyr":player,"count":newCount})
+					
+					var chosenCardType = ["pull","push"].pick_random()
+					if chosenCardType == "pull":
+						addCardsFromPool(References.CardHandler.loadedPull.values(),player.cards,1)
+					elif chosenCardType == "push":
+						addCardsFromPool(References.CardHandler.loadedPush.values(),player.cards,1)
+					
+				parseQueuedAnims()
+				await get_tree().create_timer(1).timeout
 
 var usingCard = false
 

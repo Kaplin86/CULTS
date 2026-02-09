@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=36 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bkma8n3xcg3w2" path="res://followerSprites/S_L.svg" id="12_dg77c"]
 [ext_resource type="Texture2D" uid="uid://bq5548x4e5c1o" path="res://assets/board/circleboard (1).svg" id="13_yaehf"]
 [ext_resource type="Shader" uid="uid://2f5rm4r8brjt" path="res://skyShader.tres" id="13_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://bh2p5lgk76u5d" path="res://assets/misc/circle.svg" id="14_dp3eg"]
 [ext_resource type="Script" uid="uid://dojwtrkdaiswq" path="res://world_environment.gd" id="14_w48qg"]
 
 [sub_resource type="Curve" id="Curve_4c57u"]
@@ -37,6 +38,14 @@ radius = 2.4423828
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_efxa6"]
 radius = 1.559082
+
+[sub_resource type="SphereMesh" id="SphereMesh_muem4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dp3eg"]
+render_priority = -1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_dg77c"]
 length = 0.001
@@ -284,6 +293,32 @@ transform = Transform3D(0.9742561, 0, -0.2254442, 0, 1, 0, 0.2254442, 0, 0.97425
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr1"]
 shape = SubResource("CylinderShape3D_efxa6")
 
+[node name="graveyard" type="Area3D" parent="Board"]
+transform = Transform3D(0.9742561, 0, -0.2254442, 0, 1, 0, 0.2254442, 0, 0.9742561, -6.4711847, 3.0019083, -1.7613604)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/graveyard"]
+transform = Transform3D(0.98300594, 0, -0.1835739, 0, 1, 0, 0.1835739, 0, 0.98300594, -1.0886731, 0, -0.18187845)
+shape = SubResource("CylinderShape3D_efxa6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/graveyard"]
+transform = Transform3D(4.244, 0, -7.1623774e-08, 0, 4.244, 0, 7.305246e-08, 0, 4.161, 0, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_muem4")
+surface_material_override/0 = SubResource("StandardMaterial3D_dp3eg")
+
+[node name="Label3D" type="Label3D" parent="Board/graveyard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019218922, 0.47626185, -0.07366514)
+layers = 2
+billboard = 2
+text = "Graveyard of doom and despair"
+
+[node name="Sprite3D" type="Sprite3D" parent="Board/graveyard"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+modulate = Color(0, 0, 0, 1)
+billboard = 1
+render_priority = -1
+texture = ExtResource("14_dp3eg")
+
 [node name="plyr2" type="Area3D" parent="Board"]
 transform = Transform3D(0.644871, 0, 0.76429147, 0, 1, 0, -0.76429147, 0, 0.644871, 1.7164224, 0, -2.8409576)
 
@@ -324,33 +359,33 @@ speed_scale = 3.0
 [node name="PlayerSprites" type="Node3D" parent="."]
 
 [node name="Sprite3D4" type="Sprite3D" parent="PlayerSprites"]
-transform = Transform3D(-3.2777674, 0, -0.96004975, 0, 11.713467, 0, 11.245513, 0, -0.27982897, 11.0435705, 0.4480195, 3.9279442)
+transform = Transform3D(-3.2777674, 0, -0.96004975, 0, 11.713467, 0, 11.245513, 0, -0.27982897, 11.873137, 0.4480195, 4.146251)
 double_sided = false
-render_priority = -1
+render_priority = -2
 texture = ExtResource("12_dg77c")
 
 [node name="Sprite3D5" type="Sprite3D" parent="PlayerSprites"]
-transform = Transform3D(9.067589, 0, -0.6330431, 0, 11.713468, 0, 7.4151316, 0, 0.7741165, 6.677705, 0.4480195, -8.464399)
+transform = Transform3D(9.067589, 0, -0.6330431, 0, 11.713468, 0, 7.4151316, 0, 0.7741165, 7.544855, 0.4480195, -10.1308975)
 double_sided = false
-render_priority = -1
+render_priority = -2
 texture = ExtResource("12_dg77c")
 
 [node name="Sprite3D6" type="Sprite3D" parent="PlayerSprites"]
-transform = Transform3D(9.157502, 0, 0.6235385, 0, 11.713468, 0, -7.3037977, 0, 0.78179246, -6.9572325, 0.4480195, -8.363647)
+transform = Transform3D(9.157502, 0, 0.6235385, 0, 11.713468, 0, -7.3037977, 0, 0.78179246, -8.153383, 0.4480195, -9.623272)
 double_sided = false
-render_priority = -1
+render_priority = -2
 texture = ExtResource("12_dg77c")
 
 [node name="Sprite3D7" type="Sprite3D" parent="PlayerSprites"]
-transform = Transform3D(-3.5788054, 0, 0.95218253, 0, 11.713468, 0, -11.15336, 0, -0.30552912, -11.188765, 0.4480195, 4.330948)
+transform = Transform3D(-3.5788054, 0, 0.95218253, 0, 11.713468, 0, -11.15336, 0, -0.30552912, -11.669039, 0.4480195, 4.5492535)
 double_sided = false
-render_priority = -1
+render_priority = -2
 texture = ExtResource("12_dg77c")
 
 [node name="Sprite3D8" type="Sprite3D" parent="PlayerSprites"]
 transform = Transform3D(-11.711508, 0, -0.018290073, 0, 11.713468, 0, 0.21424007, 0, -0.9998326, 0.12890244, 0.4480195, 12.558928)
 double_sided = false
-render_priority = -1
+render_priority = -2
 texture = ExtResource("12_dg77c")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
