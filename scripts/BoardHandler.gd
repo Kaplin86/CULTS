@@ -22,15 +22,7 @@ var boardFigures := {
 
 var graveyardFigures := {}
 
-var typeToColor := {
-	"crimson":Color(0.641, 0.25, 0.0, 1.0),
-	"azure":Color(0.371, 0.626, 0.976, 1.0),
-	"ivory":Color(0.865, 0.781, 0.781, 1.0), 
-	"amethyst":Color("6229a9ff"),
-	"gold":Color(0.802, 0.691, 0.255, 1.0),
-	"chartreuse":Color("56df4cff"),
-	"amber":Color(0.936, 0.203, 0.355, 1.0)
-}
+
 
 
 
@@ -54,7 +46,7 @@ func renderNewBoard():
 			MainArea.get_child(0).global_position.y = 0
 			newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + MainArea.get_child(0).global_position
 			newCultist.global_rotation.y = randf() * PI * 2
-			newCultist.get_child(0).modulate = typeToColor[type]
+			newCultist.get_child(0).modulate = References.typeToColor[type]
 			if placedFigures["civ"].has(type):
 				placedFigures["civ"][type].append(newCultist)
 			else:
@@ -77,7 +69,7 @@ func renderNewBoard():
 				shape.global_position.y = 0
 				newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + shape.global_position
 				newCultist.global_rotation.y = randf() * PI * 2
-				newCultist.get_child(0).modulate = typeToColor[type]
+				newCultist.get_child(0).modulate = References.typeToColor[type]
 					
 				placedFigures.get_or_add(plyr,{}).get_or_add(type,[]).append(newCultist)
 

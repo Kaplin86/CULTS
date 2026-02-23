@@ -6,6 +6,7 @@ var baseCard = preload("uid://blyecf3me8n0x")
 var viewCards = false
 var hoverCard = null
 @onready var cardContainer : SidewaysUContainer = $ViewCards/Container
+@onready var sacrificeButtonContainer = $SacrificeForCards/HFlowContainer
 var dragging = false
 var draggingOffset = Vector2.ZERO
 var draggingCard = null
@@ -18,8 +19,24 @@ signal chooseTarget(targetNum : int)
 func _ready() -> void:
 	References.uiHandler = self
 	displayPips(14)
+	createSacrificeButtons()
+
+var sacrificeButtons = {}
+var sacrificeButtonGroup = ButtonGroup.new()
+
+func createSacrificeButtons():
+	for type in References.figureTypes:
+		var newbutton = Button.new()
+		newbutton.icon = load("res://followerSprites/S_L.svg")
+		newbutton.modulate = References.typeToColor[type]
+		newbutton.button_group = sacrificeButtonGroup
+		newbutton.toggle_mode = true
+		sacrificeButtonContainer.add_child(newbutton)
+
+var dt = 0
 
 func _process(_delta):
+	dt += _delta
 	if viewCards:
 		$ViewCards.global_position.y = lerp($ViewCards.global_position.y,424.0,0.1)
 		if Input.is_action_just_pressed("ui_left"):
@@ -78,7 +95,9 @@ func _process(_delta):
 			button.visible = true
 		targetButtonMove(selectorButtons.find(button),button)
 	
-	
+	if sacrificeButtonGroup.get_pressed_button():
+		var chosenButton = sacrificeButtonGroup.get_pressed_button()
+		chosenButton.self_modulate = Color(1,1,1,sin(dt * 0.5))
 	
 	
 func targetButtonMove(areaNum : int,button : Button):

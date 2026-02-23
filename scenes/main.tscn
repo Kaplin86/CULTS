@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene load_steps=37 format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b3c7v5rq1wmc6" path="res://assets/dice/1.svg" id="8_kek77"]
 [ext_resource type="Texture2D" uid="uid://chlqrt03o4igh" path="res://assets/cards/olsnatch.svg" id="11_efxa6"]
 [ext_resource type="Texture2D" uid="uid://dpgfvx8fjimay" path="res://assets/board/triangle.svg" id="11_yaehf"]
+[ext_resource type="FontFile" uid="uid://q4e4dudun2om" path="res://assets/misc/VCR_OSD_MONO_1.001.ttf" id="12_0ld40"]
 [ext_resource type="Texture2D" uid="uid://bkma8n3xcg3w2" path="res://followerSprites/S_L.svg" id="12_dg77c"]
 [ext_resource type="Texture2D" uid="uid://bq5548x4e5c1o" path="res://assets/board/circleboard (1).svg" id="13_yaehf"]
 [ext_resource type="Shader" uid="uid://2f5rm4r8brjt" path="res://skyShader.tres" id="13_ycdy4"]
@@ -272,6 +273,69 @@ material_override = SubResource("StandardMaterial3D_yaehf")
 billboard = 2
 render_priority = 2
 texture = ExtResource("11_yaehf")
+
+[node name="SacrificeForCards" type="Control" parent="UIHandler"]
+anchors_preset = 0
+offset_left = 910.0
+offset_top = 53.0
+offset_right = 1158.0
+offset_bottom = 439.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="UIHandler/SacrificeForCards"]
+modulate = Color(0, 0, 0, 0.7411765)
+position = Vector2(114, 187)
+rotation = -1.5707964
+scale = Vector2(0.4225738, 0.52928203)
+texture = SubResource("ViewportTexture_2cqfq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UIHandler/SacrificeForCards"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 48.0
+offset_right = 240.0
+offset_bottom = 124.0
+theme_override_font_sizes/normal_font_size = 22
+text = "Yay!! Sacrifice!!!!! 
+So kawaii!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="UIHandler/SacrificeForCards"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 115.0
+offset_right = 360.0
+offset_bottom = 168.0
+scale = Vector2(0.67507344, 0.67507344)
+theme_override_fonts/italics_font = ExtResource("12_0ld40")
+theme_override_font_sizes/italics_font_size = 16
+bbcode_enabled = true
+text = "[i]You can kill 5 of any
+follower type to gain a card"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="UIHandler/SacrificeForCards"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 147.0
+offset_right = 274.0
+offset_bottom = 396.0
+scale = Vector2(0.69328165, 0.69328165)
+alignment = 1
+
+[node name="Button" type="Button" parent="UIHandler/SacrificeForCards/HFlowContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+icon = ExtResource("12_dg77c")
+
+[node name="Sacrifice" type="Button" parent="UIHandler/SacrificeForCards"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 316.0
+offset_right = 177.0
+offset_bottom = 347.0
+text = "Confirm"
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("8_5vw27")
