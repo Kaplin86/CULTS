@@ -4,31 +4,33 @@
 [ext_resource type="Texture2D" uid="uid://bb2fcmmb5vy3t" path="res://assets/models/cultistModel/ivory.png" id="3_rbmgg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vefth"]
+resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 albedo_texture = ExtResource("3_rbmgg")
 texture_filter = 0
+grow = true
+grow_amount = 16.0
 
 [node name="PlayerScene" type="Node3D" unique_id=1485268785]
 
 [node name="Node3D2" parent="." unique_id=2077314409 instance=ExtResource("1_vefth")]
 transform = Transform3D(10.81, 0, 0, 0, 10.81, 0, 0, 0, 10.81, 0, 2.789, 0)
 mat = SubResource("StandardMaterial3D_vefth")
-followerType = 2
-outline = true
+doPiecesEffect = true
 
-[node name="sphere" parent="Node3D2/model" parent_id_path=PackedInt32Array(2077314409, 1217459059) index="0" unique_id=190057903]
+[node name="sphere" parent="Node3D2/model" parent_id_path=PackedInt32Array(2077314409, 1217459059) index="0" unique_id=127402092]
 surface_material_override/0 = SubResource("StandardMaterial3D_vefth")
 
-[node name="sphere2" parent="Node3D2/model" parent_id_path=PackedInt32Array(2077314409, 1217459059) index="1" unique_id=130559478]
+[node name="sphere2" parent="Node3D2/model" parent_id_path=PackedInt32Array(2077314409, 1217459059) index="1" unique_id=414964897]
 surface_material_override/0 = SubResource("StandardMaterial3D_vefth")
 
-[node name="sphere3" parent="Node3D2/model" parent_id_path=PackedInt32Array(2077314409, 1217459059) index="2" unique_id=1292347901]
+[node name="sphere3" parent="Node3D2/model" parent_id_path=PackedInt32Array(2077314409, 1217459059) index="2" unique_id=1645914186]
 surface_material_override/0 = SubResource("StandardMaterial3D_vefth")
 
-[node name="cylinder" parent="Node3D2/model" parent_id_path=PackedInt32Array(2077314409, 1217459059) index="3" unique_id=565625632]
+[node name="cylinder" parent="Node3D2/model" parent_id_path=PackedInt32Array(2077314409, 1217459059) index="3" unique_id=263771911]
 surface_material_override/0 = SubResource("StandardMaterial3D_vefth")
 
 [editable path="Node3D2"]

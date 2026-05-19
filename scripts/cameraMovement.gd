@@ -4,6 +4,7 @@ extends Camera3D
 var processingDist = dist
 
 var rotationProgress = 1.24
+var goalRotation = 1.24
 var cameraMoveSpeed = 0.8
 
 func _process(delta: float) -> void:
@@ -11,6 +12,8 @@ func _process(delta: float) -> void:
 	global_position.x = sin(rotationProgress) * processingDist
 	global_position.z = cos(rotationProgress) * processingDist
 	look_at(Vector3.ZERO)
+	
+	rotationProgress = lerp(rotationProgress,goalRotation,delta * 15)
 	
 	var canrotate = true
 	
@@ -20,9 +23,9 @@ func _process(delta: float) -> void:
 	
 	if canrotate:
 		if Input.is_action_pressed("ui_left"):
-			rotationProgress -= delta * cameraMoveSpeed
+			goalRotation -= delta * cameraMoveSpeed
 		if Input.is_action_pressed("ui_right"):
-			rotationProgress += delta * cameraMoveSpeed
+			goalRotation += delta * cameraMoveSpeed
 	
 	if References.uiHandler:
 		if References.uiHandler.viewCards:
