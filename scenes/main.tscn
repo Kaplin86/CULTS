@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://xg852gnosvsa"]
+[gd_scene format=3 uid="uid://xg852gnosvsa"]
 
 [ext_resource type="Script" uid="uid://bmcfyfdy8ijox" path="res://scripts/BoardHandler.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ye8g8yl3b3ki" path="res://scenes/cultistVisual.tscn" id="2_0xm2m"]
@@ -122,23 +122,24 @@ sky_material = SubResource("ShaderMaterial_w48qg")
 background_mode = 2
 sky = SubResource("Sky_vivmo")
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1761402108]
 
-[node name="BoardHandler" type="Node" parent="." node_paths=PackedStringArray("MainArea", "PlayerplayingAreas")]
+[node name="BoardHandler" type="Node" parent="." unique_id=462184343 node_paths=PackedStringArray("MainArea", "PlayerplayingAreas")]
 script = ExtResource("1_ig7tw")
 MainArea = NodePath("../Board/Area3D")
 PlayerplayingAreas = [NodePath("../Board/plyr1"), NodePath("../Board/plyr2"), NodePath("../Board/plyr3"), NodePath("../Board/plyr4"), NodePath("../Board/plyr5")]
 distanceGrad = SubResource("Curve_4c57u")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1412267553]
 transform = Transform3D(-0.76998097, 0.32765356, -0.5475148, 0, 0.8580838, 0.5135098, 0.6380668, 0.39539278, -0.6607082, -8.325111, 3.2379994, -10.128132)
 script = ExtResource("2_h2yge")
 dist = 12.845
 
-[node name="Node3D" parent="." instance=ExtResource("2_0xm2m")]
+[node name="Node3D" parent="." unique_id=1745183542 instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.058166027, 0, -0.11798477)
+visible = false
 
-[node name="UIHandler" type="Control" parent="."]
+[node name="UIHandler" type="Control" parent="." unique_id=1002133331]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,18 +148,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_1bvp3")
 
-[node name="ViewCards" type="Control" parent="UIHandler"]
+[node name="ViewCards" type="Control" parent="UIHandler" unique_id=1362373716]
 anchors_preset = 0
 offset_left = 192.0
 offset_top = 532.0
 offset_right = 970.0
 offset_bottom = 984.0
 
-[node name="CanvasGroup" type="SubViewport" parent="UIHandler/ViewCards"]
+[node name="CanvasGroup" type="SubViewport" parent="UIHandler/ViewCards" unique_id=1203252484]
 transparent_bg = true
 size = Vector2i(947, 512)
 
-[node name="ColorRect" type="ColorRect" parent="UIHandler/ViewCards/CanvasGroup"]
+[node name="ColorRect" type="ColorRect" parent="UIHandler/ViewCards/CanvasGroup" unique_id=1870507046]
 anchors_preset = -1
 anchor_right = 0.988
 anchor_bottom = 1.0
@@ -168,32 +169,32 @@ offset_right = -100.0
 offset_bottom = 560.0
 mouse_filter = 1
 
-[node name="MetaballTexture" parent="UIHandler/ViewCards/CanvasGroup" instance=ExtResource("5_vivmo")]
+[node name="MetaballTexture" parent="UIHandler/ViewCards/CanvasGroup" unique_id=383031969 instance=ExtResource("5_vivmo")]
 offset_left = -153.0
 offset_top = -131.0
 offset_right = 1066.0
 offset_bottom = 416.0
 
-[node name="MetaballTexture2" parent="UIHandler/ViewCards/CanvasGroup" instance=ExtResource("5_vivmo")]
+[node name="MetaballTexture2" parent="UIHandler/ViewCards/CanvasGroup" unique_id=1319505546 instance=ExtResource("5_vivmo")]
 offset_left = -184.345
 offset_top = 1032.795
 offset_right = 1034.655
 offset_bottom = 1579.795
 rotation = -1.5707964
 
-[node name="MetaballTexture3" parent="UIHandler/ViewCards/CanvasGroup" instance=ExtResource("5_vivmo")]
+[node name="MetaballTexture3" parent="UIHandler/ViewCards/CanvasGroup" unique_id=1275091450 instance=ExtResource("5_vivmo")]
 offset_left = 1073.68
 offset_top = -162.0
 offset_right = 2292.6802
 offset_bottom = 385.0
 rotation = -4.712389
 
-[node name="Sprite2D" type="Sprite2D" parent="UIHandler/ViewCards"]
+[node name="Sprite2D" type="Sprite2D" parent="UIHandler/ViewCards" unique_id=1735611602]
 modulate = Color(0, 0, 0, 0.7411765)
 position = Vector2(412, 169)
 texture = SubResource("ViewportTexture_2cqfq")
 
-[node name="ColorRect2" type="ColorRect" parent="UIHandler/ViewCards"]
+[node name="ColorRect2" type="ColorRect" parent="UIHandler/ViewCards" unique_id=1166592287]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -204,7 +205,7 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(0, 0, 0, 0.08627451)
 
-[node name="Container" type="Container" parent="UIHandler/ViewCards" node_paths=PackedStringArray("FocusedNode")]
+[node name="Container" type="Container" parent="UIHandler/ViewCards" unique_id=940534314 node_paths=PackedStringArray("FocusedNode")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -222,27 +223,27 @@ XSpacing = 120.995
 SelectedYOffset = 24.43
 Exponent = 1.725
 
-[node name="Card" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+[node name="Card" parent="UIHandler/ViewCards/Container" unique_id=505438447 instance=ExtResource("5_7mycd")]
 layout_mode = 2
 cardData = ExtResource("8_2cqfq")
 
-[node name="Card2" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+[node name="Card2" parent="UIHandler/ViewCards/Container" unique_id=1184881996 instance=ExtResource("5_7mycd")]
 layout_mode = 2
 cardData = ExtResource("7_4c57u")
 
-[node name="Card3" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+[node name="Card3" parent="UIHandler/ViewCards/Container" unique_id=807682268 instance=ExtResource("5_7mycd")]
 layout_mode = 2
 cardData = ExtResource("7_4c57u")
 
-[node name="Card4" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+[node name="Card4" parent="UIHandler/ViewCards/Container" unique_id=255457522 instance=ExtResource("5_7mycd")]
 layout_mode = 2
 cardData = ExtResource("7_4c57u")
 
-[node name="Card5" parent="UIHandler/ViewCards/Container" instance=ExtResource("5_7mycd")]
+[node name="Card5" parent="UIHandler/ViewCards/Container" unique_id=1211174727 instance=ExtResource("5_7mycd")]
 layout_mode = 2
 cardData = ExtResource("7_4c57u")
 
-[node name="EndTurn" type="Button" parent="UIHandler/ViewCards"]
+[node name="EndTurn" type="Button" parent="UIHandler/ViewCards" unique_id=1761153724]
 layout_mode = 0
 offset_left = 686.0
 offset_top = 11.0
@@ -251,12 +252,12 @@ offset_bottom = 42.0
 mouse_filter = 1
 text = "End Turn"
 
-[node name="Dice" type="Sprite2D" parent="UIHandler/ViewCards"]
+[node name="Dice" type="Sprite2D" parent="UIHandler/ViewCards" unique_id=558861044]
 position = Vector2(25, -30.99997)
 scale = Vector2(0.16174603, 0.16174603)
 texture = ExtResource("8_kek77")
 
-[node name="PlayerIndicator" type="RichTextLabel" parent="UIHandler"]
+[node name="PlayerIndicator" type="RichTextLabel" parent="UIHandler" unique_id=985346512]
 layout_mode = 0
 offset_left = 182.0
 offset_right = 966.0
@@ -265,30 +266,30 @@ text = "PLAYER: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CurrentPlayer" type="Node3D" parent="UIHandler"]
+[node name="CurrentPlayer" type="Node3D" parent="UIHandler" unique_id=1465968502]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.395497, 1.9390712, -5.3741517)
 
-[node name="Sprite3D" type="Sprite3D" parent="UIHandler/CurrentPlayer"]
+[node name="Sprite3D" type="Sprite3D" parent="UIHandler/CurrentPlayer" unique_id=1272390688]
 material_override = SubResource("StandardMaterial3D_yaehf")
 billboard = 2
 render_priority = 2
 texture = ExtResource("11_yaehf")
 
-[node name="SacrificeForCards" type="Control" parent="UIHandler"]
+[node name="SacrificeForCards" type="Control" parent="UIHandler" unique_id=2130896244]
 anchors_preset = 0
 offset_left = 910.0
 offset_top = 53.0
 offset_right = 1158.0
 offset_bottom = 439.0
 
-[node name="Sprite2D2" type="Sprite2D" parent="UIHandler/SacrificeForCards"]
+[node name="Sprite2D2" type="Sprite2D" parent="UIHandler/SacrificeForCards" unique_id=448705492]
 modulate = Color(0, 0, 0, 0.7411765)
 position = Vector2(114, 187)
 rotation = -1.5707964
 scale = Vector2(0.4225738, 0.52928203)
 texture = SubResource("ViewportTexture_2cqfq")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UIHandler/SacrificeForCards"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UIHandler/SacrificeForCards" unique_id=237554566]
 layout_mode = 0
 offset_left = 38.0
 offset_top = 48.0
@@ -300,7 +301,7 @@ So kawaii!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="RichTextLabel" parent="UIHandler/SacrificeForCards"]
+[node name="Label" type="RichTextLabel" parent="UIHandler/SacrificeForCards" unique_id=316991013]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 115.0
@@ -315,7 +316,7 @@ follower type to gain a card"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HFlowContainer" type="HFlowContainer" parent="UIHandler/SacrificeForCards"]
+[node name="HFlowContainer" type="HFlowContainer" parent="UIHandler/SacrificeForCards" unique_id=461069134]
 layout_mode = 0
 offset_left = 70.0
 offset_top = 147.0
@@ -324,12 +325,12 @@ offset_bottom = 396.0
 scale = Vector2(0.69328165, 0.69328165)
 alignment = 1
 
-[node name="Button" type="Button" parent="UIHandler/SacrificeForCards/HFlowContainer"]
+[node name="Button" type="Button" parent="UIHandler/SacrificeForCards/HFlowContainer" unique_id=1629324396]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 icon = ExtResource("12_dg77c")
 
-[node name="Sacrifice" type="Button" parent="UIHandler/SacrificeForCards"]
+[node name="Sacrifice" type="Button" parent="UIHandler/SacrificeForCards" unique_id=1455104963]
 layout_mode = 0
 offset_left = 106.0
 offset_top = 316.0
@@ -337,122 +338,120 @@ offset_right = 177.0
 offset_bottom = 347.0
 text = "Confirm"
 
-[node name="Node" type="Node" parent="."]
+[node name="Node" type="Node" parent="." unique_id=1684231776]
 script = ExtResource("8_5vw27")
 
-[node name="Board" type="Sprite3D" parent="."]
+[node name="Board" type="Sprite3D" parent="." unique_id=2029713722]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.39514115, -0.095154285)
 axis = 1
 texture = ExtResource("13_yaehf")
 
-[node name="Area3D" type="Area3D" parent="Board"]
+[node name="Area3D" type="Area3D" parent="Board" unique_id=961138290]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/Area3D" unique_id=1146483921]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.42981428)
 shape = SubResource("CylinderShape3D_4c57u")
 
-[node name="plyr1" type="Area3D" parent="Board"]
+[node name="plyr1" type="Area3D" parent="Board" unique_id=1786300757]
 transform = Transform3D(0.9742561, 0, -0.2254442, 0, 1, 0, 0.2254442, 0, 0.9742561, 2.7444336, 0, 0.49121833)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr1" unique_id=141947463]
 shape = SubResource("CylinderShape3D_efxa6")
 
-[node name="graveyard" type="Area3D" parent="Board"]
+[node name="graveyard" type="Area3D" parent="Board" unique_id=561801149]
 transform = Transform3D(0.9742561, 0, -0.2254442, 0, 1, 0, 0.2254442, 0, 0.9742561, -6.4711847, 3.0019083, -1.7613604)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/graveyard"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/graveyard" unique_id=1340832569]
 transform = Transform3D(0.98300594, 0, -0.1835739, 0, 1, 0, 0.1835739, 0, 0.98300594, -1.0886731, 0, -0.18187845)
 shape = SubResource("CylinderShape3D_efxa6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/graveyard"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/graveyard" unique_id=1949589262]
 transform = Transform3D(4.244, 0, -7.1623774e-08, 0, 4.244, 0, 7.305246e-08, 0, 4.161, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_muem4")
 surface_material_override/0 = SubResource("StandardMaterial3D_dp3eg")
 
-[node name="Label3D" type="Label3D" parent="Board/graveyard"]
+[node name="Label3D" type="Label3D" parent="Board/graveyard" unique_id=95830782]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019218922, 0.47626185, -0.07366514)
 layers = 2
 billboard = 2
 text = "Graveyard of doom and despair"
 
-[node name="Sprite3D" type="Sprite3D" parent="Board/graveyard"]
+[node name="Sprite3D" type="Sprite3D" parent="Board/graveyard" unique_id=1414056840]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 modulate = Color(0, 0, 0, 1)
 billboard = 1
 render_priority = -1
 texture = ExtResource("14_dp3eg")
 
-[node name="plyr2" type="Area3D" parent="Board"]
+[node name="plyr2" type="Area3D" parent="Board" unique_id=2006468160]
 transform = Transform3D(0.644871, 0, 0.76429147, 0, 1, 0, -0.76429147, 0, 0.644871, 1.7164224, 0, -2.8409576)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr2" unique_id=1088504579]
 shape = SubResource("CylinderShape3D_efxa6")
 
-[node name="plyr3" type="Area3D" parent="Board"]
+[node name="plyr3" type="Area3D" parent="Board" unique_id=196564626]
 transform = Transform3D(-0.6156202, 0, 0.7880431, 0, 1, 0, -0.7880431, 0, -0.6156202, -1.7486855, 0, -2.752336)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr3" unique_id=173832139]
 shape = SubResource("CylinderShape3D_efxa6")
 
-[node name="plyr4" type="Area3D" parent="Board"]
+[node name="plyr4" type="Area3D" parent="Board" unique_id=101627731]
 transform = Transform3D(-0.91913533, 0, -0.39394197, 0, 1, 0, 0.39394197, 0, -0.91913533, -2.6756272, 0, 0.57553685)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr4" unique_id=1406001660]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
 shape = SubResource("CylinderShape3D_efxa6")
 
-[node name="plyr5" type="Area3D" parent="Board"]
+[node name="plyr5" type="Area3D" parent="Board" unique_id=38201258]
 transform = Transform3D(0.012217055, 0, -0.9999254, 0, 1, 0, 0.9999254, 0, 0.012217055, 0.0016150475, 0, 2.6036005)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/plyr5" unique_id=1692132839]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
 shape = SubResource("CylinderShape3D_efxa6")
 
-[node name="BigCard" type="Sprite3D" parent="."]
+[node name="BigCard" type="Sprite3D" parent="." unique_id=431949284]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.943693, 0)
 pixel_size = 0.005
 texture = ExtResource("11_efxa6")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BigCard"]
-libraries = {
-&"": SubResource("AnimationLibrary_ycdy4")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BigCard" unique_id=964275708]
+libraries/ = SubResource("AnimationLibrary_ycdy4")
 speed_scale = 3.0
 
-[node name="PlayerSprites" type="Node3D" parent="."]
+[node name="PlayerSprites" type="Node3D" parent="." unique_id=528327615]
 
-[node name="Sprite3D4" type="Sprite3D" parent="PlayerSprites"]
+[node name="Sprite3D4" type="Sprite3D" parent="PlayerSprites" unique_id=1044221076]
 transform = Transform3D(-3.2777674, 0, -0.96004975, 0, 11.713467, 0, 11.245513, 0, -0.27982897, 11.873137, 0.4480195, 4.146251)
 double_sided = false
 render_priority = -2
 texture = ExtResource("12_dg77c")
 
-[node name="Sprite3D5" type="Sprite3D" parent="PlayerSprites"]
+[node name="Sprite3D5" type="Sprite3D" parent="PlayerSprites" unique_id=1600926078]
 transform = Transform3D(9.067589, 0, -0.6330431, 0, 11.713468, 0, 7.4151316, 0, 0.7741165, 7.544855, 0.4480195, -10.1308975)
 double_sided = false
 render_priority = -2
 texture = ExtResource("12_dg77c")
 
-[node name="Sprite3D6" type="Sprite3D" parent="PlayerSprites"]
+[node name="Sprite3D6" type="Sprite3D" parent="PlayerSprites" unique_id=483584375]
 transform = Transform3D(9.157502, 0, 0.6235385, 0, 11.713468, 0, -7.3037977, 0, 0.78179246, -8.153383, 0.4480195, -9.623272)
 double_sided = false
 render_priority = -2
 texture = ExtResource("12_dg77c")
 
-[node name="Sprite3D7" type="Sprite3D" parent="PlayerSprites"]
+[node name="Sprite3D7" type="Sprite3D" parent="PlayerSprites" unique_id=77602524]
 transform = Transform3D(-3.5788054, 0, 0.95218253, 0, 11.713468, 0, -11.15336, 0, -0.30552912, -11.669039, 0.4480195, 4.5492535)
 double_sided = false
 render_priority = -2
 texture = ExtResource("12_dg77c")
 
-[node name="Sprite3D8" type="Sprite3D" parent="PlayerSprites"]
+[node name="Sprite3D8" type="Sprite3D" parent="PlayerSprites" unique_id=2013594056]
 transform = Transform3D(-11.711508, 0, -0.018290073, 0, 11.713468, 0, 0.21424007, 0, -0.9998326, 0.12890244, 0.4480195, 12.558928)
 double_sided = false
 render_priority = -2
 texture = ExtResource("12_dg77c")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1761382086]
 environment = SubResource("Environment_2cqfq")
 script = ExtResource("14_w48qg")
 

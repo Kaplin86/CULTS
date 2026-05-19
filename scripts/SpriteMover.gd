@@ -1,7 +1,28 @@
 @tool
 extends Node3D
 
+var mat : StandardMaterial3D
+
+@export var followerType : References.figureTypes = References.figureTypes.crimson
+
+var visType = -2
+
+func _ready() -> void:
+	mat = StandardMaterial3D.new()
+	for I : MeshInstance3D in  $model.get_children():
+		I.set_surface_override_material(0,mat)
+	changeType(followerType)
+
+func changeType(type):
+	var typeName = References.figureTypes.find_key(type)
+	if mat:
+		mat.albedo_texture = load("res://assets/models/cultistModel/"+str(typeName)+".png")
+		visType = followerType
+
 func _process(_delta):
+	if followerType != visType:
+		changeType(followerType)
+	return
 	var currentCamera : Camera3D = null
 	if Engine.is_editor_hint():
 		currentCamera = EditorInterface.get_editor_viewport_3d(0).get_camera_3d()

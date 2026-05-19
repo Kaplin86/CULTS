@@ -1,12 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://ye8g8yl3b3ki"]
+[gd_scene format=3 uid="uid://ye8g8yl3b3ki"]
 
 [ext_resource type="Script" uid="uid://b81kcf4dlvovb" path="res://scripts/SpriteMover.gd" id="1_5aqct"]
-[ext_resource type="Texture2D" uid="uid://bupht67pvb5a2" path="res://followerSprites/NE_L.svg" id="2_b1c7b"]
+[ext_resource type="Texture2D" uid="uid://dhgtlybdcrnr6" path="res://followerSprites/E_L.svg" id="2_8tgbt"]
+[ext_resource type="PackedScene" uid="uid://cgq2nm015iy3h" path="res://assets/models/cultistModel/follower.gltf" id="3_re1fq"]
+[ext_resource type="Texture2D" uid="uid://cmfbqahkofd0y" path="res://assets/models/cultistModel/gold.png" id="4_re1fq"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_re1fq"]
+albedo_texture = ExtResource("4_re1fq")
+
+[node name="Node3D" type="Node3D" unique_id=2077314409]
 script = ExtResource("1_5aqct")
+followerType = 4
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1112430611]
+visible = false
 billboard = 1
 render_priority = 1
-texture = ExtResource("2_b1c7b")
+texture = ExtResource("2_8tgbt")
+
+[node name="model" parent="." unique_id=1217459059 instance=ExtResource("3_re1fq")]
+transform = Transform3D(0.385, 0, 0, 0, 0.385, 0, 0, 0, 0.385, 0, -0.27388328, 0)
+
+[node name="sphere" parent="model" index="0" unique_id=127402092]
+surface_material_override/0 = SubResource("StandardMaterial3D_re1fq")
+
+[node name="sphere2" parent="model" index="1" unique_id=414964897]
+surface_material_override/0 = SubResource("StandardMaterial3D_re1fq")
+
+[node name="sphere3" parent="model" index="2" unique_id=1645914186]
+surface_material_override/0 = SubResource("StandardMaterial3D_re1fq")
+
+[node name="cylinder" parent="model" index="3" unique_id=263771911]
+surface_material_override/0 = SubResource("StandardMaterial3D_re1fq")
+
+[editable path="model"]
