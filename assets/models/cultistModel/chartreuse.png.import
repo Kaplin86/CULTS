@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bt413tc3k05bg"
-path.s3tc="res://.godot/imported/chartreuse.png-4fc088f1402576d4a69aaef78abd06d7.s3tc.ctex"
+path="res://.godot/imported/chartreuse.png-4fc088f1402576d4a69aaef78abd06d7.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/models/cultistModel/chartreuse.png"
-dest_files=["res://.godot/imported/chartreuse.png-4fc088f1402576d4a69aaef78abd06d7.s3tc.ctex"]
+dest_files=["res://.godot/imported/chartreuse.png-4fc088f1402576d4a69aaef78abd06d7.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

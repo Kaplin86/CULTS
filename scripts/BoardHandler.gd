@@ -47,7 +47,7 @@ func renderNewBoard():
 			newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + MainArea.get_child(0).global_position
 			newCultist.global_rotation.y = randf() * PI * 2
 			#newCultist.get_child(0).modulate = References.typeToColor[type]
-			newCultist.followerType = type
+			newCultist.followerType = References.figureTypes.get(type)
 			if placedFigures["civ"].has(type):
 				placedFigures["civ"][type].append(newCultist)
 			else:
@@ -71,7 +71,7 @@ func renderNewBoard():
 				newCultist.global_position = Vector3(sin(positionAngle) * distance,0,cos(positionAngle)* distance) + shape.global_position
 				newCultist.global_rotation.y = randf() * PI * 2
 				#newCultist.get_child(0).modulate = References.typeToColor[type]
-				newCultist.followerType = type
+				newCultist.followerType = References.figureTypes.get(type)
 					
 				placedFigures.get_or_add(plyr,{}).get_or_add(type,[]).append(newCultist)
 

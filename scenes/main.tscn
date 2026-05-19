@@ -19,6 +19,7 @@
 [ext_resource type="Shader" uid="uid://2f5rm4r8brjt" path="res://skyShader.tres" id="13_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://bh2p5lgk76u5d" path="res://assets/misc/circle.svg" id="14_dp3eg"]
 [ext_resource type="Script" uid="uid://dojwtrkdaiswq" path="res://world_environment.gd" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://duy7x62fee01q" path="res://scenes/player_scene.tscn" id="18_gqmmt"]
 
 [sub_resource type="Curve" id="Curve_4c57u"]
 _data = [Vector2(0, 0), 0.0, 2.9023821, 0, 0, Vector2(0.25938565, 0.31056428), 1.6585643, 1.6585643, 0, 0, Vector2(1, 1), 1.5390834, 0.0, 0, 0]
@@ -421,35 +422,20 @@ speed_scale = 3.0
 
 [node name="PlayerSprites" type="Node3D" parent="." unique_id=528327615]
 
-[node name="Sprite3D4" type="Sprite3D" parent="PlayerSprites" unique_id=1044221076]
-transform = Transform3D(-3.2777674, 0, -0.96004975, 0, 11.713467, 0, 11.245513, 0, -0.27982897, 11.873137, 0.4480195, 4.146251)
-double_sided = false
-render_priority = -2
-texture = ExtResource("12_dg77c")
+[node name="PlayerScene5" parent="PlayerSprites" unique_id=1485268785 instance=ExtResource("18_gqmmt")]
+transform = Transform3D(0.20441064, 0, 0.9788853, 0, 1, 0, -0.9788853, 0, 0.20441064, 13.233046, -2.4416997, 3.0080235)
 
-[node name="Sprite3D5" type="Sprite3D" parent="PlayerSprites" unique_id=1600926078]
-transform = Transform3D(9.067589, 0, -0.6330431, 0, 11.713468, 0, 7.4151316, 0, 0.7741165, 7.544855, 0.4480195, -10.1308975)
-double_sided = false
-render_priority = -2
-texture = ExtResource("12_dg77c")
+[node name="PlayerScene4" parent="PlayerSprites" unique_id=1720499602 instance=ExtResource("18_gqmmt")]
+transform = Transform3D(-0.80291116, 0, 0.5960987, 0, 1, 0, -0.5960987, 0, -0.80291116, 7.9493732, -2.4416997, -11.261738)
 
-[node name="Sprite3D6" type="Sprite3D" parent="PlayerSprites" unique_id=483584375]
-transform = Transform3D(9.157502, 0, 0.6235385, 0, 11.713468, 0, -7.3037977, 0, 0.78179246, -8.153383, 0.4480195, -9.623272)
-double_sided = false
-render_priority = -2
-texture = ExtResource("12_dg77c")
+[node name="PlayerScene" parent="PlayerSprites" unique_id=200374457 instance=ExtResource("18_gqmmt")]
+transform = Transform3D(-0.7815205, 0, -0.6238796, 0, 1, 0, 0.6238796, 0, -0.7815205, -8.827242, -2.4416997, -10.297565)
 
-[node name="Sprite3D7" type="Sprite3D" parent="PlayerSprites" unique_id=77602524]
-transform = Transform3D(-3.5788054, 0, 0.95218253, 0, 11.713468, 0, -11.15336, 0, -0.30552912, -11.669039, 0.4480195, 4.5492535)
-double_sided = false
-render_priority = -2
-texture = ExtResource("12_dg77c")
+[node name="PlayerScene2" parent="PlayerSprites" unique_id=500891926 instance=ExtResource("18_gqmmt")]
+transform = Transform3D(0.30569518, 0, -0.9521294, 0, 1, 0, 0.9521294, 0, 0.30569518, -12.908488, -2.442, 4.038622)
 
-[node name="Sprite3D8" type="Sprite3D" parent="PlayerSprites" unique_id=2013594056]
-transform = Transform3D(-11.711508, 0, -0.018290073, 0, 11.713468, 0, 0.21424007, 0, -0.9998326, 0.12890244, 0.4480195, 12.558928)
-double_sided = false
-render_priority = -2
-texture = ExtResource("12_dg77c")
+[node name="PlayerScene3" parent="PlayerSprites" unique_id=1645089558 instance=ExtResource("18_gqmmt")]
+transform = Transform3D(0.9999978, 0, 0.002164036, 0, 1, 0, -0.002164036, 0, 0.9999978, 0.08856678, -2.442, 13.410384)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1761382086]
 environment = SubResource("Environment_2cqfq")

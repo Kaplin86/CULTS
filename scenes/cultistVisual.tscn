@@ -10,7 +10,9 @@ albedo_texture = ExtResource("4_re1fq")
 
 [node name="Node3D" type="Node3D" unique_id=2077314409]
 script = ExtResource("1_5aqct")
+mat = SubResource("StandardMaterial3D_re1fq")
 followerType = 4
+outline = null
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1112430611]
 visible = false
@@ -20,17 +22,5 @@ texture = ExtResource("2_8tgbt")
 
 [node name="model" parent="." unique_id=1217459059 instance=ExtResource("3_re1fq")]
 transform = Transform3D(0.385, 0, 0, 0, 0.385, 0, 0, 0, 0.385, 0, -0.27388328, 0)
-
-[node name="sphere" parent="model" index="0" unique_id=127402092]
-surface_material_override/0 = SubResource("StandardMaterial3D_re1fq")
-
-[node name="sphere2" parent="model" index="1" unique_id=414964897]
-surface_material_override/0 = SubResource("StandardMaterial3D_re1fq")
-
-[node name="sphere3" parent="model" index="2" unique_id=1645914186]
-surface_material_override/0 = SubResource("StandardMaterial3D_re1fq")
-
-[node name="cylinder" parent="model" index="3" unique_id=263771911]
-surface_material_override/0 = SubResource("StandardMaterial3D_re1fq")
 
 [editable path="model"]
