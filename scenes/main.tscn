@@ -111,42 +111,6 @@ _data = {
 &"up": SubResource("Animation_ycdy4")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jscy8"]
-resource_local_to_scene = true
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-albedo_texture = ExtResource("4_yc10j")
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pm3ni"]
-resource_local_to_scene = true
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-albedo_texture = ExtResource("4_yc10j")
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6deb"]
-resource_local_to_scene = true
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-albedo_texture = ExtResource("4_yc10j")
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og1vs"]
-resource_local_to_scene = true
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-albedo_texture = ExtResource("4_yc10j")
-texture_filter = 0
-
 [sub_resource type="Gradient" id="Gradient_ycdy4"]
 offsets = PackedFloat32Array(0, 0.5170068, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.4862745, 1, 0.4862745, 1, 1, 1, 1, 1)
@@ -168,6 +132,9 @@ sky_material = SubResource("ShaderMaterial_w48qg")
 [sub_resource type="Environment" id="Environment_2cqfq"]
 background_mode = 2
 sky = SubResource("Sky_vivmo")
+ambient_light_color = Color(0.7441813, 0.7441813, 0.7441813, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 1.35
 
 [node name="Node3D" type="Node3D" unique_id=1761402108]
 
@@ -186,6 +153,7 @@ dist = 12.845
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.058166027, 0, -0.11798477)
 visible = false
 mat = SubResource("StandardMaterial3D_yc10j")
+doPiecesEffect = null
 
 [node name="UIHandler" type="Control" parent="." unique_id=1002133331]
 layout_mode = 3
@@ -473,74 +441,14 @@ speed_scale = 3.0
 transform = Transform3D(0.20441064, 0, 0.9788853, 0, 1, 0, -0.9788853, 0, 0.20441064, 13.233046, -2.4416997, 3.0080235)
 visible = false
 
-[node name="Node3D2" parent="PlayerSprites/PlayerScene5" index="0" unique_id=2077314409]
-mat = SubResource("StandardMaterial3D_jscy8")
-
-[node name="sphere" parent="PlayerSprites/PlayerScene5/Node3D2/model" parent_id_path=PackedInt32Array(1485268785, 2077314409, 1217459059) index="0" unique_id=127402092]
-surface_material_override/0 = SubResource("StandardMaterial3D_jscy8")
-
-[node name="sphere2" parent="PlayerSprites/PlayerScene5/Node3D2/model" parent_id_path=PackedInt32Array(1485268785, 2077314409, 1217459059) index="1" unique_id=414964897]
-surface_material_override/0 = SubResource("StandardMaterial3D_jscy8")
-
-[node name="sphere3" parent="PlayerSprites/PlayerScene5/Node3D2/model" parent_id_path=PackedInt32Array(1485268785, 2077314409, 1217459059) index="2" unique_id=1645914186]
-surface_material_override/0 = SubResource("StandardMaterial3D_jscy8")
-
-[node name="cylinder" parent="PlayerSprites/PlayerScene5/Node3D2/model" parent_id_path=PackedInt32Array(1485268785, 2077314409, 1217459059) index="3" unique_id=263771911]
-surface_material_override/0 = SubResource("StandardMaterial3D_jscy8")
-
 [node name="PlayerScene4" parent="PlayerSprites" unique_id=1720499602 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(-0.80291116, 0, 0.5960987, 0, 1, 0, -0.5960987, 0, -0.80291116, 7.9493732, -2.4416997, -11.261738)
-
-[node name="Node3D2" parent="PlayerSprites/PlayerScene4" index="0" unique_id=2077314409]
-mat = SubResource("StandardMaterial3D_pm3ni")
-
-[node name="sphere" parent="PlayerSprites/PlayerScene4/Node3D2/model" parent_id_path=PackedInt32Array(1720499602, 2077314409, 1217459059) index="0" unique_id=127402092]
-surface_material_override/0 = SubResource("StandardMaterial3D_pm3ni")
-
-[node name="sphere2" parent="PlayerSprites/PlayerScene4/Node3D2/model" parent_id_path=PackedInt32Array(1720499602, 2077314409, 1217459059) index="1" unique_id=414964897]
-surface_material_override/0 = SubResource("StandardMaterial3D_pm3ni")
-
-[node name="sphere3" parent="PlayerSprites/PlayerScene4/Node3D2/model" parent_id_path=PackedInt32Array(1720499602, 2077314409, 1217459059) index="2" unique_id=1645914186]
-surface_material_override/0 = SubResource("StandardMaterial3D_pm3ni")
-
-[node name="cylinder" parent="PlayerSprites/PlayerScene4/Node3D2/model" parent_id_path=PackedInt32Array(1720499602, 2077314409, 1217459059) index="3" unique_id=263771911]
-surface_material_override/0 = SubResource("StandardMaterial3D_pm3ni")
 
 [node name="PlayerScene" parent="PlayerSprites" unique_id=200374457 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(-0.7815205, 0, -0.6238796, 0, 1, 0, 0.6238796, 0, -0.7815205, -8.827242, -2.4416997, -10.297565)
 
-[node name="Node3D2" parent="PlayerSprites/PlayerScene" index="0" unique_id=2077314409]
-mat = SubResource("StandardMaterial3D_y6deb")
-
-[node name="sphere" parent="PlayerSprites/PlayerScene/Node3D2/model" parent_id_path=PackedInt32Array(200374457, 2077314409, 1217459059) index="0" unique_id=127402092]
-surface_material_override/0 = SubResource("StandardMaterial3D_y6deb")
-
-[node name="sphere2" parent="PlayerSprites/PlayerScene/Node3D2/model" parent_id_path=PackedInt32Array(200374457, 2077314409, 1217459059) index="1" unique_id=414964897]
-surface_material_override/0 = SubResource("StandardMaterial3D_y6deb")
-
-[node name="sphere3" parent="PlayerSprites/PlayerScene/Node3D2/model" parent_id_path=PackedInt32Array(200374457, 2077314409, 1217459059) index="2" unique_id=1645914186]
-surface_material_override/0 = SubResource("StandardMaterial3D_y6deb")
-
-[node name="cylinder" parent="PlayerSprites/PlayerScene/Node3D2/model" parent_id_path=PackedInt32Array(200374457, 2077314409, 1217459059) index="3" unique_id=263771911]
-surface_material_override/0 = SubResource("StandardMaterial3D_y6deb")
-
 [node name="PlayerScene2" parent="PlayerSprites" unique_id=500891926 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(0.30569518, 0, -0.9521294, 0, 1, 0, 0.9521294, 0, 0.30569518, -12.908488, -2.442, 4.038622)
-
-[node name="Node3D2" parent="PlayerSprites/PlayerScene2" index="0" unique_id=2077314409]
-mat = SubResource("StandardMaterial3D_og1vs")
-
-[node name="sphere" parent="PlayerSprites/PlayerScene2/Node3D2/model" parent_id_path=PackedInt32Array(500891926, 2077314409, 1217459059) index="0" unique_id=127402092]
-surface_material_override/0 = SubResource("StandardMaterial3D_og1vs")
-
-[node name="sphere2" parent="PlayerSprites/PlayerScene2/Node3D2/model" parent_id_path=PackedInt32Array(500891926, 2077314409, 1217459059) index="1" unique_id=414964897]
-surface_material_override/0 = SubResource("StandardMaterial3D_og1vs")
-
-[node name="sphere3" parent="PlayerSprites/PlayerScene2/Node3D2/model" parent_id_path=PackedInt32Array(500891926, 2077314409, 1217459059) index="2" unique_id=1645914186]
-surface_material_override/0 = SubResource("StandardMaterial3D_og1vs")
-
-[node name="cylinder" parent="PlayerSprites/PlayerScene2/Node3D2/model" parent_id_path=PackedInt32Array(500891926, 2077314409, 1217459059) index="3" unique_id=263771911]
-surface_material_override/0 = SubResource("StandardMaterial3D_og1vs")
 
 [node name="PlayerScene3" parent="PlayerSprites" unique_id=1645089558 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(0.9999978, 0, 0.002164036, 0, 1, 0, -0.002164036, 0, 0.9999978, 0.08856678, -2.442, 13.410384)
@@ -553,16 +461,3 @@ script = ExtResource("14_w48qg")
 [connection signal="mouse_entered" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_entered"]
 [connection signal="mouse_exited" from="UIHandler/ViewCards" to="UIHandler" method="_on_view_cards_mouse_exited"]
 [connection signal="pressed" from="UIHandler/ViewCards/EndTurn" to="UIHandler" method="_on_end_turn_pressed"]
-
-[editable path="PlayerSprites/PlayerScene5"]
-[editable path="PlayerSprites/PlayerScene5/Node3D2"]
-[editable path="PlayerSprites/PlayerScene5/Node3D2/model"]
-[editable path="PlayerSprites/PlayerScene4"]
-[editable path="PlayerSprites/PlayerScene4/Node3D2"]
-[editable path="PlayerSprites/PlayerScene4/Node3D2/model"]
-[editable path="PlayerSprites/PlayerScene"]
-[editable path="PlayerSprites/PlayerScene/Node3D2"]
-[editable path="PlayerSprites/PlayerScene/Node3D2/model"]
-[editable path="PlayerSprites/PlayerScene2"]
-[editable path="PlayerSprites/PlayerScene2/Node3D2"]
-[editable path="PlayerSprites/PlayerScene2/Node3D2/model"]

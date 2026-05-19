@@ -12,7 +12,6 @@ cull_mode = 2
 albedo_texture = ExtResource("3_rbmgg")
 texture_filter = 0
 grow = true
-grow_amount = 16.0
 
 [node name="PlayerScene" type="Node3D" unique_id=1485268785]
 
