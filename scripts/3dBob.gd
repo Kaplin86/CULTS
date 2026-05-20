@@ -4,7 +4,7 @@ extends Node3D
 @export var intensity = 2.0
 @export var speed = 5.0
 var startingHeight = null
-var dt = 0
+var dt = randi_range(1,100)
 func _process(delta: float) -> void:
 	dt += delta
 	if visualChild:

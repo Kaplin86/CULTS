@@ -138,11 +138,12 @@ ambient_light_energy = 1.35
 
 [node name="Node3D" type="Node3D" unique_id=1761402108]
 
-[node name="BoardHandler" type="Node" parent="." unique_id=462184343 node_paths=PackedStringArray("MainArea", "PlayerplayingAreas")]
+[node name="BoardHandler" type="Node" parent="." unique_id=462184343 node_paths=PackedStringArray("MainArea", "PlayerplayingAreas", "camera")]
 script = ExtResource("1_ig7tw")
 MainArea = NodePath("../Board/Area3D")
 PlayerplayingAreas = [NodePath("../Board/plyr1"), NodePath("../Board/plyr2"), NodePath("../Board/plyr3"), NodePath("../Board/plyr4"), NodePath("../Board/plyr5")]
 distanceGrad = SubResource("Curve_4c57u")
+camera = NodePath("../Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1412267553]
 transform = Transform3D(-0.76998097, 0.32765356, -0.5475148, 0, 0.8580838, 0.5135098, 0.6380668, 0.39539278, -0.6607082, -8.325111, 3.2379994, -10.128132)
@@ -292,6 +293,7 @@ render_priority = 2
 texture = ExtResource("11_yaehf")
 
 [node name="SacrificeForCards" type="Control" parent="UIHandler" unique_id=2130896244]
+visible = false
 anchors_preset = 0
 offset_left = 910.0
 offset_top = 53.0
@@ -440,26 +442,31 @@ speed_scale = 3.0
 [node name="PlayerScene5" parent="PlayerSprites" unique_id=1485268785 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(0.20441064, 0, 0.9788853, 0, 1, 0, -0.9788853, 0, 0.20441064, 13.233046, -2.4416997, 3.0080235)
 visible = false
-intensity = 2
-speed = 5
+intensity = 0.25
+speed = 1.0
 
 [node name="PlayerScene4" parent="PlayerSprites" unique_id=1720499602 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(-0.80291116, 0, 0.5960987, 0, 1, 0, -0.5960987, 0, -0.80291116, 7.9493732, -2.4416997, -11.261738)
+intensity = 0.25
+speed = 1.0
 
 [node name="PlayerScene" parent="PlayerSprites" unique_id=200374457 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(-0.7815205, 0, -0.6238796, 0, 1, 0, 0.6238796, 0, -0.7815205, -8.827242, -2.4416997, -10.297565)
-intensity = 2
-speed = 5
+intensity = 0.25
+speed = 1.0
+
+[node name="Node3D" type="Node3D" parent="PlayerSprites/PlayerScene" unique_id=1010164731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.936, -2.086)
 
 [node name="PlayerScene2" parent="PlayerSprites" unique_id=500891926 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(0.30569518, 0, -0.9521294, 0, 1, 0, 0.9521294, 0, 0.30569518, -12.908488, -2.442, 4.038622)
-intensity = 2
-speed = 5
+intensity = 0.25
+speed = 1.0
 
 [node name="PlayerScene3" parent="PlayerSprites" unique_id=1645089558 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(0.9999978, 0, 0.002164036, 0, 1, 0, -0.002164036, 0, 0.9999978, 0.08856678, -2.442, 13.410384)
-intensity = 2
-speed = 5
+intensity = 0.25
+speed = 1.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1761382086]
 environment = SubResource("Environment_2cqfq")

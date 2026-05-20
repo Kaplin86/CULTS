@@ -7,28 +7,31 @@ var rotationProgress = 1.24
 var goalRotation = 1.24
 var cameraMoveSpeed = 0.8
 
+var controllable = true
+
 func _process(delta: float) -> void:
-	processingDist = lerp(processingDist,dist,0.1)
-	global_position.x = sin(rotationProgress) * processingDist
-	global_position.z = cos(rotationProgress) * processingDist
-	look_at(Vector3.ZERO)
-	
-	rotationProgress = lerp(rotationProgress,goalRotation,delta * 15)
-	
-	var canrotate = true
-	
-	if References.uiHandler:
-		if References.uiHandler.viewCards:
-			canrotate = false
-	
-	if canrotate:
-		if Input.is_action_pressed("ui_left"):
-			goalRotation -= delta * cameraMoveSpeed
-		if Input.is_action_pressed("ui_right"):
-			goalRotation += delta * cameraMoveSpeed
-	
-	if References.uiHandler:
-		if References.uiHandler.viewCards:
-			dist = 16.0
-		else:
-			dist = 13.11
+	if controllable:
+		processingDist = lerp(processingDist,dist,0.1)
+		global_position.x = sin(rotationProgress) * processingDist
+		global_position.z = cos(rotationProgress) * processingDist
+		look_at(Vector3.ZERO)
+		
+		rotationProgress = lerp(rotationProgress,goalRotation,delta * 15)
+		
+		var canrotate = true
+		
+		if References.uiHandler:
+			if References.uiHandler.viewCards:
+				canrotate = false
+		
+		if canrotate:
+			if Input.is_action_pressed("ui_left"):
+				goalRotation -= delta * cameraMoveSpeed
+			if Input.is_action_pressed("ui_right"):
+				goalRotation += delta * cameraMoveSpeed
+		
+		if References.uiHandler:
+			if References.uiHandler.viewCards:
+				dist = 16.0
+			else:
+				dist = 13.11

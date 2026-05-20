@@ -7,6 +7,7 @@ var playerObjects : Array[PlayerResource] = []
 @export var PlayerplayingAreas : Array[Area3D] = []
 
 @export var distanceGrad : Curve = null
+@export var camera : Camera3D = null
 
 var boardFigures := {
 	"crimson":43, 
@@ -359,6 +360,9 @@ func runTurn(player :PlayerResource, anim = true):
 		References.uiHandler.displayPips(currentPlayerPips)
 		await References.uiHandler.turnEnded
 	else:
+		
+		showPlayerTurnStart()
+		
 		var lowestCost = 6
 		for CARD in player.cards:
 			if CARD.pipCost <= lowestCost:
@@ -456,3 +460,38 @@ func playerUsedCard(cardData : CardData):
 	
 	await animatedCardSegment(cardData,1)
 	usingCard = false
+
+
+func showPlayerTurnStart():
+	var transform = createRandomCameraTransform()
+	camera.controllable = false
+	var newTween = create_tween().tween_property(camera,"global_transform",transform,1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	#camera.global_transform = transform
+	
+
+func createRandomCameraTransform():
+	var plyrNumber = playerObjects.find(currentPlayer)
+	var node : Node3D = $"../PlayerSprites".get_child(plyrNumber)
+	var startingTransform  : Transform3D = node.global_transform
+	var facePos = startingTransform.origin + (startingTransform.basis.y * 5.23) + (-startingTransform.basis.z * 2.086)
+	
+	var yawDeg = randf_range(-45.0, 45.0)
+	var yaw = deg_to_rad(yawDeg)
+	
+	var pitch_deg = randf_range(-20.0, 15.0)
+	var pitch = deg_to_rad(pitch_deg)
+	var distance = 8.0
+	
+	var backward = -startingTransform.basis.z
+	var dir = backward.rotated(Vector3.UP, yaw)
+	
+	var right_axis = dir.cross(Vector3.UP).normalized()
+	dir = dir.rotated(right_axis, pitch)
+	
+	var camPos = facePos + (dir * distance)
+	
+	var transf = Transform3D.IDENTITY
+	transf.origin = camPos
+	transf = transf.looking_at(facePos, Vector3.UP)
+	return transf
+	
