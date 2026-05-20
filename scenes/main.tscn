@@ -440,18 +440,26 @@ speed_scale = 3.0
 [node name="PlayerScene5" parent="PlayerSprites" unique_id=1485268785 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(0.20441064, 0, 0.9788853, 0, 1, 0, -0.9788853, 0, 0.20441064, 13.233046, -2.4416997, 3.0080235)
 visible = false
+intensity = 2
+speed = 5
 
 [node name="PlayerScene4" parent="PlayerSprites" unique_id=1720499602 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(-0.80291116, 0, 0.5960987, 0, 1, 0, -0.5960987, 0, -0.80291116, 7.9493732, -2.4416997, -11.261738)
 
 [node name="PlayerScene" parent="PlayerSprites" unique_id=200374457 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(-0.7815205, 0, -0.6238796, 0, 1, 0, 0.6238796, 0, -0.7815205, -8.827242, -2.4416997, -10.297565)
+intensity = 2
+speed = 5
 
 [node name="PlayerScene2" parent="PlayerSprites" unique_id=500891926 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(0.30569518, 0, -0.9521294, 0, 1, 0, 0.9521294, 0, 0.30569518, -12.908488, -2.442, 4.038622)
+intensity = 2
+speed = 5
 
 [node name="PlayerScene3" parent="PlayerSprites" unique_id=1645089558 instance=ExtResource("18_gqmmt")]
 transform = Transform3D(0.9999978, 0, 0.002164036, 0, 1, 0, -0.002164036, 0, 0.9999978, 0.08856678, -2.442, 13.410384)
+intensity = 2
+speed = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1761382086]
 environment = SubResource("Environment_2cqfq")
